@@ -39,7 +39,7 @@
   --ocre:           #a9843f;   /* bronze / ocre doré */
   --ocre-clair:     #c9a662;
   --terre:          #6e5f4b;   /* brun terre */
-  --blanc-casse:    #f8f4eb;   /* fond parchemin du site */
+  --blanc-casse:    #fcfbf8;   /* blanc doux, à peine réchauffé */
   --blanc:          #ffffff;
   --encre:          #35302a;   /* encre sépia (texte, logo) */
   --gris-texte:     #6a6154;   /* texte secondaire */
@@ -267,7 +267,7 @@ main {
   background:
     linear-gradient(45deg, rgba(122, 74, 43, .07) 25%, transparent 25% 75%, rgba(122, 74, 43, .07) 75%),
     linear-gradient(45deg, rgba(122, 74, 43, .07) 25%, transparent 25% 75%, rgba(122, 74, 43, .07) 75%),
-    linear-gradient(135deg, #f0e6d4, #e6d5bc);
+    linear-gradient(135deg, #f4f1e9, #eae4d6);
   background-position: 0 0, 9px 9px;
   background-size: 18px 18px, 18px 18px, cover;
   border: 2px dashed rgba(122, 74, 43, .45);
@@ -310,7 +310,7 @@ main {
 /* Fond de section avec un motif de losanges très discret */
 .fond-motif {
   position: relative;
-  background-color: #f4ecdd;
+  background-color: #f4f2ec;
 }
 
 .fond-motif::before {
@@ -376,7 +376,7 @@ main {
   right: 0;
   z-index: 100;
   height: var(--hauteur-header);
-  background-color: rgba(250, 246, 239, .92);
+  background-color: rgba(252, 251, 248, .92);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   transition: box-shadow var(--transition), background-color var(--transition);
@@ -384,7 +384,7 @@ main {
 
 /* Classe ajoutée par JavaScript dès que l'on fait défiler la page */
 .site-header.reduit {
-  background-color: rgba(250, 246, 239, .98);
+  background-color: rgba(252, 251, 248, .98);
   box-shadow: 0 4px 18px rgba(43, 32, 25, .1);
 }
 
@@ -1171,7 +1171,7 @@ main {
   font-size: 1rem;
   color: var(--encre);
   padding: .8rem 1rem;
-  border: 2px solid #e3d9c8;
+  border: 2px solid #e6e1d5;
   border-radius: 10px;
   background-color: var(--blanc-casse);
   transition: border-color var(--transition), box-shadow var(--transition);
