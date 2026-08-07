@@ -715,9 +715,14 @@ main {
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  font-size: 1.7rem;
-  background-color: rgba(30, 91, 60, .1);
+  color: var(--vert-foret);
+  background-color: rgba(77, 88, 67, .12);
   margin-bottom: 1rem;
+}
+
+.carte-valeur .valeur-icone svg {
+  width: 30px;
+  height: 30px;
 }
 
 .carte-valeur h3 {
