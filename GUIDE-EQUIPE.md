@@ -173,7 +173,61 @@ Dans `index.html`, section « CHIFFRES CLÉS » :
 
 ---
 
-## ✅ 8. Liste de contrôle avant mise en ligne
+## 🌍 8. Modifier le site en ligne (via GitHub)
+
+Le site est publié sur **https://association-lefona.github.io** et ses
+fichiers sont hébergés sur GitHub, ici :
+`github.com/association-lefona/association-lefona.github.io`.
+**Toute modification enregistrée sur GitHub met à jour le site en ligne
+automatiquement, en une à deux minutes.**
+
+### Obtenir l'accès
+
+1. Créez un compte gratuit sur [github.com](https://github.com).
+2. Donnez votre nom d'utilisateur GitHub à la personne qui gère le compte
+   de l'association : elle vous invitera (dans le dépôt : Settings →
+   Collaborators → Add people). Acceptez l'invitation reçue par e-mail.
+
+### Modifier un texte
+
+1. Sur la page du dépôt, cliquez sur le fichier à modifier
+   (ex. `apropos.html`).
+2. Cliquez sur le **crayon ✏️** (« Edit this file ») en haut à droite
+   du fichier.
+3. Faites vos modifications (les règles de ce guide s'appliquent :
+   remplacez uniquement les textes, pas les balises).
+4. Cliquez le bouton vert **« Commit changes »** (deux fois : une pour
+   ouvrir la fenêtre, une pour confirmer). C'est tout !
+
+### Ajouter une photo
+
+1. Ouvrez le dossier `images` du dépôt.
+2. Bouton **« Add file » → « Upload files »**, glissez votre photo,
+   puis **« Commit changes »**.
+3. ⚠️ Sur GitHub, majuscules et minuscules comptent ! Nommez vos
+   fichiers **tout en minuscules, sans espaces ni accents**
+   (`atelier-riz-2026.jpg`), et écrivez-les exactement pareil dans
+   le code HTML.
+
+### Créer un nouvel article
+
+1. Ouvrez `article-template.html` sur GitHub, cliquez sur **« Raw »**,
+   puis copiez tout le texte affiché (Cmd+A, Cmd+C).
+2. Revenez au dépôt : **« Add file » → « Create new file »**, nommez-le
+   (ex. `article-riziculture-2026.html`), collez le contenu, remplissez
+   les zones « À COMPLÉTER », puis **« Commit changes »**.
+3. Ajoutez la carte correspondante dans `publications.html`
+   (voir section 4 de ce guide).
+
+### En cas d'erreur
+
+Pas de panique : GitHub garde l'historique de toutes les versions
+(bouton « History » sur chaque fichier). La personne qui gère le compte
+peut toujours revenir à la version précédente.
+
+---
+
+## ✅ 9. Liste de contrôle
 
 - [ ] Plus aucun texte entre `[crochets]` sur aucune page
 - [ ] Plus aucun bloc « 📷 [Image à insérer] »
