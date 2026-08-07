@@ -1,0 +1,13 @@
+DOSSIER IMAGES — Association Lefona
+====================================
+
+Déposez ici toutes les photos du site (logo, photos d'équipe, galerie,
+images d'articles...).
+
+Règles pour les noms de fichiers :
+- lettres minuscules uniquement
+- pas d'espaces, pas d'accents (utilisez des tirets : atelier-riz-2026.jpg)
+- formats recommandés : .jpg ou .png
+- poids conseillé : moins de 500 Ko par image (compressez sur tinypng.com)
+
+Comment insérer une photo dans une page : voir GUIDE-EQUIPE.md (section 3).

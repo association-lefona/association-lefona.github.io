@@ -1,0 +1,1546 @@
+/* ==========================================================================
+   ASSOCIATION LEFONA — FEUILLE DE STYLE PRINCIPALE (css/style.css)
+   --------------------------------------------------------------------------
+   Ce fichier contient TOUS les styles du site.
+   Il est organisé en sections numérotées (voir le sommaire ci-dessous).
+   Pour l'équipe contenu : vous n'avez normalement PAS besoin de modifier
+   ce fichier, sauf éventuellement les COULEURS dans la section 1.
+
+   SOMMAIRE
+   1.  Variables (couleurs, polices, espacements)
+   2.  Reset & styles de base
+   3.  Utilitaires (conteneur, titres, boutons, badges, placeholders, motifs)
+   4.  En-tête & navigation (header, menu burger)
+   5.  Hero de la page d'accueil + en-têtes de pages internes
+   6.  Sections de la page d'accueil (présentation, actualités, chiffres clés)
+   7.  Page « À propos » (valeurs, équipe, timeline)
+   8.  Page « Articles & Études » + page article
+   9.  Page « Galerie » + lightbox
+   10. Page « Contact » (formulaire)
+   11. Pied de page (footer)
+   12. Animations (apparition au scroll, etc.)
+   13. Responsive (adaptations mobile / tablette)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. VARIABLES
+   Palette inspirée de Madagascar : rouge latérite, vert forêt, ocre/terre,
+   blanc cassé. C'est ICI que l'on change les couleurs de tout le site.
+   ========================================================================== */
+:root {
+  /* --- Couleurs principales ---
+     Palette accordée au logo (encre sépia sur fond parchemin), avec des
+     accents malgaches assourdis : terre cuite, bronze et vert olive. */
+  --rouge-laterite: #9a4a34;   /* terre cuite (accent principal) */
+  --rouge-fonce:    #7c3a28;   /* variante foncée (survol des boutons) */
+  --vert-foret:     #4d5843;   /* vert olive profond */
+  --vert-clair:     #617054;   /* variante claire */
+  --ocre:           #a9843f;   /* bronze / ocre doré */
+  --ocre-clair:     #c9a662;
+  --terre:          #6e5f4b;   /* brun terre */
+  --blanc-casse:    #f8f4eb;   /* fond parchemin du site */
+  --blanc:          #ffffff;
+  --encre:          #35302a;   /* encre sépia (texte, logo) */
+  --gris-texte:     #6a6154;   /* texte secondaire */
+  --fond-fonce:     #262119;   /* fond du pied de page */
+
+  /* --- Polices (chargées depuis Google Fonts dans chaque page HTML)
+     Cinzel : capitales gravées, dans l'esprit du lettrage du logo. --- */
+  --police-titres: 'Cinzel', 'Georgia', serif;
+  --police-texte:  'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  /* --- Divers --- */
+  --rayon: 14px;                                   /* arrondi des cartes */
+  --ombre-douce: 0 6px 20px rgba(43, 32, 25, .08);
+  --ombre-forte: 0 14px 34px rgba(43, 32, 25, .16);
+  --transition: .3s cubic-bezier(.25, .7, .35, 1); /* transition standard */
+  --hauteur-header: 76px;
+}
+
+
+/* ==========================================================================
+   2. RESET & STYLES DE BASE
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--police-texte);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--encre);
+  background-color: var(--blanc-casse);
+}
+
+/* Quand le menu mobile est ouvert, on bloque le défilement de la page */
+body.nav-ouverte {
+  overflow: hidden;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--rouge-laterite);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--rouge-fonce);
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--police-titres);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--encre);
+}
+
+/* Le contenu commence sous le header fixe */
+main {
+  padding-top: var(--hauteur-header);
+}
+
+
+/* ==========================================================================
+   3. UTILITAIRES
+   Classes réutilisées un peu partout dans le site.
+   ========================================================================== */
+
+/* Conteneur centré qui limite la largeur du contenu */
+.container {
+  width: min(1120px, 92%);
+  margin-inline: auto;
+}
+
+/* Espacement vertical standard d'une section */
+.section {
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+/* --- Titres de section --- */
+.section-titre {
+  margin-bottom: 2.5rem;
+  max-width: 640px;
+}
+
+.section-titre.centre {
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* Petit texte au-dessus du titre (ex : « Qui sommes-nous ? ») */
+.surtitre {
+  font-family: var(--police-titres);
+  font-weight: 700;
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  color: var(--ocre);
+  margin-bottom: .5rem;
+}
+
+.section-titre h1,
+.section-titre h2 {
+  font-size: clamp(1.5rem, 3.6vw, 2.2rem);
+}
+
+/* Trait décoratif tricolore sous les titres (clin d'œil discret au drapeau) */
+.titre-trait {
+  width: 72px;
+  height: 5px;
+  border-radius: 3px;
+  margin-top: 1rem;
+  background: linear-gradient(90deg,
+    var(--rouge-laterite) 0 34%,
+    var(--ocre) 34% 67%,
+    var(--vert-foret) 67% 100%);
+}
+
+.section-titre.centre .titre-trait {
+  margin-inline: auto;
+}
+
+/* Version claire des titres (sur fond coloré foncé) */
+.section-titre.clair h2,
+.section-titre.clair p {
+  color: var(--blanc);
+}
+
+.section-titre.clair .surtitre {
+  color: var(--ocre-clair);
+}
+
+/* --- Boutons --- */
+.btn {
+  display: inline-block;
+  font-family: var(--police-titres);
+  font-weight: 700;
+  font-size: .95rem;
+  letter-spacing: .02em;
+  padding: .85rem 1.9rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition),
+              background-color var(--transition), color var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--ombre-forte);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+}
+
+/* Bouton principal (rouge latérite) */
+.btn-principal {
+  background-color: var(--rouge-laterite);
+  color: var(--blanc);
+}
+
+.btn-principal:hover {
+  background-color: var(--rouge-fonce);
+  color: var(--blanc);
+}
+
+/* Bouton secondaire (contour vert) */
+.btn-secondaire {
+  background-color: transparent;
+  color: var(--vert-foret);
+  border-color: var(--vert-foret);
+}
+
+.btn-secondaire:hover {
+  background-color: var(--vert-foret);
+  color: var(--blanc);
+}
+
+/* --- Badges de catégorie (page Publications) --- */
+.badge {
+  display: inline-block;
+  font-family: var(--police-titres);
+  font-weight: 700;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  padding: .28rem .8rem;
+  border-radius: 999px;
+  color: var(--blanc);
+}
+
+.badge-article { background-color: var(--vert-foret); }
+.badge-etude   { background-color: var(--ocre); }
+
+/* --- Placeholders d'images ---
+   Ces blocs en pointillés indiquent à l'équipe contenu où insérer
+   une vraie image. Voir GUIDE-EQUIPE.md pour la marche à suivre. */
+.img-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background:
+    linear-gradient(45deg, rgba(122, 74, 43, .07) 25%, transparent 25% 75%, rgba(122, 74, 43, .07) 75%),
+    linear-gradient(45deg, rgba(122, 74, 43, .07) 25%, transparent 25% 75%, rgba(122, 74, 43, .07) 75%),
+    linear-gradient(135deg, #f0e6d4, #e6d5bc);
+  background-position: 0 0, 9px 9px;
+  background-size: 18px 18px, 18px 18px, cover;
+  border: 2px dashed rgba(122, 74, 43, .45);
+  color: var(--terre);
+  font-weight: 600;
+  font-size: .88rem;
+  line-height: 1.4;
+}
+
+/* Ratios d'image prédéfinis */
+.ratio-16-9 { aspect-ratio: 16 / 9; }
+.ratio-4-3  { aspect-ratio: 4 / 3; }
+.ratio-1-1  { aspect-ratio: 1 / 1; }
+
+.coin-arrondi {
+  border-radius: var(--rayon);
+  overflow: hidden;
+}
+
+/* Placeholder rond (photos de l'équipe) */
+.rond {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* --- Motif « lamba » (tissage malgache) ---
+   Bande de losanges générée en CSS pur, utilisée comme séparateur décoratif. */
+.separateur-lamba {
+  width: min(300px, 55%);
+  height: 14px;
+  margin: 0 auto;
+  background-image:
+    linear-gradient(45deg, var(--ocre) 25%, transparent 25% 75%, var(--ocre) 75%),
+    linear-gradient(45deg, var(--ocre) 25%, transparent 25% 75%, var(--ocre) 75%);
+  background-position: 0 0, 7px 7px;
+  background-size: 14px 14px;
+  opacity: .8;
+}
+
+/* Fond de section avec un motif de losanges très discret */
+.fond-motif {
+  position: relative;
+  background-color: #f4ecdd;
+}
+
+.fond-motif::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(45deg, var(--terre) 25%, transparent 25% 75%, var(--terre) 75%),
+    linear-gradient(45deg, var(--terre) 25%, transparent 25% 75%, var(--terre) 75%);
+  background-position: 0 0, 14px 14px;
+  background-size: 28px 28px;
+  opacity: .04;
+}
+
+.fond-motif > .container {
+  position: relative; /* le contenu passe au-dessus du motif */
+}
+
+/* Fine bande aux trois teintes du site (rappel discret et assourdi
+   des couleurs malgaches, accordé au logo) */
+.bande-drapeau {
+  height: 5px;
+  background: linear-gradient(90deg,
+    var(--rouge-laterite) 0 33.4%,
+    var(--ocre) 33.4% 66.7%,
+    var(--vert-foret) 66.7% 100%);
+}
+
+/* Grille à deux colonnes (texte + image) */
+.grille-2col {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+/* Lien avec petite flèche (« Lire la suite → ») */
+.lien-fleche {
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.lien-fleche::after {
+  content: "→";
+  transition: transform var(--transition);
+}
+
+.lien-fleche:hover::after {
+  transform: translateX(5px);
+}
+
+
+/* ==========================================================================
+   4. EN-TÊTE & NAVIGATION
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--hauteur-header);
+  background-color: rgba(250, 246, 239, .92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: box-shadow var(--transition), background-color var(--transition);
+}
+
+/* Classe ajoutée par JavaScript dès que l'on fait défiler la page */
+.site-header.reduit {
+  background-color: rgba(250, 246, 239, .98);
+  box-shadow: 0 4px 18px rgba(43, 32, 25, .1);
+}
+
+.header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* --- Logo ---
+   L'emblème (cornes de zébu, lance, écu tissé) est dessiné en SVG et
+   hérite de la couleur du texte (currentColor) : il s'adapte donc tout
+   seul au header clair et au footer sombre. */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  color: var(--encre);
+}
+
+.logo-embleme {
+  width: 46px;
+  height: 46px;
+  fill: currentColor;
+  transition: transform var(--transition);
+}
+
+.logo:hover .logo-embleme {
+  transform: translateY(-3px);
+}
+
+.logo-texte {
+  font-family: var(--police-titres);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: .22em;
+  color: currentColor;
+}
+
+/* --- Menu de navigation --- */
+.main-nav ul {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+.nav-link {
+  position: relative;
+  font-family: var(--police-titres);
+  font-weight: 700;
+  font-size: .92rem;
+  color: var(--encre);
+  padding: .4rem 0;
+}
+
+/* Soulignement animé au survol */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  background-color: var(--rouge-laterite);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Lien de la page en cours (classe « actif » posée dans chaque page HTML) */
+.nav-link.actif {
+  color: var(--rouge-laterite);
+}
+
+.nav-link.actif::after {
+  transform: scaleX(1);
+}
+
+/* --- Bouton burger (caché sur grand écran, voir section 13) --- */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 120;
+}
+
+.burger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  background-color: var(--encre);
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+/* Animation du burger vers une croix quand le menu est ouvert */
+.burger.ouvert span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.burger.ouvert span:nth-child(2) { opacity: 0; }
+.burger.ouvert span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+
+/* ==========================================================================
+   5. HERO (accueil) & EN-TÊTES DES PAGES INTERNES
+   ========================================================================== */
+
+/* --- Hero plein écran de la page d'accueil ---
+   Le fond est pour l'instant un dégradé aux couleurs malgaches.
+   Pour mettre une vraie photo plus tard, voir le commentaire
+   dans index.html (section HERO). */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  margin-top: calc(-1 * var(--hauteur-header)); /* passe sous le header */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  /* Dégradé encre sépia, dans l'esprit du logo, réchauffé de terre cuite */
+  background: linear-gradient(155deg,
+    #54463a 0%,
+    #3b342b 40%,
+    #2a251e 75%,
+    #37281f 100%);
+}
+
+/* Motif de losanges très léger par-dessus le dégradé */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(45deg, var(--blanc) 25%, transparent 25% 75%, var(--blanc) 75%),
+    linear-gradient(45deg, var(--blanc) 25%, transparent 25% 75%, var(--blanc) 75%);
+  background-position: 0 0, 16px 16px;
+  background-size: 32px 32px;
+  opacity: .025;
+}
+
+/* Léger assombrissement en bas pour la lisibilité */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.15), transparent 35%, rgba(0,0,0,.25));
+}
+
+.hero-contenu {
+  position: relative;
+  z-index: 2;
+  padding-block: 7rem 5rem;
+}
+
+.hero-surtitre {
+  font-family: var(--police-titres);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  font-size: .9rem;
+  color: var(--ocre-clair);
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  /* Cinzel est une police large : tailles un peu plus contenues */
+  font-size: clamp(2.1rem, 6.5vw, 4.1rem);
+  font-weight: 800;
+  color: #f4eee1;
+  text-shadow: 0 3px 24px rgba(0, 0, 0, .35);
+}
+
+.hero h1 .accent {
+  color: var(--ocre-clair);
+}
+
+.hero-sous-titre {
+  max-width: 560px;
+  margin: 1.2rem auto 2.4rem;
+  font-size: clamp(1.05rem, 2.3vw, 1.3rem);
+  color: rgba(255, 255, 255, .92);
+}
+
+/* Flèche animée en bas du hero invitant à faire défiler */
+.hero-fleche {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(255, 255, 255, .85);
+  font-size: 1.6rem;
+  animation: rebond 2s infinite;
+}
+
+@keyframes rebond {
+  0%, 100% { transform: translate(-50%, 0); }
+  50%      { transform: translate(-50%, 10px); }
+}
+
+/* --- En-tête des pages internes (À propos, Galerie, etc.) --- */
+.entete-page {
+  position: relative;
+  margin-top: calc(-1 * var(--hauteur-header));
+  padding: calc(var(--hauteur-header) + 4.5rem) 0 3.5rem;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(140deg,
+    #4a4033 0%,
+    #322c25 60%,
+    #443327 130%);
+}
+
+.entete-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(45deg, var(--blanc) 25%, transparent 25% 75%, var(--blanc) 75%),
+    linear-gradient(45deg, var(--blanc) 25%, transparent 25% 75%, var(--blanc) 75%);
+  background-position: 0 0, 16px 16px;
+  background-size: 32px 32px;
+  opacity: .025;
+}
+
+.entete-page .container {
+  position: relative;
+}
+
+.entete-page h1 {
+  font-size: clamp(1.8rem, 4.8vw, 2.8rem);
+  color: #f4eee1;
+}
+
+.entete-page p {
+  max-width: 620px;
+  margin: .9rem auto 0;
+  color: rgba(255, 255, 255, .88);
+  font-size: 1.05rem;
+}
+
+
+/* ==========================================================================
+   6. SECTIONS DE LA PAGE D'ACCUEIL
+   ========================================================================== */
+
+/* --- Cartes d'actualités (3 cartes sur l'accueil) --- */
+.cartes-grille {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+}
+
+.carte {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--blanc);
+  border-radius: var(--rayon);
+  overflow: hidden;
+  box-shadow: var(--ombre-douce);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.carte:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--ombre-forte);
+}
+
+.carte-media {
+  position: relative;
+}
+
+.carte-corps {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: .6rem;
+  padding: 1.4rem 1.5rem 1.6rem;
+}
+
+.carte-date {
+  font-size: .82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--gris-texte);
+}
+
+.carte-corps h3 {
+  font-size: 1.15rem;
+}
+
+.carte-corps p {
+  color: var(--gris-texte);
+  font-size: .95rem;
+  flex: 1;
+}
+
+/* --- Section chiffres clés --- */
+.section-chiffres {
+  position: relative;
+  background: linear-gradient(140deg, #3b342b, #262119);
+  overflow: hidden;
+}
+
+.section-chiffres::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(45deg, var(--blanc) 25%, transparent 25% 75%, var(--blanc) 75%),
+    linear-gradient(45deg, var(--blanc) 25%, transparent 25% 75%, var(--blanc) 75%);
+  background-position: 0 0, 16px 16px;
+  background-size: 32px 32px;
+  opacity: .025;
+}
+
+.section-chiffres .container {
+  position: relative;
+}
+
+.chiffres-grille {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+
+.chiffre-valeur {
+  display: block;
+  font-family: var(--police-titres);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  color: var(--ocre-clair);
+  line-height: 1.1;
+}
+
+.chiffre-libelle {
+  display: block;
+  margin-top: .4rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, .92);
+}
+
+
+/* ==========================================================================
+   7. PAGE « À PROPOS »
+   ========================================================================== */
+
+/* --- Cartes des valeurs --- */
+.valeurs-grille {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+}
+
+.carte-valeur {
+  background-color: var(--blanc);
+  border-radius: var(--rayon);
+  padding: 2rem 1.6rem;
+  text-align: center;
+  box-shadow: var(--ombre-douce);
+  border-top: 4px solid var(--ocre);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.carte-valeur:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--ombre-forte);
+}
+
+.carte-valeur .valeur-icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  font-size: 1.7rem;
+  background-color: rgba(30, 91, 60, .1);
+  margin-bottom: 1rem;
+}
+
+.carte-valeur h3 {
+  margin-bottom: .6rem;
+}
+
+.carte-valeur p {
+  color: var(--gris-texte);
+  font-size: .95rem;
+}
+
+/* --- Grille de l'équipe --- */
+.equipe-grille {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+}
+
+.carte-membre {
+  background-color: var(--blanc);
+  border-radius: var(--rayon);
+  padding: 2rem 1.4rem 1.8rem;
+  text-align: center;
+  box-shadow: var(--ombre-douce);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.carte-membre:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--ombre-forte);
+}
+
+.membre-photo {
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 1.2rem;
+}
+
+.membre-photo .img-placeholder {
+  font-size: .74rem;
+}
+
+.carte-membre h3 {
+  font-size: 1.1rem;
+}
+
+.membre-role {
+  color: var(--vert-foret);
+  font-weight: 600;
+  font-size: .9rem;
+  margin-top: .2rem;
+}
+
+/* --- Timeline verticale (histoire de l'association) --- */
+.timeline {
+  position: relative;
+  max-width: 860px;
+  margin-inline: auto;
+  padding-block: 1rem;
+}
+
+/* Ligne verticale centrale */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--ocre), var(--rouge-laterite), var(--vert-foret));
+}
+
+.timeline-etape {
+  position: relative;
+  width: 50%;
+  padding: 1rem 2.6rem 2rem;
+}
+
+/* Étapes impaires à gauche, paires à droite */
+.timeline-etape:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-etape:nth-child(even) {
+  left: 50%;
+  text-align: left;
+}
+
+/* Pastille ronde sur la ligne */
+.timeline-etape::before {
+  content: "";
+  position: absolute;
+  top: 1.5rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--rouge-laterite);
+  border: 4px solid var(--blanc-casse);
+  box-shadow: 0 0 0 3px var(--ocre);
+}
+
+.timeline-etape:nth-child(odd)::before  { right: -9px; }
+.timeline-etape:nth-child(even)::before { left: -9px; }
+
+.timeline-annee {
+  display: inline-block;
+  font-family: var(--police-titres);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--blanc);
+  background-color: var(--vert-foret);
+  padding: .15rem .9rem;
+  border-radius: 999px;
+  margin-bottom: .6rem;
+}
+
+.timeline-etape h3 {
+  font-size: 1.15rem;
+  margin-bottom: .4rem;
+}
+
+.timeline-etape p {
+  color: var(--gris-texte);
+  font-size: .95rem;
+}
+
+
+/* ==========================================================================
+   8. PAGE « ARTICLES & ÉTUDES » + PAGE ARTICLE
+   ========================================================================== */
+
+/* --- Barre de filtres (Tout / Articles / Études) --- */
+.filtres {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .8rem;
+  margin-bottom: 2.5rem;
+}
+
+.filtre-btn {
+  font-family: var(--police-titres);
+  font-weight: 700;
+  font-size: .9rem;
+  padding: .6rem 1.5rem;
+  border-radius: 999px;
+  border: 2px solid var(--vert-foret);
+  background-color: transparent;
+  color: var(--vert-foret);
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition),
+              transform var(--transition);
+}
+
+.filtre-btn:hover {
+  transform: translateY(-2px);
+}
+
+.filtre-btn.actif {
+  background-color: var(--vert-foret);
+  color: var(--blanc);
+}
+
+/* --- Cartes de publication --- */
+.carte-publication .carte-media .badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+}
+
+/* Carte masquée par les filtres (géré en JavaScript) */
+.carte-publication.cachee {
+  display: none;
+}
+
+/* Petite animation quand une carte réapparaît après un filtrage */
+.carte-publication.apparition {
+  animation: fondu-montee .45s ease both;
+}
+
+/* --- Page article (article-template.html) --- */
+.article-entete {
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.article-entete h1 {
+  font-size: clamp(1.8rem, 4.5vw, 2.7rem);
+  margin: .9rem 0;
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .5rem 1.5rem;
+  color: var(--gris-texte);
+  font-size: .92rem;
+  font-weight: 500;
+}
+
+.article-couverture {
+  max-width: 860px;
+  margin: 2.5rem auto;
+}
+
+.article-corps {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.article-corps h2 {
+  font-size: 1.5rem;
+  margin: 2.2rem 0 .8rem;
+}
+
+.article-corps p {
+  margin-bottom: 1.1rem;
+  color: #3d332a;
+}
+
+.article-corps blockquote {
+  margin: 1.8rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 5px solid var(--ocre);
+  background-color: rgba(208, 140, 46, .08);
+  border-radius: 0 var(--rayon) var(--rayon) 0;
+  font-style: italic;
+  color: var(--terre);
+}
+
+.article-retour {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   9. PAGE « GALERIE » + LIGHTBOX
+   ========================================================================== */
+
+/* Grille de photos façon « masonry » : les blocs occupent 2 ou 3 rangées */
+.galerie-grille {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 130px;
+  grid-auto-flow: dense;
+  gap: 16px;
+}
+
+.galerie-item {
+  grid-row: span 2;
+  border-radius: var(--rayon);
+  overflow: hidden;
+  cursor: zoom-in;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+/* Certains blocs sont plus hauts pour donner un effet mosaïque */
+.galerie-item.haut {
+  grid-row: span 3;
+}
+
+.galerie-item:hover {
+  transform: scale(1.025);
+  box-shadow: var(--ombre-forte);
+}
+
+.galerie-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Lightbox (photo agrandie au clic) --- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: rgba(20, 12, 8, .9);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+
+.lightbox.ouverte {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-figure {
+  max-width: min(900px, 92vw);
+  width: 100%;
+  text-align: center;
+  transform: scale(.95);
+  transition: transform .3s ease;
+}
+
+.lightbox.ouverte .lightbox-figure {
+  transform: scale(1);
+}
+
+.lightbox-media {
+  max-height: 75vh;
+  border-radius: var(--rayon);
+  overflow: hidden;
+}
+
+.lightbox-media img {
+  width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+}
+
+.lightbox-media .img-placeholder {
+  aspect-ratio: 16 / 10;
+  font-size: 1.05rem;
+}
+
+.lightbox-figure figcaption {
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, .9);
+  font-weight: 500;
+}
+
+.lightbox-fermer {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.6rem;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, .12);
+  color: var(--blanc);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.lightbox-fermer:hover {
+  background-color: var(--rouge-laterite);
+  transform: rotate(90deg);
+}
+
+
+/* ==========================================================================
+   10. PAGE « CONTACT »
+   ========================================================================== */
+.contact-grille {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+/* --- Formulaire --- */
+.formulaire {
+  background-color: var(--blanc);
+  border-radius: var(--rayon);
+  padding: 2.2rem;
+  box-shadow: var(--ombre-douce);
+}
+
+.champ {
+  margin-bottom: 1.3rem;
+}
+
+.champ label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: .4rem;
+  font-size: .95rem;
+}
+
+.champ input,
+.champ textarea {
+  width: 100%;
+  font-family: var(--police-texte);
+  font-size: 1rem;
+  color: var(--encre);
+  padding: .8rem 1rem;
+  border: 2px solid #e3d9c8;
+  border-radius: 10px;
+  background-color: var(--blanc-casse);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.champ textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.champ input:focus,
+.champ textarea:focus {
+  outline: none;
+  border-color: var(--vert-foret);
+  box-shadow: 0 0 0 4px rgba(30, 91, 60, .12);
+}
+
+/* Champ en erreur (bordure rouge, ajoutée par JavaScript) */
+.champ input.erreur,
+.champ textarea.erreur {
+  border-color: var(--rouge-laterite);
+}
+
+/* Message d'erreur sous chaque champ (rempli par JavaScript) */
+.champ-erreur {
+  display: block;
+  min-height: 1.2em;
+  margin-top: .3rem;
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--rouge-laterite);
+}
+
+/* Message de confirmation après « envoi » du formulaire */
+.form-confirmation {
+  display: none;
+  margin-top: 1.2rem;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  background-color: rgba(30, 91, 60, .1);
+  border: 2px solid var(--vert-foret);
+  color: var(--vert-foret);
+  font-weight: 600;
+}
+
+.form-confirmation.visible {
+  display: block;
+  animation: fondu-montee .45s ease both;
+}
+
+/* --- Bloc coordonnées --- */
+.coordonnees {
+  background-color: var(--blanc);
+  border-radius: var(--rayon);
+  padding: 2rem;
+  box-shadow: var(--ombre-douce);
+  border-top: 4px solid var(--rouge-laterite);
+}
+
+.coordonnees h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+}
+
+.coordonnees ul li {
+  display: flex;
+  gap: .8rem;
+  margin-bottom: 1rem;
+  color: var(--gris-texte);
+}
+
+.coordonnees .icone {
+  flex-shrink: 0;
+  font-size: 1.2rem;
+}
+
+/* --- Emplacement de la carte Google Maps --- */
+.carte-map {
+  margin-top: 3rem;
+  min-height: 340px;
+  border-radius: var(--rayon);
+  overflow: hidden;
+}
+
+.carte-map .img-placeholder {
+  min-height: 340px;
+}
+
+.carte-map iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  border: 0;
+}
+
+
+/* ==========================================================================
+   11. PIED DE PAGE (FOOTER)
+   ========================================================================== */
+.site-footer {
+  background-color: var(--fond-fonce);
+  color: #d8cfc4;
+}
+
+.footer-grille {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.2fr 1fr;
+  gap: 2.5rem;
+  padding-block: 3.5rem 2.5rem;
+}
+
+.footer-col h3 {
+  color: var(--blanc);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 1.1rem;
+}
+
+/* Logo version claire dans le footer (l'emblème hérite de cette couleur) */
+.logo-footer {
+  color: #ede5d4;
+}
+
+.footer-presentation p {
+  margin-top: 1rem;
+  font-size: .93rem;
+  line-height: 1.7;
+}
+
+.footer-col ul li {
+  margin-bottom: .6rem;
+  font-size: .93rem;
+}
+
+.footer-col a {
+  color: #d8cfc4;
+}
+
+.footer-col a:hover {
+  color: var(--ocre-clair);
+}
+
+.footer-contact li {
+  display: flex;
+  gap: .6rem;
+  align-items: flex-start;
+}
+
+/* Icônes des réseaux sociaux */
+.footer-reseaux {
+  display: flex;
+  gap: .8rem;
+}
+
+.footer-reseaux a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, .08);
+  color: #d8cfc4;
+  transition: background-color var(--transition), color var(--transition),
+              transform var(--transition);
+}
+
+.footer-reseaux a:hover {
+  background-color: var(--rouge-laterite);
+  color: var(--blanc);
+  transform: translateY(-4px);
+}
+
+.footer-reseaux svg {
+  width: 20px;
+  height: 20px;
+}
+
+.footer-bas {
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  padding-block: 1.3rem;
+  text-align: center;
+  font-size: .88rem;
+  color: #a89c8e;
+}
+
+
+/* ==========================================================================
+   12. ANIMATIONS
+   Les éléments portant la classe « reveal » sont invisibles au chargement,
+   puis apparaissent en fondu quand ils entrent à l'écran (géré par
+   IntersectionObserver dans js/main.js, qui ajoute la classe « visible »).
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Délais en cascade pour les cartes d'une même rangée */
+.delai-1 { transition-delay: .12s; }
+.delai-2 { transition-delay: .24s; }
+.delai-3 { transition-delay: .36s; }
+
+@keyframes fondu-montee {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Accessibilité : on désactive les animations pour les personnes
+   ayant activé « réduire les animations » dans leur système */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* ==========================================================================
+   13. RESPONSIVE
+   Adaptations pour tablettes puis mobiles.
+   ========================================================================== */
+
+/* --- Tablettes (moins de 960px) --- */
+@media (max-width: 960px) {
+  .cartes-grille,
+  .valeurs-grille {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .equipe-grille {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .chiffres-grille {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grille {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-grille {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Menu mobile + petites tablettes (moins de 880px) --- */
+@media (max-width: 880px) {
+  /* Le burger devient visible */
+  .burger {
+    display: flex;
+  }
+
+  /* Le menu devient un panneau qui glisse depuis la droite */
+  .main-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    /* hauteur explicite : le backdrop-filter du header empêcherait
+       sinon le panneau de s'étendre sur toute la hauteur de l'écran */
+    height: 100vh;
+    height: 100dvh;
+    width: min(320px, 82vw);
+    background-color: var(--blanc-casse);
+    box-shadow: -10px 0 40px rgba(43, 32, 25, .2);
+    transform: translateX(100%);
+    transition: transform .35s cubic-bezier(.25, .7, .35, 1);
+    z-index: 110;
+    padding: calc(var(--hauteur-header) + 1.5rem) 2rem 2rem;
+    overflow-y: auto;
+  }
+
+  .main-nav.ouvert {
+    transform: translateX(0);
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.4rem;
+  }
+
+  .nav-link {
+    font-size: 1.15rem;
+  }
+}
+
+/* --- Mobiles (moins de 640px) --- */
+@media (max-width: 640px) {
+  .grille-2col {
+    grid-template-columns: 1fr;
+  }
+
+  .cartes-grille,
+  .valeurs-grille,
+  .equipe-grille {
+    grid-template-columns: 1fr;
+  }
+
+  .galerie-grille {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 110px;
+  }
+
+  .footer-grille {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* La timeline passe en une seule colonne, ligne à gauche */
+  .timeline::before {
+    left: 10px;
+    transform: none;
+  }
+
+  .timeline-etape,
+  .timeline-etape:nth-child(odd),
+  .timeline-etape:nth-child(even) {
+    width: 100%;
+    left: 0;
+    text-align: left;
+    padding: .8rem 0 1.8rem 2.6rem;
+  }
+
+  .timeline-etape:nth-child(odd)::before,
+  .timeline-etape:nth-child(even)::before {
+    left: 1px;
+    right: auto;
+  }
+
+  .formulaire {
+    padding: 1.5rem;
+  }
+}
+
+/* --- Très petits écrans (moins de 420px) --- */
+@media (max-width: 420px) {
+  .galerie-grille {
+    grid-template-columns: 1fr;
+  }
+
+  .chiffres-grille {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

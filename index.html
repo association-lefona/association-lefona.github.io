@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!-- =====================================================================
+     ASSOCIATION LEFONA — PAGE D'ACCUEIL (index.html)
+     Ce site est un SQUELETTE : tous les textes entre [crochets] et tous
+     les blocs « image à insérer » sont des emplacements à remplir par
+     l'équipe contenu. Cherchez les commentaires « À COMPLÉTER ».
+     Mode d'emploi complet : voir le fichier GUIDE-EQUIPE.md
+     ===================================================================== -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil — Association Lefona</title>
+  <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : description de la page pour Google (150 caractères environ) -->
+  <meta name="description" content="[Description de l'association Lefona à compléter]">
+
+  <!-- Icône d'onglet temporaire (lance stylisée) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cg fill='%2335302a'%3E%3Cpath d='M53 39 C37 36 26 27 24 7 C28 22 38 29 54 32 Z'/%3E%3Cpath d='M67 39 C83 36 94 27 96 7 C92 22 82 29 66 32 Z'/%3E%3Cpath d='M60 1 L64.5 14 C65.5 21 63.5 28 60 33 C56.5 28 54.5 21 55.5 14 Z'/%3E%3Crect x='58' y='31' width='4' height='77' rx='2'/%3E%3C/g%3E%3Cpath d='M34 42 H86 V74 C86 89 75 99.5 60 106 C45 99.5 34 89 34 74 Z' fill='none' stroke='%2335302a' stroke-width='7'/%3E%3C/svg%3E">
+
+  <!-- Polices Google Fonts : Archivo (titres) et Inter (texte) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Feuille de style du site -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===================================================================
+       EN-TÊTE / NAVIGATION (présent sur toutes les pages)
+       ⚠️ Si vous modifiez le menu ici, reportez la même modification
+       dans les autres pages HTML (apropos.html, publications.html, etc.)
+       =================================================================== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+
+      <!-- LOGO OFFICIEL (emblème vectorisé : cornes de zébu, lance, écu tissé).
+           La version complète du logo (avec rameaux et nom) se trouve dans
+           images/logo-lefona.svg — utilisable pour vos documents. -->
+      <a href="index.html" class="logo" aria-label="Association Lefona — retour à l'accueil">
+        <svg class="logo-embleme" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+          <!-- cornes de zébu -->
+          <path d="M53 39 C37 36 26 27 24 7 C28 22 38 29 54 32 Z"/>
+          <path d="M67 39 C83 36 94 27 96 7 C92 22 82 29 66 32 Z"/>
+          <!-- fer de lance et hampe -->
+          <path d="M60 1 L64.5 14 C65.5 21 63.5 28 60 33 C56.5 28 54.5 21 55.5 14 Z"/>
+          <rect x="58.2" y="31" width="3.6" height="77" rx="1.8"/>
+          <!-- écu -->
+          <path d="M34 42 H86 V74 C86 89 75 99.5 60 106 C45 99.5 34 89 34 74 Z" fill="none" stroke="currentColor" stroke-width="3.5"/>
+          <!-- rameau (panneau gauche) -->
+          <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".9">
+            <path d="M47 50 V78"/>
+            <path d="M47 60 Q40 57 39 50"/>
+            <path d="M47 60 Q54 57 55 50"/>
+            <path d="M47 70 Q40 67 39 60"/>
+            <path d="M47 70 Q54 67 55 60"/>
+          </g>
+          <!-- tissage (panneau droit) -->
+          <g fill="none" stroke="currentColor" stroke-width="2.2" opacity=".9">
+            <path d="M73 48 L80 55 L73 62 L66 55 Z"/>
+            <path d="M73 62 L80 69 L73 76 L66 69 Z"/>
+          </g>
+          <!-- frise de triangles (bas de l'écu) -->
+          <path d="M42 90 L46 84.5 L50 90 Z M50 90 L54 84.5 L58 90 Z M62 90 L66 84.5 L70 90 Z M70 90 L74 84.5 L78 90 Z" opacity=".9"/>
+        </svg>
+        <span class="logo-texte">LEFONA</span>
+      </a>
+
+      <!-- Bouton burger (visible uniquement sur mobile) -->
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir ou fermer le menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Menu principal. La classe « actif » indique la page en cours. -->
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="index.html" class="nav-link actif" aria-current="page">Accueil</a></li>
+          <li><a href="apropos.html" class="nav-link">À propos</a></li>
+          <li><a href="publications.html" class="nav-link">Articles &amp; Études</a></li>
+          <li><a href="galerie.html" class="nav-link">Galerie</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =================================================================
+         HERO PLEIN ÉCRAN
+         Le fond est un dégradé aux couleurs malgaches en attendant une
+         vraie photo. À COMPLÉTER PAR L'ÉQUIPE CONTENU : pour mettre une
+         photo de fond, ajoutez dans css/style.css, à la fin du bloc
+         « .hero » : background-image: url("../images/votre-photo.jpg");
+         background-size: cover; background-position: center;
+         ================================================================= -->
+    <section class="hero">
+      <div class="container hero-contenu">
+        <p class="hero-surtitre">Association malgache</p>
+        <h1>Association <span class="accent">Lefona</span></h1>
+        <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : slogan de l'association -->
+        <p class="hero-sous-titre">[Slogan de l'association à compléter]</p>
+        <a href="apropos.html" class="btn btn-principal">Découvrir l'association</a>
+      </div>
+      <div class="hero-fleche" aria-hidden="true">↓</div>
+    </section>
+
+    <!-- =================================================================
+         SECTION « QUI SOMMES-NOUS » (résumé)
+         ================================================================= -->
+    <section class="section section-presentation">
+      <div class="container grille-2col">
+        <div class="reveal">
+          <div class="section-titre">
+            <p class="surtitre">Qui sommes-nous ?</p>
+            <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : titre de présentation -->
+            <h2>[Titre de présentation à compléter]</h2>
+            <div class="titre-trait"></div>
+          </div>
+
+          <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : présentation courte de
+               l'association en 2 ou 3 paragraphes -->
+          <p>[Présentation courte à compléter — paragraphe 1. Présentez ici
+             l'association Lefona en quelques phrases : qui vous êtes,
+             ce que vous faites, pour qui.]</p>
+          <p>[Présentation courte à compléter — paragraphe 2. Vous pouvez
+             évoquer vos domaines d'action, votre ancrage à Madagascar et
+             ce qui rend l'association unique.]</p>
+
+          <p style="margin-top:1.5rem;">
+            <a href="apropos.html" class="btn btn-secondaire">En savoir plus</a>
+          </p>
+        </div>
+
+        <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : remplacez ce bloc par une
+             vraie image : <img src="images/presentation.jpg"
+             alt="Description de la photo" class="coin-arrondi"> -->
+        <div class="reveal delai-2">
+          <div class="img-placeholder ratio-4-3 coin-arrondi">
+            📷 [Image de présentation à insérer]
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Séparateur décoratif inspiré des tissages malgaches -->
+    <div class="separateur-lamba" aria-hidden="true"></div>
+
+    <!-- =================================================================
+         SECTION « NOS DERNIÈRES ACTUALITÉS » (3 cartes)
+         À COMPLÉTER PAR L'ÉQUIPE CONTENU : remplacez les titres, dates et
+         extraits. Chaque bouton « Lire la suite » doit pointer vers la
+         page de l'article (créée à partir de article-template.html).
+         ================================================================= -->
+    <section class="section section-actus fond-motif">
+      <div class="container">
+        <div class="section-titre centre reveal">
+          <p class="surtitre">Actualités</p>
+          <h2>Nos dernières actualités</h2>
+          <div class="titre-trait"></div>
+        </div>
+
+        <div class="cartes-grille">
+
+          <!-- Carte actualité n°1 -->
+          <article class="carte reveal delai-1">
+            <div class="carte-media">
+              <!-- À COMPLÉTER : remplacer par <img src="images/actu-1.jpg" alt="..."> -->
+              <div class="img-placeholder ratio-16-9">📷 [Image de l'actualité 1]</div>
+            </div>
+            <div class="carte-corps">
+              <p class="carte-date">[Date à compléter]</p>
+              <h3>[Titre de l'actualité 1 à compléter]</h3>
+              <p>[Extrait de l'actualité à compléter — deux ou trois phrases
+                 qui donnent envie de lire la suite.]</p>
+              <a href="article-template.html" class="lien-fleche">Lire la suite</a>
+            </div>
+          </article>
+
+          <!-- Carte actualité n°2 -->
+          <article class="carte reveal delai-2">
+            <div class="carte-media">
+              <div class="img-placeholder ratio-16-9">📷 [Image de l'actualité 2]</div>
+            </div>
+            <div class="carte-corps">
+              <p class="carte-date">[Date à compléter]</p>
+              <h3>[Titre de l'actualité 2 à compléter]</h3>
+              <p>[Extrait de l'actualité à compléter — deux ou trois phrases
+                 qui donnent envie de lire la suite.]</p>
+              <a href="article-template.html" class="lien-fleche">Lire la suite</a>
+            </div>
+          </article>
+
+          <!-- Carte actualité n°3 -->
+          <article class="carte reveal delai-3">
+            <div class="carte-media">
+              <div class="img-placeholder ratio-16-9">📷 [Image de l'actualité 3]</div>
+            </div>
+            <div class="carte-corps">
+              <p class="carte-date">[Date à compléter]</p>
+              <h3>[Titre de l'actualité 3 à compléter]</h3>
+              <p>[Extrait de l'actualité à compléter — deux ou trois phrases
+                 qui donnent envie de lire la suite.]</p>
+              <a href="article-template.html" class="lien-fleche">Lire la suite</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         SECTION CHIFFRES CLÉS (compteurs animés)
+         À COMPLÉTER PAR L'ÉQUIPE CONTENU : remplacez la valeur de
+         data-cible par le vrai chiffre (nombre entier uniquement).
+         Exemple : data-cible="42" affichera un compteur qui monte
+         jusqu'à 42. data-suffixe="+" ajoute un « + » après le nombre.
+         ================================================================= -->
+    <section class="section section-chiffres">
+      <div class="container">
+        <div class="section-titre centre clair reveal">
+          <p class="surtitre">Chiffres clés</p>
+          <h2>Lefona en quelques chiffres</h2>
+          <div class="titre-trait"></div>
+        </div>
+
+        <div class="chiffres-grille">
+          <div class="chiffre reveal">
+            <!-- À COMPLÉTER : remplacer 30 par le vrai nombre de membres -->
+            <span class="chiffre-valeur" data-cible="30" data-suffixe="">0</span>
+            <span class="chiffre-libelle">[XX] membres</span>
+          </div>
+          <div class="chiffre reveal delai-1">
+            <!-- À COMPLÉTER : remplacer 12 par le vrai nombre de projets -->
+            <span class="chiffre-valeur" data-cible="12" data-suffixe="">0</span>
+            <span class="chiffre-libelle">[XX] projets</span>
+          </div>
+          <div class="chiffre reveal delai-2">
+            <!-- À COMPLÉTER : remplacer 8 par le vrai nombre d'études -->
+            <span class="chiffre-valeur" data-cible="8" data-suffixe="">0</span>
+            <span class="chiffre-libelle">[XX] études publiées</span>
+          </div>
+          <div class="chiffre reveal delai-3">
+            <!-- À COMPLÉTER : remplacer 5 par le vrai nombre de partenaires -->
+            <span class="chiffre-valeur" data-cible="5" data-suffixe="">0</span>
+            <span class="chiffre-libelle">[XX] partenaires</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       PIED DE PAGE (présent sur toutes les pages)
+       ⚠️ Si vous le modifiez ici, reportez la modification sur les
+       autres pages HTML.
+       =================================================================== -->
+  <footer class="site-footer">
+    <div class="bande-drapeau" aria-hidden="true"></div>
+    <div class="container footer-grille">
+
+      <div class="footer-col footer-presentation">
+        <a href="index.html" class="logo logo-footer" aria-label="Association Lefona — retour à l'accueil">
+          <svg class="logo-embleme" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+          <!-- cornes de zébu -->
+          <path d="M53 39 C37 36 26 27 24 7 C28 22 38 29 54 32 Z"/>
+          <path d="M67 39 C83 36 94 27 96 7 C92 22 82 29 66 32 Z"/>
+          <!-- fer de lance et hampe -->
+          <path d="M60 1 L64.5 14 C65.5 21 63.5 28 60 33 C56.5 28 54.5 21 55.5 14 Z"/>
+          <rect x="58.2" y="31" width="3.6" height="77" rx="1.8"/>
+          <!-- écu -->
+          <path d="M34 42 H86 V74 C86 89 75 99.5 60 106 C45 99.5 34 89 34 74 Z" fill="none" stroke="currentColor" stroke-width="3.5"/>
+          <!-- rameau (panneau gauche) -->
+          <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".9">
+            <path d="M47 50 V78"/>
+            <path d="M47 60 Q40 57 39 50"/>
+            <path d="M47 60 Q54 57 55 50"/>
+            <path d="M47 70 Q40 67 39 60"/>
+            <path d="M47 70 Q54 67 55 60"/>
+          </g>
+          <!-- tissage (panneau droit) -->
+          <g fill="none" stroke="currentColor" stroke-width="2.2" opacity=".9">
+            <path d="M73 48 L80 55 L73 62 L66 55 Z"/>
+            <path d="M73 62 L80 69 L73 76 L66 69 Z"/>
+          </g>
+          <!-- frise de triangles (bas de l'écu) -->
+          <path d="M42 90 L46 84.5 L50 90 Z M50 90 L54 84.5 L58 90 Z M62 90 L66 84.5 L70 90 Z M70 90 L74 84.5 L78 90 Z" opacity=".9"/>
+        </svg>
+          <span class="logo-texte">LEFONA</span>
+        </a>
+        <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : courte description -->
+        <p>[Courte description de l'association en deux ou trois phrases,
+           à compléter.]</p>
+      </div>
+
+      <nav class="footer-col" aria-label="Navigation du pied de page">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="apropos.html">À propos</a></li>
+          <li><a href="publications.html">Articles &amp; Études</a></li>
+          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : vraies coordonnées -->
+        <ul class="footer-contact">
+          <li><span aria-hidden="true">📍</span> [Adresse à compléter — ex. Lot XX, Antananarivo, Madagascar]</li>
+          <li><span aria-hidden="true">📞</span> [+261 XX XX XXX XX]</li>
+          <li><span aria-hidden="true">✉️</span> [contact@association-lefona.org]</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Suivez-nous</h3>
+        <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : remplacez chaque href="#"
+             par l'adresse de votre page (ex. https://facebook.com/lefona) -->
+        <ul class="footer-reseaux">
+          <li>
+            <a href="#" aria-label="Facebook (lien à compléter)">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.5 4.5h-2.2c-1.9 0-3.3 1.4-3.3 3.3V10H7.5v3H10v7h3.2v-7h2.4l.5-3h-2.9V8.1c0-.4.3-.6.7-.6h2.1v-3z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="Instagram (lien à compléter)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="LinkedIn (lien à compléter)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="6.2" cy="6.4" r="1.6" fill="currentColor" stroke="none"/><path d="M6.2 10v9"/><path d="M11.4 19v-5.2c0-1.7 1.2-2.9 2.9-2.9s2.9 1.2 2.9 2.9V19"/><path d="M11.4 10v9"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="YouTube (lien à compléter)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.3 9.4v5.2l4.7-2.6z" fill="currentColor"/></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bas">
+      <div class="container">
+        <p>© Association Lefona 2026 — Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script principal du site -->
+  <script src="js/main.js"></script>
+</body>
+</html>

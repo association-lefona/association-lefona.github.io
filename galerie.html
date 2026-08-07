@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!-- =====================================================================
+     ASSOCIATION LEFONA — PAGE « GALERIE » (galerie.html)
+     Grille de photos avec lightbox : cliquer sur une photo l'affiche
+     en grand automatiquement (géré par js/main.js).
+
+     ▶ ÉQUIPE CONTENU : COMMENT REMPLACER UN PLACEHOLDER PAR UNE PHOTO
+
+       1) Déposez votre photo dans le dossier « images/ » du site
+          (ex. images/atelier-2026.jpg). Nom de fichier en minuscules,
+          sans espaces ni accents.
+       2) Dans le bloc <figure class="galerie-item" ...> concerné :
+          - supprimez la ligne <div class="img-placeholder">...</div>
+          - mettez à la place :
+            <img src="images/atelier-2026.jpg" alt="Description de la photo">
+          - mettez la légende de la photo dans l'attribut data-legende
+            (elle s'affiche sous la photo agrandie).
+       3) Pour AJOUTER une photo : copiez un bloc <figure>...</figure>
+          entier et collez-le dans la grille. La classe « haut » rend le
+          bloc plus grand (effet mosaïque) : à utiliser une fois sur
+          trois environ.
+     ===================================================================== -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galerie — Association Lefona</title>
+  <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : description de la page pour Google -->
+  <meta name="description" content="[Description de la galerie à compléter]">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cg fill='%2335302a'%3E%3Cpath d='M53 39 C37 36 26 27 24 7 C28 22 38 29 54 32 Z'/%3E%3Cpath d='M67 39 C83 36 94 27 96 7 C92 22 82 29 66 32 Z'/%3E%3Cpath d='M60 1 L64.5 14 C65.5 21 63.5 28 60 33 C56.5 28 54.5 21 55.5 14 Z'/%3E%3Crect x='58' y='31' width='4' height='77' rx='2'/%3E%3C/g%3E%3Cpath d='M34 42 H86 V74 C86 89 75 99.5 60 106 C45 99.5 34 89 34 74 Z' fill='none' stroke='%2335302a' stroke-width='7'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============ EN-TÊTE / NAVIGATION (identique sur toutes les pages) ============ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="Association Lefona — retour à l'accueil">
+        <svg class="logo-embleme" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+          <!-- cornes de zébu -->
+          <path d="M53 39 C37 36 26 27 24 7 C28 22 38 29 54 32 Z"/>
+          <path d="M67 39 C83 36 94 27 96 7 C92 22 82 29 66 32 Z"/>
+          <!-- fer de lance et hampe -->
+          <path d="M60 1 L64.5 14 C65.5 21 63.5 28 60 33 C56.5 28 54.5 21 55.5 14 Z"/>
+          <rect x="58.2" y="31" width="3.6" height="77" rx="1.8"/>
+          <!-- écu -->
+          <path d="M34 42 H86 V74 C86 89 75 99.5 60 106 C45 99.5 34 89 34 74 Z" fill="none" stroke="currentColor" stroke-width="3.5"/>
+          <!-- rameau (panneau gauche) -->
+          <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".9">
+            <path d="M47 50 V78"/>
+            <path d="M47 60 Q40 57 39 50"/>
+            <path d="M47 60 Q54 57 55 50"/>
+            <path d="M47 70 Q40 67 39 60"/>
+            <path d="M47 70 Q54 67 55 60"/>
+          </g>
+          <!-- tissage (panneau droit) -->
+          <g fill="none" stroke="currentColor" stroke-width="2.2" opacity=".9">
+            <path d="M73 48 L80 55 L73 62 L66 55 Z"/>
+            <path d="M73 62 L80 69 L73 76 L66 69 Z"/>
+          </g>
+          <!-- frise de triangles (bas de l'écu) -->
+          <path d="M42 90 L46 84.5 L50 90 Z M50 90 L54 84.5 L58 90 Z M62 90 L66 84.5 L70 90 Z M70 90 L74 84.5 L78 90 Z" opacity=".9"/>
+        </svg>
+        <span class="logo-texte">LEFONA</span>
+      </a>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir ou fermer le menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="index.html" class="nav-link">Accueil</a></li>
+          <li><a href="apropos.html" class="nav-link">À propos</a></li>
+          <li><a href="publications.html" class="nav-link">Articles &amp; Études</a></li>
+          <li><a href="galerie.html" class="nav-link actif" aria-current="page">Galerie</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ EN-TÊTE DE PAGE ============ -->
+    <section class="entete-page">
+      <div class="container">
+        <h1>Galerie</h1>
+        <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : phrase d'introduction -->
+        <p>[Phrase d'introduction à compléter — ex. « Nos actions en images :
+           projets de terrain, ateliers, rencontres… »]</p>
+      </div>
+    </section>
+
+    <!-- ============ GRILLE DE PHOTOS ============
+         Chaque bloc <figure> est cliquable et s'ouvre en grand.
+         La légende affichée en grand vient de l'attribut data-legende. -->
+    <section class="section">
+      <div class="container">
+        <div class="galerie-grille">
+
+          <figure class="galerie-item haut reveal" data-legende="[Légende de la photo 1 à compléter]" tabindex="0" role="button" aria-label="Agrandir la photo 1">
+            <div class="img-placeholder">📷 [Photo 1 à insérer]</div>
+          </figure>
+
+          <figure class="galerie-item reveal" data-legende="[Légende de la photo 2 à compléter]" tabindex="0" role="button" aria-label="Agrandir la photo 2">
+            <div class="img-placeholder">📷 [Photo 2 à insérer]</div>
+          </figure>
+
+          <figure class="galerie-item reveal" data-legende="[Légende de la photo 3 à compléter]" tabindex="0" role="button" aria-label="Agrandir la photo 3">
+            <div class="img-placeholder">📷 [Photo 3 à insérer]</div>
+          </figure>
+
+          <figure class="galerie-item reveal" data-legende="[Légende de la photo 4 à compléter]" tabindex="0" role="button" aria-label="Agrandir la photo 4">
+            <div class="img-placeholder">📷 [Photo 4 à insérer]</div>
+          </figure>
+
+          <figure class="galerie-item haut reveal" data-legende="[Légende de la photo 5 à compléter]" tabindex="0" role="button" aria-label="Agrandir la photo 5">
+            <div class="img-placeholder">📷 [Photo 5 à insérer]</div>
+          </figure>
+
+          <figure class="galerie-item reveal" data-legende="[Légende de la photo 6 à compléter]" tabindex="0" role="button" aria-label="Agrandir la photo 6">
+            <div class="img-placeholder">📷 [Photo 6 à insérer]</div>
+          </figure>
+
+          <figure class="galerie-item reveal" data-legende="[Légende de la photo 7 à compléter]" tabindex="0" role="button" aria-label="Agrandir la photo 7">
+            <div class="img-placeholder">📷 [Photo 7 à insérer]</div>
+          </figure>
+
+          <figure class="galerie-item haut reveal" data-legende="[Légende de la photo 8 à compléter]" tabindex="0" role="button" aria-label="Agrandir la photo 8">
+            <div class="img-placeholder">📷 [Photo 8 à insérer]</div>
+          </figure>
+
+          <figure class="galerie-item reveal" data-legende="[Légende de la photo 9 à compléter]" tabindex="0" role="button" aria-label="Agrandir la photo 9">
+            <div class="img-placeholder">📷 [Photo 9 à insérer]</div>
+          </figure>
+
+          <figure class="galerie-item reveal" data-legende="[Légende de la photo 10 à compléter]" tabindex="0" role="button" aria-label="Agrandir la photo 10">
+            <div class="img-placeholder">📷 [Photo 10 à insérer]</div>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ LIGHTBOX (photo agrandie) — ne pas modifier ============ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo agrandie" hidden>
+    <button class="lightbox-fermer" id="lightbox-fermer" aria-label="Fermer la photo agrandie">✕</button>
+    <figure class="lightbox-figure">
+      <div class="lightbox-media" id="lightbox-media"></div>
+      <figcaption id="lightbox-legende"></figcaption>
+    </figure>
+  </div>
+
+  <!-- ============ PIED DE PAGE (identique sur toutes les pages) ============ -->
+  <footer class="site-footer">
+    <div class="bande-drapeau" aria-hidden="true"></div>
+    <div class="container footer-grille">
+      <div class="footer-col footer-presentation">
+        <a href="index.html" class="logo logo-footer" aria-label="Association Lefona — retour à l'accueil">
+          <svg class="logo-embleme" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+          <!-- cornes de zébu -->
+          <path d="M53 39 C37 36 26 27 24 7 C28 22 38 29 54 32 Z"/>
+          <path d="M67 39 C83 36 94 27 96 7 C92 22 82 29 66 32 Z"/>
+          <!-- fer de lance et hampe -->
+          <path d="M60 1 L64.5 14 C65.5 21 63.5 28 60 33 C56.5 28 54.5 21 55.5 14 Z"/>
+          <rect x="58.2" y="31" width="3.6" height="77" rx="1.8"/>
+          <!-- écu -->
+          <path d="M34 42 H86 V74 C86 89 75 99.5 60 106 C45 99.5 34 89 34 74 Z" fill="none" stroke="currentColor" stroke-width="3.5"/>
+          <!-- rameau (panneau gauche) -->
+          <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".9">
+            <path d="M47 50 V78"/>
+            <path d="M47 60 Q40 57 39 50"/>
+            <path d="M47 60 Q54 57 55 50"/>
+            <path d="M47 70 Q40 67 39 60"/>
+            <path d="M47 70 Q54 67 55 60"/>
+          </g>
+          <!-- tissage (panneau droit) -->
+          <g fill="none" stroke="currentColor" stroke-width="2.2" opacity=".9">
+            <path d="M73 48 L80 55 L73 62 L66 55 Z"/>
+            <path d="M73 62 L80 69 L73 76 L66 69 Z"/>
+          </g>
+          <!-- frise de triangles (bas de l'écu) -->
+          <path d="M42 90 L46 84.5 L50 90 Z M50 90 L54 84.5 L58 90 Z M62 90 L66 84.5 L70 90 Z M70 90 L74 84.5 L78 90 Z" opacity=".9"/>
+        </svg>
+          <span class="logo-texte">LEFONA</span>
+        </a>
+        <p>[Courte description de l'association en deux ou trois phrases,
+           à compléter.]</p>
+      </div>
+      <nav class="footer-col" aria-label="Navigation du pied de page">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="apropos.html">À propos</a></li>
+          <li><a href="publications.html">Articles &amp; Études</a></li>
+          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul class="footer-contact">
+          <li><span aria-hidden="true">📍</span> [Adresse à compléter — ex. Lot XX, Antananarivo, Madagascar]</li>
+          <li><span aria-hidden="true">📞</span> [+261 XX XX XXX XX]</li>
+          <li><span aria-hidden="true">✉️</span> [contact@association-lefona.org]</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Suivez-nous</h3>
+        <ul class="footer-reseaux">
+          <li>
+            <a href="#" aria-label="Facebook (lien à compléter)">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.5 4.5h-2.2c-1.9 0-3.3 1.4-3.3 3.3V10H7.5v3H10v7h3.2v-7h2.4l.5-3h-2.9V8.1c0-.4.3-.6.7-.6h2.1v-3z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="Instagram (lien à compléter)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="LinkedIn (lien à compléter)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="6.2" cy="6.4" r="1.6" fill="currentColor" stroke="none"/><path d="M6.2 10v9"/><path d="M11.4 19v-5.2c0-1.7 1.2-2.9 2.9-2.9s2.9 1.2 2.9 2.9V19"/><path d="M11.4 10v9"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="YouTube (lien à compléter)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.3 9.4v5.2l4.7-2.6z" fill="currentColor"/></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bas">
+      <div class="container">
+        <p>© Association Lefona 2026 — Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
