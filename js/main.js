@@ -1,362 +1,444 @@
 /* ==========================================================================
-   NGO LEFONA — SCRIPT PRINCIPAL (js/main.js)
-   --------------------------------------------------------------------------
-   Gère tous les comportements interactifs du site.
-   Pour l'équipe contenu : vous n'avez normalement PAS besoin de modifier
-   ce fichier. Tout le contenu se change dans les fichiers HTML
-   (voir GUIDE-EQUIPE.md).
+   NGO LEFONA — main.js
+   Modules: nav, reveal, counters, filters, lightbox, contact form, i18n.
 
-   SOMMAIRE
-   1. Menu mobile (bouton burger)
-   2. Apparition des sections au défilement
-   3. Compteurs animés (chiffres clés)
-   4. Filtres des publications
-   5. Galerie : agrandissement des photos (lightbox)
-   6. Formulaire de contact (validation)
-   7. Sélecteur de langue (traduction automatique Google)
+   Notes for maintainers
+   - Proper nouns (people, places, the LEFONA name) carry translate="no" in
+     the markup so the machine-translation layer leaves them alone.
+   - Interface strings (navigation, buttons) are translated from the
+     dictionary below for EN / FR / MG. For any other language the
+     translate="no" flag is lifted so Google Translate handles them.
    ========================================================================== */
 
-'use strict';
+(function () {
+  'use strict';
 
-var REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-document.addEventListener('DOMContentLoaded', function () {
-  initMobileNav();
-  initReveal();
-  initCounters();
-  initPublicationFilters();
-  initLightbox();
-  initContactForm();
-  initLanguageMenu();
-});
-
-
-/* ==========================================================================
-   1. MENU MOBILE
-   ========================================================================== */
-function initMobileNav() {
-  var burger = document.getElementById('burger');
-  var nav = document.getElementById('nav-links');
-  if (!burger || !nav) return;
-
-  function toggle(forceClose) {
-    var open = forceClose ? false : !nav.classList.contains('open');
-    nav.classList.toggle('open', open);
-    burger.classList.toggle('open', open);
-    burger.setAttribute('aria-expanded', String(open));
-    document.body.classList.toggle('nav-open', open);
-  }
-
-  burger.addEventListener('click', function () { toggle(); });
-
-  nav.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', function () { toggle(true); });
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') toggle(true);
-  });
-
-  window.addEventListener('resize', function () {
-    if (window.innerWidth > 940) toggle(true);
-  });
-}
-
-
-/* ==========================================================================
-   2. APPARITION DES SECTIONS AU DÉFILEMENT
-   ========================================================================== */
-function initReveal() {
-  var items = document.querySelectorAll('.reveal');
-  if (!items.length) return;
-
-  if (REDUCED_MOTION || !('IntersectionObserver' in window)) {
-    items.forEach(function (el) { el.classList.add('visible'); });
-    return;
-  }
-
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  items.forEach(function (el) { observer.observe(el); });
-}
-
-
-/* ==========================================================================
-   3. COMPTEURS ANIMÉS (chiffres clés)
-   Chaque « .stat-value » porte data-target (nombre) et data-suffix
-   (ex. « + »). ÉQUIPE CONTENU : modifiez ces attributs dans le HTML.
-   ========================================================================== */
-function initCounters() {
-  var counters = document.querySelectorAll('.stat-value[data-target]');
-  if (!counters.length) return;
-
-  function animate(el) {
-    var target = parseInt(el.dataset.target, 10) || 0;
-    var suffix = el.dataset.suffix || '';
-    var duration = 1400;
-
-    if (REDUCED_MOTION) { el.textContent = target + suffix; return; }
-
-    var start = null;
-    function step(now) {
-      if (start === null) start = now;
-      var p = Math.min((now - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased) + suffix;
-      if (p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-
-  if (!('IntersectionObserver' in window)) {
-    counters.forEach(animate);
-    return;
-  }
-
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        animate(entry.target);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.4 });
-
-  counters.forEach(function (el) { observer.observe(el); });
-}
-
-
-/* ==========================================================================
-   4. FILTRES DES PUBLICATIONS
-   Les boutons portent data-filter, les publications data-category.
-   ========================================================================== */
-function initPublicationFilters() {
-  var buttons = document.querySelectorAll('.filter-btn');
-  var items = document.querySelectorAll('.pub-item[data-category]');
-  if (!buttons.length || !items.length) return;
-
-  buttons.forEach(function (button) {
-    button.addEventListener('click', function () {
-      buttons.forEach(function (b) {
-        var isActive = b === button;
-        b.classList.toggle('active', isActive);
-        b.setAttribute('aria-pressed', String(isActive));
-      });
-
-      var filter = button.dataset.filter;
-      items.forEach(function (item) {
-        var show = filter === 'all' || item.dataset.category === filter;
-        item.classList.toggle('hidden', !show);
-      });
-    });
-  });
-}
-
-
-/* ==========================================================================
-   5. GALERIE — AGRANDISSEMENT DES PHOTOS
-   ========================================================================== */
-function initLightbox() {
-  var lightbox = document.getElementById('lightbox');
-  var items = document.querySelectorAll('.gallery-item');
-  if (!lightbox || !items.length) return;
-
-  var media = document.getElementById('lightbox-media');
-  var caption = document.getElementById('lightbox-caption');
-  var closeBtn = document.getElementById('lightbox-close');
-
-  function open(item) {
-    media.innerHTML = '';
-    var img = item.querySelector('img');
-    if (img) {
-      var big = document.createElement('img');
-      big.src = img.src;
-      big.alt = img.alt || '';
-      media.appendChild(big);
-    } else {
-      var ph = item.querySelector('.img-placeholder');
-      if (ph) media.appendChild(ph.cloneNode(true));
-    }
-    caption.textContent = item.dataset.caption || '';
-    lightbox.classList.add('open');
-    lightbox.removeAttribute('hidden');
-    document.body.classList.add('nav-open');
-    closeBtn.focus();
-  }
-
-  function close() {
-    lightbox.classList.remove('open');
-    document.body.classList.remove('nav-open');
-    setTimeout(function () { lightbox.setAttribute('hidden', ''); }, 260);
-  }
-
-  items.forEach(function (item) {
-    item.addEventListener('click', function () { open(item); });
-    item.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item); }
-    });
-  });
-
-  closeBtn.addEventListener('click', close);
-  lightbox.addEventListener('click', function (e) { if (e.target === lightbox) close(); });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && lightbox.classList.contains('open')) close();
-  });
-}
-
-
-/* ==========================================================================
-   6. FORMULAIRE DE CONTACT
-   Validation côté navigateur. ATTENTION : le formulaire n'est pas encore
-   relié à un service d'envoi ; un message d'information s'affiche à la
-   place. Voir GUIDE-EQUIPE.md pour le connecter (Formspree, etc.).
-   ========================================================================== */
-function initContactForm() {
-  var form = document.getElementById('contact-form');
-  if (!form) return;
-
-  var note = document.getElementById('form-note');
-
-  var rules = {
-    name: function (v) { return v.trim().length < 2 ? 'Please enter your name.' : ''; },
-    email: function (v) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : 'Please enter a valid email address.';
+  /* ========================================================================
+     Interface dictionary — hand-written, not machine-translated.
+     ======================================================================== */
+  var UI = {
+    en: {
+      'nav.home': 'Home',
+      'nav.expertise': 'Expertise',
+      'nav.projects': 'Projects',
+      'nav.publications': 'Publications',
+      'nav.team': 'Team',
+      'nav.contact': 'Contact',
+      'cta.contact': 'Contact us',
+      'cta.getInTouch': 'Get in touch',
+      'ui.menu': 'Menu',
+      'ui.language': 'Language',
+      'ui.backTo': 'Back to publications',
+      'ui.readMore': 'Read more',
+      'foot.nav': 'Navigation',
+      'foot.contact': 'Contact',
+      'foot.follow': 'Follow us'
     },
-    subject: function (v) { return v.trim().length < 3 ? 'Please enter a subject.' : ''; },
-    message: function (v) {
-      return v.trim().length < 10 ? 'Your message must be at least 10 characters long.' : '';
+    fr: {
+      'nav.home': 'Accueil',
+      'nav.expertise': 'Expertise',
+      'nav.projects': 'Projets',
+      'nav.publications': 'Publications',
+      'nav.team': 'Équipe',
+      'nav.contact': 'Contact',
+      'cta.contact': 'Nous contacter',
+      'cta.getInTouch': 'Nous écrire',
+      'ui.menu': 'Menu',
+      'ui.language': 'Langue',
+      'ui.backTo': 'Retour aux publications',
+      'ui.readMore': 'Lire la suite',
+      'foot.nav': 'Navigation',
+      'foot.contact': 'Contact',
+      'foot.follow': 'Suivez-nous'
+    },
+    mg: {
+      'nav.home': 'Fandraisana',
+      'nav.expertise': 'Fahaiza-manao',
+      'nav.projects': 'Tetikasa',
+      'nav.publications': 'Lahatsoratra',
+      'nav.team': 'Ekipa',
+      'nav.contact': 'Fifandraisana',
+      'cta.contact': 'Hifandray aminay',
+      'cta.getInTouch': 'Hifandray aminay',
+      'ui.menu': 'Menio',
+      'ui.language': 'Fiteny',
+      'ui.backTo': 'Hiverina amin\'ny lahatsoratra',
+      'ui.readMore': 'Hamaky bebe kokoa',
+      'foot.nav': 'Fitetezana',
+      'foot.contact': 'Fifandraisana',
+      'foot.follow': 'Araho izahay'
     }
   };
 
-  function validate(field) {
-    var rule = rules[field.name];
-    if (!rule) return true;
-    var msg = rule(field.value);
-    var box = document.getElementById('error-' + field.name);
-    field.classList.toggle('error', msg !== '');
-    field.setAttribute('aria-invalid', String(msg !== ''));
-    if (box) box.textContent = msg;
-    return msg === '';
+
+  /* ========================================================================
+     Helpers
+     ======================================================================== */
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function $$(sel, root) {
+    return Array.prototype.slice.call((root || document).querySelectorAll(sel));
   }
 
-  form.querySelectorAll('input, textarea').forEach(function (field) {
-    field.addEventListener('input', function () {
-      if (field.classList.contains('error')) validate(field);
-    });
-  });
+  function readCookie(name) {
+    var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return m ? decodeURIComponent(m[1]) : null;
+  }
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    var valid = true;
-    form.querySelectorAll('input, textarea').forEach(function (field) {
-      if (!validate(field)) valid = false;
-    });
-
-    if (!valid) {
-      var first = form.querySelector('.error');
-      if (first) first.focus();
-      return;
-    }
-
-    if (note) {
-      note.textContent = 'Form not connected yet — your message has not been sent. ' +
-        'In the meantime, please write to ngolefona@gmail.com.';
-      note.classList.add('visible');
-    }
-  });
-}
-
-
-/* ==========================================================================
-   7. SÉLECTEUR DE LANGUE (traduction automatique)
-   Le site est écrit en anglais. Le widget Google Translate traduit la page
-   à la volée dans la langue choisie ; le choix est mémorisé d'une page à
-   l'autre grâce au cookie « googtrans ».
-   ========================================================================== */
-
-/* Appelée automatiquement par le script Google chargé dans chaque page */
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement(
-    { pageLanguage: 'en', autoDisplay: false },
-    'google_translate_element'
-  );
-}
-
-function initLanguageMenu() {
-  var button = document.getElementById('lang-btn');
-  var menu = document.getElementById('lang-menu');
-  if (!button || !menu) return;
-
-  var label = button.querySelector('.lang-current');
-
-  /* Langue active, lue dans le cookie googtrans (ex. « /en/fr ») */
+  /* Active language, read from the googtrans cookie (e.g. "/en/fr") */
   function currentLang() {
-    var m = document.cookie.match(/googtrans=([^;]+)/);
-    if (m) {
-      var parts = decodeURIComponent(m[1]).split('/');
+    var raw = readCookie('googtrans');
+    if (raw) {
+      var parts = raw.split('/');
       if (parts.length >= 3 && parts[2]) return parts[2];
     }
     return 'en';
   }
 
-  /* Applique la langue : pose le cookie puis recharge la page */
-  function setLang(code) {
-    var host = location.hostname;
-    var value = code === 'en' ? '' : '/en/' + code;
 
-    ['', '; domain=.' + host, '; domain=' + host].forEach(function (scope) {
-      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + scope;
-    });
+  /* ========================================================================
+     Mobile navigation
+     ======================================================================== */
+  function initNav() {
+    var burger = $('#burger');
+    var nav = $('#nav');
+    if (!burger || !nav) return;
 
-    if (value) {
-      document.cookie = 'googtrans=' + value + '; path=/';
-      document.cookie = 'googtrans=' + value + '; path=/; domain=.' + host;
+    function setOpen(open) {
+      nav.setAttribute('data-open', String(open));
+      burger.setAttribute('aria-expanded', String(open));
+      document.body.classList.toggle('is-locked', open);
     }
 
-    try { localStorage.setItem('lefona-lang', code); } catch (err) { /* ignoré */ }
-    location.reload();
-  }
+    burger.addEventListener('click', function () {
+      setOpen(nav.getAttribute('data-open') !== 'true');
+    });
 
-  /* Met à jour le libellé du bouton et la langue cochée */
-  function refresh() {
-    var code = currentLang();
-    if (label) label.textContent = code.toUpperCase();
-    menu.querySelectorAll('button[data-lang]').forEach(function (b) {
-      b.setAttribute('aria-current', String(b.dataset.lang === code));
+    $$('a', nav).forEach(function (a) {
+      a.addEventListener('click', function () { setOpen(false); });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 940) setOpen(false);
     });
   }
 
-  function closeMenu() {
-    menu.classList.remove('open');
-    button.setAttribute('aria-expanded', 'false');
+
+  /* ========================================================================
+     Reveal on scroll
+     ======================================================================== */
+  function initReveal() {
+    var items = $$('[data-reveal]');
+    if (!items.length) return;
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px' });
+
+    items.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i % 4, 3) * 70 + 'ms';
+      io.observe(el);
+    });
   }
 
-  button.addEventListener('click', function (e) {
-    e.stopPropagation();
-    var open = !menu.classList.contains('open');
-    menu.classList.toggle('open', open);
-    button.setAttribute('aria-expanded', String(open));
-  });
 
-  menu.querySelectorAll('button[data-lang]').forEach(function (b) {
-    b.addEventListener('click', function () { setLang(b.dataset.lang); });
-  });
+  /* ========================================================================
+     Animated counters — data-count holds the target value
+     ======================================================================== */
+  function initCounters() {
+    var nodes = $$('[data-count]');
+    if (!nodes.length) return;
 
-  document.addEventListener('click', function (e) {
-    if (!menu.contains(e.target) && e.target !== button) closeMenu();
-  });
+    function run(el) {
+      var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+      var suffix = el.getAttribute('data-suffix') || '';
 
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeMenu();
-  });
+      if (prefersReducedMotion) { el.textContent = target + suffix; return; }
 
-  refresh();
+      var started = null;
+      function frame(now) {
+        if (started === null) started = now;
+        var p = Math.min((now - started) / 1200, 1);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + suffix;
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    if (!('IntersectionObserver' in window)) { nodes.forEach(run); return; }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        run(entry.target);
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.5 });
+
+    nodes.forEach(function (el) { io.observe(el); });
+  }
+
+
+  /* ========================================================================
+     Publication filters
+     ======================================================================== */
+  function initFilters() {
+    var buttons = $$('[data-filter]');
+    var items = $$('[data-category]');
+    if (!buttons.length || !items.length) return;
+
+    buttons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        var value = button.getAttribute('data-filter');
+
+        buttons.forEach(function (b) {
+          b.setAttribute('aria-pressed', String(b === button));
+        });
+
+        items.forEach(function (item) {
+          var match = value === 'all' || item.getAttribute('data-category') === value;
+          item.classList.toggle('is-hidden', !match);
+        });
+      });
+    });
+  }
+
+
+  /* ========================================================================
+     Lightbox
+     ======================================================================== */
+  function initLightbox() {
+    var box = $('#lightbox');
+    var figures = $$('.gallery figure');
+    if (!box || !figures.length) return;
+
+    var media = $('#lightbox-media');
+    var caption = $('#lightbox-caption');
+    var close = $('#lightbox-close');
+    var lastFocused = null;
+
+    function open(figure) {
+      lastFocused = document.activeElement;
+      media.innerHTML = '';
+
+      var img = $('img', figure);
+      if (img) {
+        var clone = document.createElement('img');
+        clone.src = img.src;
+        clone.alt = img.alt || '';
+        media.appendChild(clone);
+      } else {
+        var ph = $('.ph', figure);
+        if (ph) media.appendChild(ph.cloneNode(true));
+      }
+
+      caption.textContent = figure.getAttribute('data-caption') || '';
+      box.setAttribute('data-open', 'true');
+      box.removeAttribute('hidden');
+      document.body.classList.add('is-locked');
+      close.focus();
+    }
+
+    function shut() {
+      box.setAttribute('data-open', 'false');
+      document.body.classList.remove('is-locked');
+      window.setTimeout(function () { box.setAttribute('hidden', ''); }, 220);
+      if (lastFocused) lastFocused.focus();
+    }
+
+    figures.forEach(function (figure) {
+      figure.addEventListener('click', function () { open(figure); });
+      figure.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        open(figure);
+      });
+    });
+
+    close.addEventListener('click', shut);
+    box.addEventListener('click', function (e) { if (e.target === box) shut(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && box.getAttribute('data-open') === 'true') shut();
+    });
+  }
+
+
+  /* ========================================================================
+     Contact form — client-side validation only.
+     No backend yet: the submit handler shows a notice instead of sending.
+     ======================================================================== */
+  function initForm() {
+    var form = $('#contact-form');
+    if (!form) return;
+
+    var status = $('#form-status');
+
+    var rules = {
+      name: function (v) { return v.trim().length >= 2 ? '' : 'Please enter your name.'; },
+      email: function (v) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())
+          ? '' : 'Please enter a valid email address.';
+      },
+      subject: function (v) { return v.trim().length >= 3 ? '' : 'Please enter a subject.'; },
+      message: function (v) {
+        return v.trim().length >= 10 ? '' : 'Please write at least 10 characters.';
+      }
+    };
+
+    function check(field) {
+      var rule = rules[field.name];
+      if (!rule) return true;
+
+      var error = rule(field.value);
+      var slot = $('#error-' + field.name);
+      field.setAttribute('aria-invalid', String(error !== ''));
+      if (slot) slot.textContent = error;
+      return error === '';
+    }
+
+    $$('input, textarea', form).forEach(function (field) {
+      field.addEventListener('blur', function () { check(field); });
+      field.addEventListener('input', function () {
+        if (field.getAttribute('aria-invalid') === 'true') check(field);
+      });
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var ok = true;
+      $$('input, textarea', form).forEach(function (field) {
+        if (!check(field)) ok = false;
+      });
+
+      if (!ok) {
+        var first = $('[aria-invalid="true"]', form);
+        if (first) first.focus();
+        return;
+      }
+
+      if (status) {
+        status.textContent = 'This form is not connected to a mail service yet. ' +
+          'Please write to ngolefona@gmail.com in the meantime.';
+        status.setAttribute('data-visible', 'true');
+      }
+    });
+  }
+
+
+  /* ========================================================================
+     Language switcher + interface translation
+     ======================================================================== */
+  function applyInterface(lang) {
+    var dict = UI[lang];
+
+    $$('[data-i18n]').forEach(function (el) {
+      if (dict) {
+        // Hand-written translation available: use it and keep the machine
+        // translator away from this element.
+        var key = el.getAttribute('data-i18n');
+        if (dict[key]) el.textContent = dict[key];
+        el.setAttribute('translate', 'no');
+        el.classList.add('notranslate');
+      } else {
+        // No hand-written translation for this language: let Google
+        // Translate handle the element.
+        el.removeAttribute('translate');
+        el.classList.remove('notranslate');
+      }
+    });
+  }
+
+  function initLang() {
+    var button = $('#lang-btn');
+    var menu = $('#lang-menu');
+    if (!button || !menu) return;
+
+    var label = $('.lang__code', button);
+    var lang = currentLang();
+
+    function setLang(code) {
+      var host = window.location.hostname;
+      var value = code === 'en' ? '' : '/en/' + code;
+      var scopes = ['', '; domain=' + host, '; domain=.' + host];
+
+      scopes.forEach(function (scope) {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + scope;
+      });
+
+      if (value) {
+        scopes.forEach(function (scope) {
+          document.cookie = 'googtrans=' + value + '; path=/' + scope;
+        });
+      }
+
+      window.location.reload();
+    }
+
+    if (label) label.textContent = lang.toUpperCase();
+
+    $$('button[data-lang]', menu).forEach(function (b) {
+      b.setAttribute('aria-current', String(b.getAttribute('data-lang') === lang));
+      b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
+    });
+
+    button.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = menu.getAttribute('data-open') !== 'true';
+      menu.setAttribute('data-open', String(open));
+      button.setAttribute('aria-expanded', String(open));
+    });
+
+    document.addEventListener('click', function (e) {
+      if (menu.contains(e.target) || e.target === button) return;
+      menu.setAttribute('data-open', 'false');
+      button.setAttribute('aria-expanded', 'false');
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      menu.setAttribute('data-open', 'false');
+      button.setAttribute('aria-expanded', 'false');
+    });
+
+    applyInterface(lang);
+  }
+
+
+  /* ========================================================================
+     Boot
+     ======================================================================== */
+  document.addEventListener('DOMContentLoaded', function () {
+    initNav();
+    initReveal();
+    initCounters();
+    initFilters();
+    initLightbox();
+    initForm();
+    initLang();
+  });
+}());
+
+
+/* Called by the Google Translate script loaded at the end of each page. */
+function googleTranslateElementInit() {
+  /* eslint-disable no-new */
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    autoDisplay: false
+  }, 'google-translate');
 }

@@ -1,243 +1,161 @@
-# 📖 Guide de l'équipe contenu — Site de l'Association Lefona
+# Guide de l'équipe — Site de l'ONG LEFONA
 
-Bienvenue ! Ce site est un **squelette** : toute la structure, le design et
-les animations sont prêts. Votre mission : remplacer les textes et images
-provisoires par le vrai contenu de l'association. **Aucune compétence en
-programmation n'est nécessaire** — ce guide vous explique tout, pas à pas.
+Ce guide explique comment modifier le site **sans être développeur**.
+Adresse du site : **https://association-lefona.github.io**
 
----
-
-## 🗂 1. Comment le site est organisé
-
-```
-site internet association lefona/
-├── index.html              → page d'accueil
-├── apropos.html            → page « À propos »
-├── publications.html       → page « Articles & Études »
-├── article-template.html   → MODÈLE d'article (à dupliquer, ne pas modifier)
-├── galerie.html            → page « Galerie »
-├── contact.html            → page « Contact »
-├── css/style.css           → toute la mise en forme (couleurs, tailles…)
-├── js/main.js              → les animations et comportements (ne pas toucher)
-├── images/                 → déposez ici toutes vos photos
-└── GUIDE-EQUIPE.md         → ce guide
-```
-
-**Pour voir le site** : double-cliquez sur `index.html`, il s'ouvre dans
-votre navigateur. Après chaque modification, enregistrez le fichier et
-rechargez la page du navigateur (touche F5, ou Cmd+R sur Mac).
-
-**Pour modifier un fichier** : ouvrez-le avec un éditeur de texte gratuit
-comme [Visual Studio Code](https://code.visualstudio.com/) (recommandé)
-ou, à défaut, le Bloc-notes / TextEdit (en mode texte brut).
+> Le site est rédigé **en anglais**. Un sélecteur de langue (en haut à droite)
+> traduit automatiquement la page dans une quarantaine de langues.
+> Vous écrivez donc toujours vos textes **en anglais**.
 
 ---
 
-## ✏️ 2. Remplacer les textes provisoires
+## 1. Les fichiers du site
 
-Tous les textes à remplacer sont **entre [crochets]**, par exemple :
-`[Slogan de l'association à compléter]`.
-
-De plus, des commentaires vous guident directement dans les fichiers :
-
-```html
-<!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : ... -->
 ```
-
-👉 **Méthode** : ouvrez le fichier HTML de la page, utilisez la recherche
-(Ctrl+F ou Cmd+F) avec le mot **« COMPLÉTER »** ou le caractère **« [ »**,
-et remplacez chaque texte entre crochets par le vôtre (en supprimant les
-crochets). Ne touchez pas aux balises comme `<p>`, `<h2>`, `</div>` :
-modifiez uniquement le texte entre elles.
-
-⚠️ L'en-tête (menu) et le pied de page sont **répétés dans chaque fichier
-HTML**. Si vous modifiez par exemple l'adresse dans le pied de page,
-faites-le dans les 6 fichiers HTML.
+index.html               Page d'accueil
+expertise.html           Nos domaines de travail
+projects.html            Projets + galerie photos de terrain
+publications.html        Liste des publications
+team.html                Conseil d'administration, équipe, gouvernance
+contact.html             Formulaire, coordonnées, carte
+legal.html               Mentions légales
+article-template.html    MODÈLE d'article (à dupliquer, ne pas modifier)
+404.html                 Page affichée si une adresse n'existe pas
+css/style.css            Mise en forme (couleurs, tailles)
+js/main.js               Comportements (menu, filtres, langues)
+images/                  Toutes les photos et le logo
+sitemap.xml, robots.txt  Fichiers techniques pour Google
+```
 
 ---
 
-## 🖼 3. Ajouter des photos
+## 2. Modifier un texte (méthode recommandée)
 
-1. **Préparez la photo** : format `.jpg` ou `.png`, pas trop lourde
-   (idéalement moins de 500 Ko — vous pouvez la compresser sur
-   [tinypng.com](https://tinypng.com)). Renommez le fichier **en minuscules,
-   sans espaces ni accents** : `atelier-riz-2026.jpg` ✅, `Atelier Riz.JPG` ❌.
-2. **Déposez-la** dans le dossier `images/`.
-3. **Remplacez le bloc provisoire** dans la page HTML. Les emplacements
-   d'images ressemblent à ceci :
+Tout se fait dans le navigateur, sans rien installer :
+
+1. Allez sur **github.com/association-lefona/association-lefona.github.io**
+   et connectez-vous.
+2. Cliquez sur le fichier à modifier (ex. `team.html`).
+3. Cliquez sur le **crayon ✏️** en haut à droite du fichier.
+4. Modifiez uniquement le texte, **jamais les balises** (`<p>`, `<h2>`, `</div>`…).
+5. Cliquez sur le bouton vert **« Commit changes »**, puis confirmez.
+
+Le site en ligne se met à jour tout seul en 1 à 2 minutes.
+
+En cas d'erreur, l'onglet **History** de chaque fichier permet de revenir à
+une version précédente.
+
+---
+
+## 3. Ajouter une photo
+
+1. Nommez le fichier **en minuscules, sans espaces ni accents**
+   (ex. `toliara-menage-2026.jpg`) et compressez-le si besoin sur
+   [tinypng.com](https://tinypng.com) — visez moins de 400 Ko.
+2. Sur GitHub, ouvrez le dossier `images`, puis
+   **Add file → Upload files**, glissez la photo et validez.
+3. Dans la page concernée, remplacez le bloc d'emplacement :
 
    ```html
-   <div class="img-placeholder ratio-16-9">📷 [Image de l'actualité 1]</div>
+   <div class="ph r-16-9">Photo — Toliara II</div>
    ```
 
-   Supprimez toute cette ligne et mettez à la place :
+   par votre image :
 
    ```html
-   <img src="images/atelier-riz-2026.jpg" alt="Description courte de la photo">
+   <img src="images/toliara-menage-2026.jpg" alt="Household survey in Toliara II">
    ```
 
-   Le texte `alt` décrit la photo (important pour l'accessibilité et Google).
+Le texte `alt` décrit la photo en anglais (important pour Google et pour les
+personnes malvoyantes).
 
-### Cas particulier : la galerie
+**Galerie de terrain** (`projects.html`) : même principe. La légende affichée
+quand on agrandit la photo se trouve dans l'attribut `data-caption`.
 
-Dans `galerie.html`, chaque photo est dans un bloc `<figure>` :
-
-- Remplacez le `<div class="img-placeholder">…</div>` par votre `<img …>`
-  comme ci-dessus.
-- Mettez la légende dans l'attribut `data-legende="…"` du `<figure>` :
-  c'est elle qui s'affiche quand on clique sur la photo pour l'agrandir.
-- Pour **ajouter** une photo : copiez un bloc `<figure>…</figure>` entier
-  et collez-le dans la grille. La classe `haut` rend le bloc plus grand
-  (effet mosaïque) — utilisez-la environ une fois sur trois.
-
-### Cas particulier : les photos de l'équipe (apropos.html)
-
-Remplacez le placeholder rond par :
-
-```html
-<img src="images/equipe-nom.jpg" alt="Nom Prénom" class="rond"
-     style="width:100%;height:100%;object-fit:cover;">
-```
+**Photos de l'équipe** (`team.html`) : remplacez le contenu du bloc
+`<div class="person__avatar">…</div>` par `<img src="images/nom.jpg" alt="">`.
 
 ---
 
-## 📰 4. Publier un nouvel article ou une nouvelle étude
+## 4. Ajouter un projet
 
-**Étape A — Créer la page de l'article**
+Dans `projects.html`, copiez un bloc entier de `<article class="card">`
+jusqu'à `</article>`, collez-le dans la grille et modifiez :
 
-1. Dans le dossier du site, copiez le fichier `article-template.html`
-   et renommez la copie, par exemple `article-riziculture-2026.html`
-   (minuscules, sans espaces ni accents).
-2. Ouvrez votre copie et remplacez : le `<title>` en haut du fichier,
-   le badge (Article ou Étude), le titre, la date, l'auteur, l'image de
-   couverture et le corps du texte. Tous les endroits sont signalés par
-   des commentaires « À COMPLÉTER ».
-
-**Étape B — Ajouter la carte dans la liste des publications**
-
-1. Ouvrez `publications.html` et repérez le grand commentaire
-   « COMMENT AJOUTER UNE PUBLICATION » : il rappelle la marche à suivre.
-2. Copiez un bloc entier de `<article class="carte carte-publication …">`
-   jusqu'à `</article>` et collez-le en premier dans la grille.
-3. Dans votre copie, adaptez :
-   - `data-categorie="article"` **ou** `data-categorie="etude"`
-     (sans accent — c'est ce qui fait fonctionner les filtres) ;
-   - le badge correspondant (`badge-article` ou `badge-etude`) ;
-   - l'image, le titre, la date, le résumé ;
-   - le lien : `href="article-riziculture-2026.html"` (le nom de VOTRE fichier).
-
-**Étape C (facultatif)** — Mettre l'article en avant sur la page d'accueil :
-dans `index.html`, section « Nos dernières actualités », mettez à jour une
-des 3 cartes de la même façon.
+- `card__place` : le lieu (ex. `Fianarantsoa · Haute Matsiatra`)
+- le titre `<h3>` et le paragraphe de description
+- `card__foot` : le bailleur et l'année
+- l'image
 
 ---
 
-## 🔢 5. Mettre à jour les chiffres clés (accueil)
+## 5. Ajouter une publication
 
-Dans `index.html`, section « CHIFFRES CLÉS » :
+Dans `publications.html`, copiez un bloc `<article class="pub">` … `</article>`,
+collez-le **en haut** de la liste (la plus récente en premier) et modifiez :
 
-- Le nombre animé se règle avec l'attribut `data-cible` :
-  `data-cible="30"` → le compteur monte jusqu'à 30.
-- `data-suffixe="+"` ajoute un « + » après le nombre (facultatif).
-- Modifiez aussi le libellé en dessous (ex. `[XX] membres` → `Membres actifs`).
+- `data-category` : `study` ou `article` (c'est ce qui fait fonctionner les filtres)
+- l'année (dans `<time datetime="2026">2026</time>`)
+- le titre, les auteurs et la source
 
----
-
-## 📍 6. Page Contact
-
-- **Coordonnées** : remplacez les textes entre crochets (adresse,
-  téléphone, e-mail) dans `contact.html` **et** dans le pied de page de
-  chaque fichier HTML.
-- **Carte Google Maps** : sur Google Maps, cherchez votre adresse →
-  « Partager » → « Intégrer une carte » → copiez le code `<iframe …>`.
-  Dans `contact.html`, un commentaire indique exactement où le coller.
-- **Formulaire** : il vérifie déjà les champs, mais **n'envoie encore
-  aucun message** (il affiche « Formulaire à connecter »). Pour l'activer,
-  il faudra un service d'envoi (par exemple [Formspree](https://formspree.io),
-  gratuit pour un petit volume) — demandez à une personne technique de
-  faire cette connexion dans `js/main.js`.
+**Pour créer la page complète d'un article** : dupliquez
+`article-template.html`, renommez la copie (ex. `article-heat-economics.html`),
+remplacez les textes entre `[crochets]`, puis faites pointer la publication
+vers ce fichier.
 
 ---
 
-## 🎨 7. Logo et couleurs
+## 6. Modifier l'équipe
 
-- **Logo** : le logo officiel de l'association (cornes de zébu, lance,
-  écu tissé) est intégré en version vectorielle dans l'en-tête et le pied
-  de page de chaque page — il s'adapte automatiquement aux fonds clairs
-  et sombres. La version complète du logo (avec les rameaux et le nom)
-  se trouve dans `images/logo-lefona.svg` : vous pouvez l'utiliser pour
-  vos documents, affiches et réseaux sociaux.
-- **Couleurs** : toutes les couleurs du site sont définies au même
-  endroit, tout en haut de `css/style.css` (section « 1. VARIABLES »).
-  Changer une valeur là-bas change la couleur sur tout le site.
+Dans `team.html` :
 
----
+- **Conseil d'administration** : deux blocs `<article class="person">`.
+  Le second est marqué « Seat to be confirmed » — remplacez le nom quand la
+  personne sera désignée et retirez `person--vacant` de la classe.
+- **Équipe exécutive** : un bloc par personne, à copier pour en ajouter.
 
-## 🌍 8. Modifier le site en ligne (via GitHub)
-
-Le site est publié sur **https://association-lefona.github.io** et ses
-fichiers sont hébergés sur GitHub, ici :
-`github.com/association-lefona/association-lefona.github.io`.
-**Toute modification enregistrée sur GitHub met à jour le site en ligne
-automatiquement, en une à deux minutes.**
-
-### Obtenir l'accès
-
-1. Créez un compte gratuit sur [github.com](https://github.com).
-2. Donnez votre nom d'utilisateur GitHub à la personne qui gère le compte
-   de l'association : elle vous invitera (dans le dépôt : Settings →
-   Collaborators → Add people). Acceptez l'invitation reçue par e-mail.
-
-### Modifier un texte
-
-1. Sur la page du dépôt, cliquez sur le fichier à modifier
-   (ex. `apropos.html`).
-2. Cliquez sur le **crayon ✏️** (« Edit this file ») en haut à droite
-   du fichier.
-3. Faites vos modifications (les règles de ce guide s'appliquent :
-   remplacez uniquement les textes, pas les balises).
-4. Cliquez le bouton vert **« Commit changes »** (deux fois : une pour
-   ouvrir la fenêtre, une pour confirmer). C'est tout !
-
-### Ajouter une photo
-
-1. Ouvrez le dossier `images` du dépôt.
-2. Bouton **« Add file » → « Upload files »**, glissez votre photo,
-   puis **« Commit changes »**.
-3. ⚠️ Sur GitHub, majuscules et minuscules comptent ! Nommez vos
-   fichiers **tout en minuscules, sans espaces ni accents**
-   (`atelier-riz-2026.jpg`), et écrivez-les exactement pareil dans
-   le code HTML.
-
-### Créer un nouvel article
-
-1. Ouvrez `article-template.html` sur GitHub, cliquez sur **« Raw »**,
-   puis copiez tout le texte affiché (Cmd+A, Cmd+C).
-2. Revenez au dépôt : **« Add file » → « Create new file »**, nommez-le
-   (ex. `article-riziculture-2026.html`), collez le contenu, remplissez
-   les zones « À COMPLÉTER », puis **« Commit changes »**.
-3. Ajoutez la carte correspondante dans `publications.html`
-   (voir section 4 de ce guide).
-
-### En cas d'erreur
-
-Pas de panique : GitHub garde l'historique de toutes les versions
-(bouton « History » sur chaque fichier). La personne qui gère le compte
-peut toujours revenir à la version précédente.
+⚠️ Les noms de personnes sont entourés de
+`<span translate="no" class="notranslate">…</span>` : **gardez toujours cette
+balise**. C'est elle qui empêche la traduction automatique de déformer les
+noms — sans elle, « Rojo » deviendrait « Rouge » en français.
 
 ---
 
-## ✅ 9. Liste de contrôle
+## 7. Le sélecteur de langue
 
-- [ ] Plus aucun texte entre `[crochets]` sur aucune page
-- [ ] Plus aucun bloc « 📷 [Image à insérer] »
-- [ ] Les liens des réseaux sociaux ne pointent plus vers `#`
-- [ ] Les boutons « Lire » pointent vers de vraies pages d'article
-- [ ] Les coordonnées sont à jour dans `contact.html` ET dans le pied
-      de page des 6 fichiers
-- [ ] La carte Google Maps est insérée
-- [ ] Le formulaire de contact est connecté à un service d'envoi
-- [ ] Les descriptions `meta name="description"` sont remplies dans
-      chaque page (important pour Google)
+- Le site est écrit en **anglais**.
+- Les menus et boutons sont traduits à la main en **français** et en
+  **malgache** (dictionnaire au début de `js/main.js`).
+- Les autres langues sont assurées par la traduction automatique Google.
+- Tout ce qui ne doit jamais être traduit (noms, lieux, LEFONA, e-mail) porte
+  l'attribut `translate="no"`.
 
-Bon courage ! 🚀
+---
+
+## 8. Formulaire de contact
+
+Le formulaire vérifie les champs mais **n'envoie encore aucun message** : il
+affiche un avis invitant à écrire à `ngolefona@gmail.com`.
+
+Pour l'activer gratuitement avec [Formspree](https://formspree.io) : créez un
+compte, récupérez votre identifiant de formulaire, puis demandez à une
+personne technique de l'ajouter dans `js/main.js`.
+
+---
+
+## 9. Avant chaque mise en ligne — vérifications
+
+- [ ] Plus aucun texte entre `[crochets]`
+- [ ] Plus aucun bloc gris « Photo — … » sur les pages publiées
+- [ ] Le lien LinkedIn du pied de page pointe vers la vraie page de l'ONG
+- [ ] Les textes ajoutés sont bien **en anglais**
+- [ ] Les noms de personnes gardent leur balise `translate="no"`
+- [ ] La description `<meta name="description">` de la page est à jour
+
+---
+
+## 10. Ce qu'il ne faut pas toucher
+
+`css/style.css`, `js/main.js`, `sitemap.xml`, `robots.txt` et le contenu de
+`<head>` (hors titre et description) font fonctionner le site.
+En cas de besoin, demandez à une personne technique.

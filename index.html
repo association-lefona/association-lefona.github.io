@@ -1,61 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home — NGO LEFONA</title>
-  <meta name="description" content="NGO LEFONA — applied research and public policy analysis on socio-economic and climate vulnerabilities in Madagascar.">
-  <link rel="icon" href="images/logo-mark.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Sora:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Independent research on vulnerability in Madagascar | NGO LEFONA</title>
+<meta name="description" content="NGO LEFONA is an independent research organisation analysing socio-economic and climate vulnerability in Madagascar, working with international donors and the Malagasy administration.">
+<link rel="canonical" href="https://association-lefona.github.io/index.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NGO LEFONA">
+<meta property="og:title" content="Independent research on vulnerability in Madagascar | NGO LEFONA">
+<meta property="og:description" content="NGO LEFONA is an independent research organisation analysing socio-economic and climate vulnerability in Madagascar, working with international donors and the Malagasy administration.">
+<meta property="og:url" content="https://association-lefona.github.io/index.html">
+<meta property="og:image" content="https://association-lefona.github.io/images/logo-lefona.png">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="images/logo-mark.png">
+<link rel="apple-touch-icon" href="images/logo-mark.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  "name": "NGO LEFONA",
+  "url": "https://association-lefona.github.io",
+  "logo": "https://association-lefona.github.io/images/logo-lefona.png",
+  "email": "ngolefona@gmail.com",
+  "foundingDate": "2026",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Lot 237 Cité Mandroseza",
+    "addressLocality": "Antananarivo",
+    "addressCountry": "MG"
+  },
+  "sameAs": ["https://www.linkedin.com/company/ong-lefona"],
+  "description": "Independent research organisation analysing socio-economic and climate vulnerability in Madagascar."
+}
+</script>
 </head>
 <body>
 
-  <!-- ===================================================================
-       EN-TÊTE / NAVIGATION (identique sur toutes les pages)
-       Si vous modifiez le menu, reportez la modification sur les
-       autres fichiers HTML.
-       =================================================================== -->
-  <header class="site-header">
-    <div class="wrap header-inner">
+<a class="skip-link" href="#main">Skip to content</a>
 
-      <!-- LOGO OFFICIEL DE L'ONG (images/logo-mark.png = emblème seul) -->
-      <a href="index.html" class="brand" aria-label="NGO LEFONA — back to home">
-        <img src="images/logo-mark.png" alt="NGO LEFONA">
-        <span class="brand-name">LEFONA</span>
-      </a>
+<div class="utility">
+  <div class="container utility__inner">
+    <div class="utility__left">
+      <span class="utility__hide">Independent research &amp; policy analysis</span>
+      <span class="utility__sep utility__hide">·</span>
+      <span><span translate="no" class="notranslate">Antananarivo, Madagascar</span></span>
+    </div>
+    <div class="utility__right">
+      <a class="utility__hide" href="mailto:ngolefona@gmail.com"><span translate="no" class="notranslate">ngolefona@gmail.com</span></a>
+      <span class="utility__sep utility__hide">·</span>
 
-      <nav class="nav-links" id="nav-links" aria-label="Main navigation">
-        <a href="index.html" class="active" aria-current="page">Home</a>
-        <a href="expertise.html">Expertise</a>
-        <a href="projects.html">Projects</a>
-        <a href="publications.html">Publications</a>
-        <a href="team.html">Team</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-
-      <div class="header-actions">
-
-        <!-- SÉLECTEUR DE LANGUE — traduction automatique de la page -->
-        <div class="lang">
-          <button class="lang-btn" id="lang-btn" aria-expanded="false"
-                  aria-haspopup="true" aria-label="Choose a language">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-              <circle cx="12" cy="12" r="9"/>
-              <path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/>
-            </svg>
-            <span class="lang-current">EN</span>
-            <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M2.5 4.5 6 8l3.5-3.5"/>
-            </svg>
-          </button>
-          <ul class="lang-menu" id="lang-menu" role="menu">
+      <div class="lang">
+        <button class="lang__btn" id="lang-btn" type="button"
+                aria-expanded="false" aria-haspopup="true" aria-label="Change language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18M12 3c2.6 2.8 2.6 15.2 0 18M12 3c-2.6 2.8-2.6 15.2 0 18"/>
+          </svg>
+          <span class="lang__code" translate="no">EN</span>
+          <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M2.5 4.5 6 8l3.5-3.5"/>
+          </svg>
+        </button>
+        <ul class="lang__menu" id="lang-menu" data-open="false" role="menu">
+          <li class="lang__group">Site languages</li>
           <li><button type="button" data-lang="en">English</button></li>
           <li><button type="button" data-lang="fr">Français</button></li>
           <li><button type="button" data-lang="mg">Malagasy</button></li>
-          <li class="lang-sep" aria-hidden="true"></li>
+          <li class="lang__group">Machine translation</li>
           <li><button type="button" data-lang="af">Afrikaans</button></li>
           <li><button type="button" data-lang="am">አማርኛ</button></li>
           <li><button type="button" data-lang="ar">العربية</button></li>
@@ -93,248 +112,294 @@
           <li><button type="button" data-lang="zh-CN">中文（简体）</button></li>
           <li><button type="button" data-lang="zh-TW">中文（繁體）</button></li>
           <li><button type="button" data-lang="zu">isiZulu</button></li>
-          </ul>
-        </div>
-
-        <a href="contact.html" class="nav-cta">Get in touch</a>
-
-        <button class="burger" id="burger" aria-expanded="false"
-                aria-controls="nav-links" aria-label="Open or close the menu">
-          <span></span><span></span><span></span>
-        </button>
+        </ul>
       </div>
     </div>
-  </header>
+  </div>
+</div>
 
-  <main>
+<header class="masthead">
+  <div class="container masthead__inner">
+    <a class="brand" href="index.html">
+      <img src="images/logo-mark.png" alt="" aria-hidden="true">
+      <span>
+        <span class="brand__name" translate="no">LEFONA</span>
+        <span class="brand__sub">Research &amp; Policy</span>
+      </span>
+    </a>
 
-    <!-- ============ HERO ============ -->
-    <section class="hero">
-      <div class="wrap">
-        <img src="images/logo-lefona.png" alt="NGO LEFONA" class="hero-logo reveal">
-        <p class="eyebrow eyebrow--boxed reveal"><span class="dot"></span>
-           Applied research &amp; public policy analysis</p>
-        <h1 class="reveal">Understanding <span class="mark">vulnerability</span>
-            to inform public action.</h1>
-        <p class="motto reveal">"Rigour in the service of those least heard."</p>
-        <p class="hero-sub reveal">NGO LEFONA is an independent research organisation,
-           founded and led by young Malagasy professionals, specialising in the
-           analysis of socio-economic and climate vulnerabilities in Madagascar.</p>
-        <div class="hero-actions reveal">
-          <a href="projects.html" class="btn btn-primary">Explore our projects</a>
-          <a href="team.html" class="link-arrow">Meet the team</a>
+    <nav class="nav" id="nav" data-open="false" aria-label="Main">
+      <a href="index.html" aria-current="page" data-i18n="nav.home">Home</a>
+      <a href="expertise.html" data-i18n="nav.expertise">Expertise</a>
+      <a href="projects.html" data-i18n="nav.projects">Projects</a>
+      <a href="publications.html" data-i18n="nav.publications">Publications</a>
+      <a href="team.html" data-i18n="nav.team">Team</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <div class="masthead__actions">
+      <a class="btn btn--solid" href="contact.html" data-i18n="cta.getInTouch">Get in touch</a>
+      <button class="burger" id="burger" type="button"
+              aria-expanded="false" aria-controls="nav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="container hero__grid">
+      <div>
+        <p class="hero__eyebrow">Applied research &amp; policy analysis</p>
+        <h1>Understanding vulnerability to inform public action.</h1>
+        <p class="hero__motto">"Rigour in the service of those least heard."</p>
+        <p class="lede hero__lede"><span translate="no" class="notranslate">NGO LEFONA</span> is an independent research
+           organisation, founded and led by young Malagasy professionals. We study
+           how households in <span translate="no" class="notranslate">Madagascar</span> absorb climate and economic shocks —
+           and what public policy can do about it.</p>
+        <div class="hero__actions">
+          <a class="btn btn--solid" href="projects.html">See our work</a>
+          <a class="arrow" href="team.html">Meet the team</a>
         </div>
       </div>
-    </section>
 
-    <!-- ============ CHIFFRES CLÉS ============
-         ÉQUIPE CONTENU : pour changer un chiffre, modifiez data-target
-         (nombre entier) et le libellé juste en dessous. -->
-    <section class="section section--line">
-      <div class="wrap">
-        <div class="stats">
-          <div class="stat reveal">
-            <span class="stat-value" data-target="10" data-suffix="+">0</span>
-            <span class="stat-label">years of combined project-management experience</span>
+      <aside class="hero__aside">
+        <h2>At a glance</h2>
+        <dl class="facts" style="border-top:0">
+          <div class="fact" style="grid-template-columns:1fr;gap:2px;padding-block:14px">
+            <dt>Founded</dt><dd>2026 · <span translate="no" class="notranslate">Antananarivo</span></dd>
           </div>
-          <div class="stat reveal">
-            <span class="stat-value" data-target="2" data-suffix="">0</span>
-            <span class="stat-label">major districts studied</span>
+          <div class="fact" style="grid-template-columns:1fr;gap:2px;padding-block:14px">
+            <dt>Focus</dt><dd>Climate &amp; socio-economic vulnerability</dd>
           </div>
-          <div class="stat reveal">
-            <span class="stat-value" data-target="2" data-suffix="">0</span>
-            <span class="stat-label">Deep Challenge Fund — OPM projects</span>
+          <div class="fact" style="grid-template-columns:1fr;gap:2px;padding-block:14px">
+            <dt>Partners</dt><dd><span translate="no" class="notranslate">Oxford Policy Management</span></dd>
           </div>
-          <div class="stat reveal">
-            <span class="stat-value" data-target="2" data-suffix="+">0</span>
-            <span class="stat-label">academic publications</span>
+          <div class="fact" style="grid-template-columns:1fr;gap:2px;padding-block:14px;border-bottom:0">
+            <dt>Languages</dt><dd>English · French · Malagasy</dd>
           </div>
-        </div>
+        </dl>
+      </aside>
+    </div>
+  </section>
 
-        <div class="section-head" style="margin-top:48px; margin-bottom:18px;">
-          <p class="eyebrow"><span class="dot"></span> Funders &amp; institutional partners</p>
+  <section class="section section--tight">
+    <div class="container">
+      <div class="stats" data-reveal>
+        <div class="stat">
+          <span class="stat__value" data-count="10" data-suffix="+">0</span>
+          <span class="stat__label">years of combined project-management experience</span>
         </div>
-        <div class="partners reveal">
-          <span>Oxford Policy Management</span>
-          <span>Deep Challenge Fund</span>
-          <span>Malagasy public administration</span>
+        <div class="stat stat--alt">
+          <span class="stat__value" data-count="2" data-suffix="">0</span>
+          <span class="stat__label">districts covered by field studies</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value" data-count="2" data-suffix="">0</span>
+          <span class="stat__label">projects delivered for Oxford Policy Management</span>
+        </div>
+        <div class="stat stat--alt">
+          <span class="stat__value" data-count="2" data-suffix="">0</span>
+          <span class="stat__label">peer-reviewed publications</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ============ EXPERTISE ============ -->
-    <section class="section section--raised">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <p class="eyebrow"><span class="dot"></span> Our expertise</p>
-          <h2>A team trained to international donor standards.</h2>
-          <p>Rigorous methodology, actionable restitution, strong local roots.</p>
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <p class="kicker">Our work</p>
+        <div class="section-head__body">
+          <h2>Field research that shapes policy decisions.</h2>
+          <p>Recent studies delivered for international donors, combining household
+             surveys with quantitative analysis.</p>
         </div>
-        <div class="expertise-list">
-          <div class="expertise-item reveal">
-            <span class="expertise-num">— 01</span>
-            <h3>Field studies &amp; surveys</h3>
-            <p>Collection and analysis of quantitative and qualitative data from households and local institutions, using sampling protocols aligned with international donor standards.</p>
-          </div>
-          <div class="expertise-item reveal">
-            <span class="expertise-num">— 02</span>
-            <h3>Public policy advice</h3>
-            <p>Translating research findings into operational recommendations for public decision-makers, with clear deliverables and actionable restitution.</p>
-          </div>
-          <div class="expertise-item reveal">
-            <span class="expertise-num">— 03</span>
-            <h3>Donor coordination</h3>
-            <p>Management of internationally funded projects, working directly with the Malagasy administration and with partner research teams.</p>
-          </div>
-          <div class="expertise-item reveal">
-            <span class="expertise-num">— 04</span>
-            <h3>Academic supervision</h3>
-            <p>Supervision of master's dissertations and delivery of training sessions, in partnership with Malagasy universities.</p>
-          </div>
-        </div>
-        <p style="margin-top:32px;"><a href="expertise.html" class="link-arrow">See our full expertise</a></p>
+        <div class="section-head__link"><a class="arrow" href="projects.html">All projects</a></div>
       </div>
-    </section>
 
-    <!-- ============ PROJETS ============ -->
-    <section class="section">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <p class="eyebrow"><span class="dot"></span> Our projects</p>
-          <h2>Two studies that shaped our approach.</h2>
-          <p>A selection of recent projects, funded by international donors.</p>
-        </div>
-        <div class="project-grid">
-          <article class="project reveal">
-            <div class="project-media">
-              <!-- ÉQUIPE CONTENU : remplacez ce bloc par
-                   <img src="images/votre-photo.jpg" alt="..."> -->
-              <div class="img-placeholder ratio-16-9">PHOTO — Toliara II · South-West</div>
-            </div>
-            <div class="project-body">
-              <p class="project-place">Toliara II · South-West</p>
-              <h3>Pastoral vulnerability and rural poverty</h3>
-              <p>A study of cattle- and small-ruminant-herding households facing climate and economic shocks in the district of Toliara II, in south-western Madagascar.</p>
-              <p class="project-funder">Deep Challenge Fund · Oxford Policy Management</p>
-            </div>
-          </article>
-          <article class="project reveal">
-            <div class="project-media">
-              <!-- ÉQUIPE CONTENU : remplacez ce bloc par
-                   <img src="images/votre-photo.jpg" alt="..."> -->
-              <div class="img-placeholder ratio-16-9">PHOTO — Antananarivo</div>
-            </div>
-            <div class="project-body">
-              <p class="project-place">Antananarivo</p>
-              <h3>Flooding and low-lying neighbourhoods</h3>
-              <p>Analysis of the exposure and vulnerability of households living in the low-lying neighbourhoods of Antananarivo to recurrent flood risk.</p>
-              <p class="project-funder">Deep Challenge Fund · Oxford Policy Management</p>
-            </div>
-          </article>
-        </div>
-        <p style="margin-top:32px;"><a href="projects.html" class="link-arrow">All our projects</a></p>
+      <div class="grid grid--2">
+        <article class="card card--feature" data-reveal>
+          <div class="card__media">
+            <!-- Replace with: <img src="images/toliara.jpg" alt="…"> -->
+            <div class="ph r-16-9">Photo — <span translate="no" class="notranslate">Toliara II</span> field mission</div>
+            <span class="tag tag--study card__tag">Field study</span>
+          </div>
+          <div class="card__body">
+            <p class="card__place"><span translate="no" class="notranslate">Toliara II · South-West Madagascar</span></p>
+            <h3>Pastoral vulnerability and rural poverty</h3>
+            <p>A household-level study of cattle and small-ruminant herders facing compounding climate and economic shocks, examining how livestock assets mediate exposure to drought and market volatility.</p>
+            <p class="card__foot"><span translate="no" class="notranslate">Deep Challenge Fund · Oxford Policy Management</span> · 2025</p>
+          </div>
+        </article>
+
+        <article class="card" data-reveal>
+          <div class="card__media">
+            <div class="ph r-16-9">Photo — <span translate="no" class="notranslate">Antananarivo</span> field mission</div>
+            <span class="tag tag--study card__tag">Field study</span>
+          </div>
+          <div class="card__body">
+            <p class="card__place"><span translate="no" class="notranslate">Antananarivo · Analamanga</span></p>
+            <h3>Flood exposure in low-lying urban neighbourhoods</h3>
+            <p>An analysis of exposure and vulnerability among households living in the low-lying districts of the capital, where seasonal flooding recurs with increasing intensity.</p>
+            <p class="card__foot"><span translate="no" class="notranslate">Deep Challenge Fund · Oxford Policy Management</span> · 2025</p>
+          </div>
+        </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ============ PUBLICATIONS ============ -->
-    <section class="section section--raised">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <p class="eyebrow"><span class="dot"></span> Publications</p>
-          <h2>Work already cited and built upon.</h2>
-          <p>A selection of our academic publications.</p>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="kicker">What we do</p>
+        <div class="section-head__body">
+          <h2>Four areas of work, one standard of evidence.</h2>
+          <p>From data collection in the field to recommendations on a
+             minister's desk.</p>
         </div>
-        <div class="pub-list">
-          <article class="pub-item reveal">
-            <span class="pub-num">01</span>
-            <div>
-              <h3>Heat and Economics: Climate Change's Influence on Madagascar's GDP</h3>
-              <p class="pub-meta">SSRN · 2023</p>
-            </div>
-            <span class="pub-tag">Study</span>
-          </article>
-          <article class="pub-item reveal">
-            <span class="pub-num">02</span>
-            <div>
-              <h3>Modeling post-cyclone resilience in Mananjary: A multivariate Probit analysis</h3>
-              <p class="pub-meta">SSRN · 2024 — Raveloson, Andrianady, Andrianavony et al.</p>
-            </div>
-            <span class="pub-tag">Study</span>
-          </article>
+        <div class="section-head__link"><a class="arrow" href="expertise.html">Our expertise in detail</a></div>
+      </div>
+
+      <div class="rows">
+        <div class="row" data-reveal>
+          <div class="row__num">01</div>
+          <h3>Field studies and household surveys</h3>
+          <p>Quantitative and qualitative data collection from households and local institutions, with sampling protocols and quality controls aligned with international donor requirements.</p>
         </div>
-        <p style="margin-top:32px;"><a href="publications.html" class="link-arrow">All publications</a></p>
+        <div class="row" data-reveal>
+          <div class="row__num">02</div>
+          <h3>Public policy analysis</h3>
+          <p>Translating research findings into operational recommendations, with deliverables designed to be used directly by public decision-makers.</p>
+        </div>
+        <div class="row" data-reveal>
+          <div class="row__num">03</div>
+          <h3>Donor-funded project coordination</h3>
+          <p>Day-to-day management of internationally funded research, working alongside the Malagasy administration and partner research teams.</p>
+        </div>
+        <div class="row" data-reveal>
+          <div class="row__num">04</div>
+          <h3>Academic supervision and training</h3>
+          <p>Supervision of master's dissertations and delivery of methodology training, in partnership with Malagasy universities.</p>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ============ APPEL À L'ACTION ============ -->
-    <section class="cta-band">
-      <div class="wrap">
-        <p class="eyebrow"><span class="dot"></span> Work with us</p>
-        <h2>A research or evaluation project to carry out?</h2>
-        <p class="motto">"Rigour in the service of those least heard."</p>
-        <a href="contact.html" class="btn btn-primary">Contact us</a>
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <p class="kicker">Publications</p>
+        <div class="section-head__body">
+          <h2>Peer-reviewed work, openly available.</h2>
+        </div>
+        <div class="section-head__link"><a class="arrow" href="publications.html">All publications</a></div>
       </div>
-    </section>
 
-  </main>
+      <div class="pubs">
+        <article class="pub" data-reveal>
+          <div class="pub__year"><time datetime="2024">2024</time></div>
+          <div>
+            <h3><span translate="no" class="notranslate">Modeling post-cyclone resilience in Mananjary: A multivariate Probit analysis</span></h3>
+            <p class="pub__authors"><span translate="no" class="notranslate">Raveloson, Andrianady, Andrianavony et al.</span></p>
+          </div>
+          <div class="pub__right"><span class="tag tag--study">Study</span></div>
+        </article>
+        <article class="pub" data-reveal>
+          <div class="pub__year"><time datetime="2023">2023</time></div>
+          <div>
+            <h3><span translate="no" class="notranslate">Heat and Economics: Climate Change's Influence on Madagascar's GDP</span></h3>
+            <p class="pub__authors"><span translate="no" class="notranslate">Andrianady et al.</span></p>
+          </div>
+          <div class="pub__right"><span class="tag tag--study">Study</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-  <!-- ============ PIED DE PAGE (identique sur toutes les pages) ============ -->
-  <footer class="site-footer">
-    <div class="wrap footer-grid">
+  <section class="section section--tight section--rule">
+    <div class="container">
+      <p class="kicker" style="margin-bottom:18px">Funders &amp; institutional partners</p>
+      <ul class="partners">
+        <li><span translate="no" class="notranslate">Oxford Policy Management</span></li>
+        <li><span translate="no" class="notranslate">Deep Challenge Fund</span></li>
+        <li>Malagasy public administration</li>
+        <li>Malagasy universities</li>
+      </ul>
+    </div>
+  </section>
 
-      <div class="footer-col footer-about">
-        <a href="index.html" class="brand" aria-label="NGO LEFONA — back to home">
-          <img src="images/logo-mark.png" alt="NGO LEFONA">
-          <span class="brand-name">LEFONA</span>
+  <section class="cta">
+    <div class="container cta__grid">
+      <div>
+        <h2>Planning a study, an evaluation or a field survey?</h2>
+        <p>We work with donors, public institutions and research partners across
+           Madagascar. Tell us about your project and we will come back to you.</p>
+      </div>
+      <a class="btn btn--solid" href="contact.html" data-i18n="cta.contact">Contact us</a>
+    </div>
+  </section>
+
+</main>
+
+  <footer class="footer">
+    <div class="container footer__top">
+
+      <div class="footer__brand">
+        <a class="brand" href="index.html">
+          <img src="images/logo-mark.png" alt="" aria-hidden="true">
+          <span>
+            <span class="brand__name" translate="no">LEFONA</span>
+            <span class="brand__sub">Research &amp; Policy</span>
+          </span>
         </a>
         <p>An independent research organisation founded and led by young Malagasy
-           professionals, analysing socio-economic and climate vulnerabilities
-           across Madagascar.</p>
+           professionals, analysing socio-economic and climate vulnerability
+           across <span translate="no" class="notranslate">Madagascar</span>.</p>
       </div>
 
-      <nav class="footer-col" aria-label="Footer navigation">
-        <h3>Navigation</h3>
+      <nav aria-label="Footer">
+        <h3 data-i18n="foot.nav">Navigation</h3>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="expertise.html">Expertise</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="publications.html">Publications</a></li>
-          <li><a href="team.html">Team</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="expertise.html" data-i18n="nav.expertise">Expertise</a></li>
+          <li><a href="projects.html" data-i18n="nav.projects">Projects</a></li>
+          <li><a href="publications.html" data-i18n="nav.publications">Publications</a></li>
+          <li><a href="team.html" data-i18n="nav.team">Team</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
 
-      <div class="footer-col">
-        <h3>Contact</h3>
+      <div>
+        <h3 data-i18n="foot.contact">Contact</h3>
         <ul>
-          <li>Lot 237 Cité Mandroseza, Antananarivo, Madagascar</li>
-          <li><a href="mailto:ngolefona@gmail.com">ngolefona@gmail.com</a></li>
+          <li><span translate="no" class="notranslate">Lot 237 Cité Mandroseza, Antananarivo</span></li>
+          <li><span translate="no" class="notranslate">Madagascar</span></li>
+          <li><a href="mailto:ngolefona@gmail.com"><span translate="no" class="notranslate">ngolefona@gmail.com</span></a></li>
         </ul>
       </div>
 
-      <div class="footer-col">
-        <h3>Follow us</h3>
-        <!-- ÉQUIPE CONTENU : remplacez l'adresse ci-dessous par le lien exact
-             de la page LinkedIn de l'ONG. -->
-        <p class="footer-social">
-          <a href="https://www.linkedin.com/company/ong-lefona" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6.2" cy="6.4" r="1.6" fill="currentColor" stroke="none"/><path d="M6.2 10v9"/><path d="M11.4 19v-5.2c0-1.7 1.2-2.9 2.9-2.9s2.9 1.2 2.9 2.9V19"/><path d="M11.4 10v9"/></svg> LinkedIn
-          </a>
-        </p>
+      <div>
+        <h3 data-i18n="foot.follow">Follow us</h3>
+        <!-- Replace the href below with the organisation's exact LinkedIn URL. -->
+        <a class="footer__social" href="https://www.linkedin.com/company/ong-lefona" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6.2" cy="6.4" r="1.5" fill="currentColor" stroke="none"/><path d="M6.2 10v9"/><path d="M11.4 19v-5.2c0-1.7 1.2-2.9 2.9-2.9s2.9 1.2 2.9 2.9V19"/><path d="M11.4 10v9"/></svg><span translate="no">LinkedIn</span>
+        </a>
       </div>
     </div>
 
-    <div class="wrap">
-      <div class="footer-bottom">
-        <span>© 2026 NGO LEFONA — All rights reserved.</span>
-        <span>NIF 4019927032 · STAT 94951 11 2026 0 08784</span>
+    <div class="container">
+      <div class="footer__bottom">
+        <span>© 2026 <span translate="no" class="notranslate">NGO LEFONA</span>. All rights reserved.</span>
+        <span>Registered non-profit organisation · <a href="legal.html">Legal notice</a></span>
       </div>
     </div>
   </footer>
 
-  <!-- Widget de traduction (invisible) piloté par le sélecteur de langue -->
-  <div id="google_translate_element" style="display:none"></div>
+  <div id="google-translate" hidden></div>
   <script src="js/main.js"></script>
-  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
 </body>
 </html>
