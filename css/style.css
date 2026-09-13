@@ -207,7 +207,8 @@ h4 { font-size: 1.0625rem; }
   color: var(--c-muted);
 }
 
-.tag--study  { border-color: var(--c-olive); color: var(--c-olive); }
+.tag--article { border-color: var(--c-olive); color: var(--c-olive); }
+.tag--study  { border-color: var(--c-brass); color: var(--c-brass); }
 .tag--report { border-color: var(--c-clay); color: var(--c-clay); }
 
 

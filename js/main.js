@@ -21,6 +21,7 @@
   var UI = {
     en: {
       'brand.sub': 'Research & public policy analysis',
+      'pubs.title': 'Our published research, openly available.',
       'lbl.glance': 'At a glance',
       'lbl.founded': 'Founded',
       'lbl.focus': 'Focus',
@@ -54,6 +55,7 @@
     },
     fr: {
       'brand.sub': 'Recherche et analyse de politique publique',
+      'pubs.title': 'Nos recherches publiées, en libre accès.',
       'lbl.glance': 'En bref',
       'lbl.founded': 'Création',
       'lbl.focus': 'Domaine',
@@ -87,6 +89,7 @@
     },
     mg: {
       'brand.sub': 'Fikarohana sy fandalinana politika ho an\'ny daholobe',
+      'pubs.title': 'Ny fikarohanay navoaka, malalaka ho an\'ny rehetra.',
       'lbl.glance': 'Amin\'ny fohiny',
       'lbl.founded': 'Niorina',
       'lbl.focus': 'Sehatra',
