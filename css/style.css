@@ -293,11 +293,11 @@ h4 { font-size: 1.0625rem; }
 }
 
 .brand { display: inline-flex; align-items: center; gap: 11px; }
-.brand img { width: 38px; height: 38px; object-fit: contain; }
+.brand img { width: 48px; height: 48px; object-fit: contain; }
 
 .brand__name {
   font-family: var(--f-display);
-  font-size: 1.25rem;
+  font-size: 1.42rem;
   font-weight: 600;
   letter-spacing: .04em;
   color: var(--c-ink);
@@ -494,6 +494,15 @@ h4 { font-size: 1.0625rem; }
   background: var(--c-bg-alt);
   border: 1px solid var(--c-line);
   padding: 34px 32px;
+}
+
+/* Full emblem, shown at size on the home page */
+.hero__seal {
+  display: block;
+  width: min(190px, 62%);
+  margin: 0 auto 30px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--c-line);
 }
 
 .hero__aside h2 {
