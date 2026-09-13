@@ -1,352 +1,340 @@
 <!DOCTYPE html>
-<html lang="fr">
-<!-- =====================================================================
-     ASSOCIATION LEFONA — PAGE D'ACCUEIL (index.html)
-     Ce site est un SQUELETTE : tous les textes entre [crochets] et tous
-     les blocs « image à insérer » sont des emplacements à remplir par
-     l'équipe contenu. Cherchez les commentaires « À COMPLÉTER ».
-     Mode d'emploi complet : voir le fichier GUIDE-EQUIPE.md
-     ===================================================================== -->
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accueil — Association Lefona</title>
-  <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : description de la page pour Google (150 caractères environ) -->
-  <meta name="description" content="[Description de l'association Lefona à compléter]">
-
-  <!-- Icône d'onglet temporaire (lance stylisée) -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cg fill='%2335302a'%3E%3Cpath d='M53 39 C37 36 26 27 24 7 C28 22 38 29 54 32 Z'/%3E%3Cpath d='M67 39 C83 36 94 27 96 7 C92 22 82 29 66 32 Z'/%3E%3Cpath d='M60 1 L64.5 14 C65.5 21 63.5 28 60 33 C56.5 28 54.5 21 55.5 14 Z'/%3E%3Crect x='58' y='31' width='4' height='77' rx='2'/%3E%3C/g%3E%3Cpath d='M34 42 H86 V74 C86 89 75 99.5 60 106 C45 99.5 34 89 34 74 Z' fill='none' stroke='%2335302a' stroke-width='7'/%3E%3C/svg%3E">
-
-  <!-- Polices Google Fonts : Archivo (titres) et Inter (texte) -->
+  <title>Home — NGO LEFONA</title>
+  <meta name="description" content="NGO LEFONA — applied research and public policy analysis on socio-economic and climate vulnerabilities in Madagascar.">
+  <link rel="icon" href="images/logo-mark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Feuille de style du site -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Sora:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <!-- ===================================================================
-       EN-TÊTE / NAVIGATION (présent sur toutes les pages)
-       ⚠️ Si vous modifiez le menu ici, reportez la même modification
-       dans les autres pages HTML (apropos.html, publications.html, etc.)
+       EN-TÊTE / NAVIGATION (identique sur toutes les pages)
+       Si vous modifiez le menu, reportez la modification sur les
+       autres fichiers HTML.
        =================================================================== -->
-  <header class="site-header" id="site-header">
-    <div class="container header-inner">
+  <header class="site-header">
+    <div class="wrap header-inner">
 
-      <!-- LOGO OFFICIEL (emblème vectorisé : cornes de zébu, lance, écu tissé).
-           La version complète du logo (avec rameaux et nom) se trouve dans
-           images/logo-lefona.svg — utilisable pour vos documents. -->
-      <a href="index.html" class="logo" aria-label="Association Lefona — retour à l'accueil">
-        <svg class="logo-embleme" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-          <!-- cornes de zébu -->
-          <path d="M53 39 C37 36 26 27 24 7 C28 22 38 29 54 32 Z"/>
-          <path d="M67 39 C83 36 94 27 96 7 C92 22 82 29 66 32 Z"/>
-          <!-- fer de lance et hampe -->
-          <path d="M60 1 L64.5 14 C65.5 21 63.5 28 60 33 C56.5 28 54.5 21 55.5 14 Z"/>
-          <rect x="58.2" y="31" width="3.6" height="77" rx="1.8"/>
-          <!-- écu -->
-          <path d="M34 42 H86 V74 C86 89 75 99.5 60 106 C45 99.5 34 89 34 74 Z" fill="none" stroke="currentColor" stroke-width="3.5"/>
-          <!-- rameau (panneau gauche) -->
-          <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".9">
-            <path d="M47 50 V78"/>
-            <path d="M47 60 Q40 57 39 50"/>
-            <path d="M47 60 Q54 57 55 50"/>
-            <path d="M47 70 Q40 67 39 60"/>
-            <path d="M47 70 Q54 67 55 60"/>
-          </g>
-          <!-- tissage (panneau droit) -->
-          <g fill="none" stroke="currentColor" stroke-width="2.2" opacity=".9">
-            <path d="M73 48 L80 55 L73 62 L66 55 Z"/>
-            <path d="M73 62 L80 69 L73 76 L66 69 Z"/>
-          </g>
-          <!-- frise de triangles (bas de l'écu) -->
-          <path d="M42 90 L46 84.5 L50 90 Z M50 90 L54 84.5 L58 90 Z M62 90 L66 84.5 L70 90 Z M70 90 L74 84.5 L78 90 Z" opacity=".9"/>
-        </svg>
-        <span class="logo-texte">LEFONA</span>
+      <!-- LOGO OFFICIEL DE L'ONG (images/logo-mark.png = emblème seul) -->
+      <a href="index.html" class="brand" aria-label="NGO LEFONA — back to home">
+        <img src="images/logo-mark.png" alt="NGO LEFONA">
+        <span class="brand-name">LEFONA</span>
       </a>
 
-      <!-- Bouton burger (visible uniquement sur mobile) -->
-      <button class="burger" id="burger" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir ou fermer le menu">
-        <span></span><span></span><span></span>
-      </button>
-
-      <!-- Menu principal. La classe « actif » indique la page en cours. -->
-      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
-        <ul>
-          <li><a href="index.html" class="nav-link actif" aria-current="page">Accueil</a></li>
-          <li><a href="apropos.html" class="nav-link">À propos</a></li>
-          <li><a href="publications.html" class="nav-link">Articles &amp; Études</a></li>
-          <li><a href="galerie.html" class="nav-link">Galerie</a></li>
-          <li><a href="contact.html" class="nav-link">Contact</a></li>
-        </ul>
+      <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+        <a href="index.html" class="active" aria-current="page">Home</a>
+        <a href="expertise.html">Expertise</a>
+        <a href="projects.html">Projects</a>
+        <a href="publications.html">Publications</a>
+        <a href="team.html">Team</a>
+        <a href="contact.html">Contact</a>
       </nav>
+
+      <div class="header-actions">
+
+        <!-- SÉLECTEUR DE LANGUE — traduction automatique de la page -->
+        <div class="lang">
+          <button class="lang-btn" id="lang-btn" aria-expanded="false"
+                  aria-haspopup="true" aria-label="Choose a language">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/>
+            </svg>
+            <span class="lang-current">EN</span>
+            <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M2.5 4.5 6 8l3.5-3.5"/>
+            </svg>
+          </button>
+          <ul class="lang-menu" id="lang-menu" role="menu">
+          <li><button type="button" data-lang="en">English</button></li>
+          <li><button type="button" data-lang="fr">Français</button></li>
+          <li><button type="button" data-lang="mg">Malagasy</button></li>
+          <li class="lang-sep" aria-hidden="true"></li>
+          <li><button type="button" data-lang="af">Afrikaans</button></li>
+          <li><button type="button" data-lang="am">አማርኛ</button></li>
+          <li><button type="button" data-lang="ar">العربية</button></li>
+          <li><button type="button" data-lang="bn">বাংলা</button></li>
+          <li><button type="button" data-lang="cs">Čeština</button></li>
+          <li><button type="button" data-lang="da">Dansk</button></li>
+          <li><button type="button" data-lang="de">Deutsch</button></li>
+          <li><button type="button" data-lang="el">Ελληνικά</button></li>
+          <li><button type="button" data-lang="es">Español</button></li>
+          <li><button type="button" data-lang="fa">فارسی</button></li>
+          <li><button type="button" data-lang="fi">Suomi</button></li>
+          <li><button type="button" data-lang="ha">Hausa</button></li>
+          <li><button type="button" data-lang="he">עברית</button></li>
+          <li><button type="button" data-lang="hi">हिन्दी</button></li>
+          <li><button type="button" data-lang="hu">Magyar</button></li>
+          <li><button type="button" data-lang="id">Indonesia</button></li>
+          <li><button type="button" data-lang="it">Italiano</button></li>
+          <li><button type="button" data-lang="ja">日本語</button></li>
+          <li><button type="button" data-lang="ko">한국어</button></li>
+          <li><button type="button" data-lang="nl">Nederlands</button></li>
+          <li><button type="button" data-lang="no">Norsk</button></li>
+          <li><button type="button" data-lang="pl">Polski</button></li>
+          <li><button type="button" data-lang="pt">Português</button></li>
+          <li><button type="button" data-lang="ro">Română</button></li>
+          <li><button type="button" data-lang="ru">Русский</button></li>
+          <li><button type="button" data-lang="sv">Svenska</button></li>
+          <li><button type="button" data-lang="sw">Kiswahili</button></li>
+          <li><button type="button" data-lang="ta">தமிழ்</button></li>
+          <li><button type="button" data-lang="th">ไทย</button></li>
+          <li><button type="button" data-lang="tr">Türkçe</button></li>
+          <li><button type="button" data-lang="uk">Українська</button></li>
+          <li><button type="button" data-lang="ur">اردو</button></li>
+          <li><button type="button" data-lang="vi">Tiếng Việt</button></li>
+          <li><button type="button" data-lang="yo">Yorùbá</button></li>
+          <li><button type="button" data-lang="zh-CN">中文（简体）</button></li>
+          <li><button type="button" data-lang="zh-TW">中文（繁體）</button></li>
+          <li><button type="button" data-lang="zu">isiZulu</button></li>
+          </ul>
+        </div>
+
+        <a href="contact.html" class="nav-cta">Get in touch</a>
+
+        <button class="burger" id="burger" aria-expanded="false"
+                aria-controls="nav-links" aria-label="Open or close the menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main>
 
-    <!-- =================================================================
-         HERO PLEIN ÉCRAN
-         Le fond est un dégradé aux couleurs malgaches en attendant une
-         vraie photo. À COMPLÉTER PAR L'ÉQUIPE CONTENU : pour mettre une
-         photo de fond, ajoutez dans css/style.css, à la fin du bloc
-         « .hero » : background-image: url("../images/votre-photo.jpg");
-         background-size: cover; background-position: center;
-         ================================================================= -->
+    <!-- ============ HERO ============ -->
     <section class="hero">
-      <div class="container hero-contenu">
-        <p class="hero-surtitre">Association malgache</p>
-        <h1>Association <span class="accent">Lefona</span></h1>
-        <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : slogan de l'association -->
-        <p class="hero-sous-titre">[Slogan de l'association à compléter]</p>
-        <a href="apropos.html" class="btn btn-principal">Découvrir l'association</a>
-      </div>
-      <div class="hero-fleche" aria-hidden="true">↓</div>
-    </section>
-
-    <!-- =================================================================
-         SECTION « QUI SOMMES-NOUS » (résumé)
-         ================================================================= -->
-    <section class="section section-presentation">
-      <div class="container grille-2col">
-        <div class="reveal">
-          <div class="section-titre">
-            <p class="surtitre">Qui sommes-nous ?</p>
-            <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : titre de présentation -->
-            <h2>[Titre de présentation à compléter]</h2>
-            <div class="titre-trait"></div>
-          </div>
-
-          <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : présentation courte de
-               l'association en 2 ou 3 paragraphes -->
-          <p>[Présentation courte à compléter — paragraphe 1. Présentez ici
-             l'association Lefona en quelques phrases : qui vous êtes,
-             ce que vous faites, pour qui.]</p>
-          <p>[Présentation courte à compléter — paragraphe 2. Vous pouvez
-             évoquer vos domaines d'action, votre ancrage à Madagascar et
-             ce qui rend l'association unique.]</p>
-
-          <p style="margin-top:1.5rem;">
-            <a href="apropos.html" class="btn btn-secondaire">En savoir plus</a>
-          </p>
-        </div>
-
-        <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : remplacez ce bloc par une
-             vraie image : <img src="images/presentation.jpg"
-             alt="Description de la photo" class="coin-arrondi"> -->
-        <div class="reveal delai-2">
-          <div class="img-placeholder ratio-4-3 coin-arrondi">
-            📷 [Image de présentation à insérer]
-          </div>
+      <div class="wrap">
+        <img src="images/logo-lefona.png" alt="NGO LEFONA" class="hero-logo reveal">
+        <p class="eyebrow eyebrow--boxed reveal"><span class="dot"></span>
+           Applied research &amp; public policy analysis</p>
+        <h1 class="reveal">Understanding <span class="mark">vulnerability</span>
+            to inform public action.</h1>
+        <p class="motto reveal">"Rigour in the service of those least heard."</p>
+        <p class="hero-sub reveal">NGO LEFONA is an independent research organisation,
+           founded and led by young Malagasy professionals, specialising in the
+           analysis of socio-economic and climate vulnerabilities in Madagascar.</p>
+        <div class="hero-actions reveal">
+          <a href="projects.html" class="btn btn-primary">Explore our projects</a>
+          <a href="team.html" class="link-arrow">Meet the team</a>
         </div>
       </div>
     </section>
 
-    <!-- Séparateur décoratif inspiré des tissages malgaches -->
-    <div class="separateur-lamba" aria-hidden="true"></div>
-
-    <!-- =================================================================
-         SECTION « NOS DERNIÈRES ACTUALITÉS » (3 cartes)
-         À COMPLÉTER PAR L'ÉQUIPE CONTENU : remplacez les titres, dates et
-         extraits. Chaque bouton « Lire la suite » doit pointer vers la
-         page de l'article (créée à partir de article-template.html).
-         ================================================================= -->
-    <section class="section section-actus fond-motif">
-      <div class="container">
-        <div class="section-titre centre reveal">
-          <p class="surtitre">Actualités</p>
-          <h2>Nos dernières actualités</h2>
-          <div class="titre-trait"></div>
+    <!-- ============ CHIFFRES CLÉS ============
+         ÉQUIPE CONTENU : pour changer un chiffre, modifiez data-target
+         (nombre entier) et le libellé juste en dessous. -->
+    <section class="section section--line">
+      <div class="wrap">
+        <div class="stats">
+          <div class="stat reveal">
+            <span class="stat-value" data-target="10" data-suffix="+">0</span>
+            <span class="stat-label">years of combined project-management experience</span>
+          </div>
+          <div class="stat reveal">
+            <span class="stat-value" data-target="2" data-suffix="">0</span>
+            <span class="stat-label">major districts studied</span>
+          </div>
+          <div class="stat reveal">
+            <span class="stat-value" data-target="2" data-suffix="">0</span>
+            <span class="stat-label">Deep Challenge Fund — OPM projects</span>
+          </div>
+          <div class="stat reveal">
+            <span class="stat-value" data-target="2" data-suffix="+">0</span>
+            <span class="stat-label">academic publications</span>
+          </div>
         </div>
 
-        <div class="cartes-grille">
-
-          <!-- Carte actualité n°1 -->
-          <article class="carte reveal delai-1">
-            <div class="carte-media">
-              <!-- À COMPLÉTER : remplacer par <img src="images/actu-1.jpg" alt="..."> -->
-              <div class="img-placeholder ratio-16-9">📷 [Image de l'actualité 1]</div>
-            </div>
-            <div class="carte-corps">
-              <p class="carte-date">[Date à compléter]</p>
-              <h3>[Titre de l'actualité 1 à compléter]</h3>
-              <p>[Extrait de l'actualité à compléter — deux ou trois phrases
-                 qui donnent envie de lire la suite.]</p>
-              <a href="article-template.html" class="lien-fleche">Lire la suite</a>
-            </div>
-          </article>
-
-          <!-- Carte actualité n°2 -->
-          <article class="carte reveal delai-2">
-            <div class="carte-media">
-              <div class="img-placeholder ratio-16-9">📷 [Image de l'actualité 2]</div>
-            </div>
-            <div class="carte-corps">
-              <p class="carte-date">[Date à compléter]</p>
-              <h3>[Titre de l'actualité 2 à compléter]</h3>
-              <p>[Extrait de l'actualité à compléter — deux ou trois phrases
-                 qui donnent envie de lire la suite.]</p>
-              <a href="article-template.html" class="lien-fleche">Lire la suite</a>
-            </div>
-          </article>
-
-          <!-- Carte actualité n°3 -->
-          <article class="carte reveal delai-3">
-            <div class="carte-media">
-              <div class="img-placeholder ratio-16-9">📷 [Image de l'actualité 3]</div>
-            </div>
-            <div class="carte-corps">
-              <p class="carte-date">[Date à compléter]</p>
-              <h3>[Titre de l'actualité 3 à compléter]</h3>
-              <p>[Extrait de l'actualité à compléter — deux ou trois phrases
-                 qui donnent envie de lire la suite.]</p>
-              <a href="article-template.html" class="lien-fleche">Lire la suite</a>
-            </div>
-          </article>
-
+        <div class="section-head" style="margin-top:48px; margin-bottom:18px;">
+          <p class="eyebrow"><span class="dot"></span> Funders &amp; institutional partners</p>
+        </div>
+        <div class="partners reveal">
+          <span>Oxford Policy Management</span>
+          <span>Deep Challenge Fund</span>
+          <span>Malagasy public administration</span>
         </div>
       </div>
     </section>
 
-    <!-- =================================================================
-         SECTION CHIFFRES CLÉS (compteurs animés)
-         À COMPLÉTER PAR L'ÉQUIPE CONTENU : remplacez la valeur de
-         data-cible par le vrai chiffre (nombre entier uniquement).
-         Exemple : data-cible="42" affichera un compteur qui monte
-         jusqu'à 42. data-suffixe="+" ajoute un « + » après le nombre.
-         ================================================================= -->
-    <section class="section section-chiffres">
-      <div class="container">
-        <div class="section-titre centre reveal">
-          <p class="surtitre">Chiffres clés</p>
-          <h2>Lefona en quelques chiffres</h2>
-          <div class="titre-trait"></div>
+    <!-- ============ EXPERTISE ============ -->
+    <section class="section section--raised">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span class="dot"></span> Our expertise</p>
+          <h2>A team trained to international donor standards.</h2>
+          <p>Rigorous methodology, actionable restitution, strong local roots.</p>
         </div>
+        <div class="expertise-list">
+          <div class="expertise-item reveal">
+            <span class="expertise-num">— 01</span>
+            <h3>Field studies &amp; surveys</h3>
+            <p>Collection and analysis of quantitative and qualitative data from households and local institutions, using sampling protocols aligned with international donor standards.</p>
+          </div>
+          <div class="expertise-item reveal">
+            <span class="expertise-num">— 02</span>
+            <h3>Public policy advice</h3>
+            <p>Translating research findings into operational recommendations for public decision-makers, with clear deliverables and actionable restitution.</p>
+          </div>
+          <div class="expertise-item reveal">
+            <span class="expertise-num">— 03</span>
+            <h3>Donor coordination</h3>
+            <p>Management of internationally funded projects, working directly with the Malagasy administration and with partner research teams.</p>
+          </div>
+          <div class="expertise-item reveal">
+            <span class="expertise-num">— 04</span>
+            <h3>Academic supervision</h3>
+            <p>Supervision of master's dissertations and delivery of training sessions, in partnership with Malagasy universities.</p>
+          </div>
+        </div>
+        <p style="margin-top:32px;"><a href="expertise.html" class="link-arrow">See our full expertise</a></p>
+      </div>
+    </section>
 
-        <div class="chiffres-grille">
-          <div class="chiffre reveal">
-            <!-- À COMPLÉTER : remplacer 30 par le vrai nombre de membres -->
-            <span class="chiffre-valeur" data-cible="30" data-suffixe="">0</span>
-            <span class="chiffre-libelle">[XX] membres</span>
-          </div>
-          <div class="chiffre reveal delai-1">
-            <!-- À COMPLÉTER : remplacer 12 par le vrai nombre de projets -->
-            <span class="chiffre-valeur" data-cible="12" data-suffixe="">0</span>
-            <span class="chiffre-libelle">[XX] projets</span>
-          </div>
-          <div class="chiffre reveal delai-2">
-            <!-- À COMPLÉTER : remplacer 8 par le vrai nombre d'études -->
-            <span class="chiffre-valeur" data-cible="8" data-suffixe="">0</span>
-            <span class="chiffre-libelle">[XX] études publiées</span>
-          </div>
-          <div class="chiffre reveal delai-3">
-            <!-- À COMPLÉTER : remplacer 5 par le vrai nombre de partenaires -->
-            <span class="chiffre-valeur" data-cible="5" data-suffixe="">0</span>
-            <span class="chiffre-libelle">[XX] partenaires</span>
-          </div>
+    <!-- ============ PROJETS ============ -->
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span class="dot"></span> Our projects</p>
+          <h2>Two studies that shaped our approach.</h2>
+          <p>A selection of recent projects, funded by international donors.</p>
         </div>
+        <div class="project-grid">
+          <article class="project reveal">
+            <div class="project-media">
+              <!-- ÉQUIPE CONTENU : remplacez ce bloc par
+                   <img src="images/votre-photo.jpg" alt="..."> -->
+              <div class="img-placeholder ratio-16-9">PHOTO — Toliara II · South-West</div>
+            </div>
+            <div class="project-body">
+              <p class="project-place">Toliara II · South-West</p>
+              <h3>Pastoral vulnerability and rural poverty</h3>
+              <p>A study of cattle- and small-ruminant-herding households facing climate and economic shocks in the district of Toliara II, in south-western Madagascar.</p>
+              <p class="project-funder">Deep Challenge Fund · Oxford Policy Management</p>
+            </div>
+          </article>
+          <article class="project reveal">
+            <div class="project-media">
+              <!-- ÉQUIPE CONTENU : remplacez ce bloc par
+                   <img src="images/votre-photo.jpg" alt="..."> -->
+              <div class="img-placeholder ratio-16-9">PHOTO — Antananarivo</div>
+            </div>
+            <div class="project-body">
+              <p class="project-place">Antananarivo</p>
+              <h3>Flooding and low-lying neighbourhoods</h3>
+              <p>Analysis of the exposure and vulnerability of households living in the low-lying neighbourhoods of Antananarivo to recurrent flood risk.</p>
+              <p class="project-funder">Deep Challenge Fund · Oxford Policy Management</p>
+            </div>
+          </article>
+        </div>
+        <p style="margin-top:32px;"><a href="projects.html" class="link-arrow">All our projects</a></p>
+      </div>
+    </section>
+
+    <!-- ============ PUBLICATIONS ============ -->
+    <section class="section section--raised">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span class="dot"></span> Publications</p>
+          <h2>Work already cited and built upon.</h2>
+          <p>A selection of our academic publications.</p>
+        </div>
+        <div class="pub-list">
+          <article class="pub-item reveal">
+            <span class="pub-num">01</span>
+            <div>
+              <h3>Heat and Economics: Climate Change's Influence on Madagascar's GDP</h3>
+              <p class="pub-meta">SSRN · 2023</p>
+            </div>
+            <span class="pub-tag">Study</span>
+          </article>
+          <article class="pub-item reveal">
+            <span class="pub-num">02</span>
+            <div>
+              <h3>Modeling post-cyclone resilience in Mananjary: A multivariate Probit analysis</h3>
+              <p class="pub-meta">SSRN · 2024 — Raveloson, Andrianady, Andrianavony et al.</p>
+            </div>
+            <span class="pub-tag">Study</span>
+          </article>
+        </div>
+        <p style="margin-top:32px;"><a href="publications.html" class="link-arrow">All publications</a></p>
+      </div>
+    </section>
+
+    <!-- ============ APPEL À L'ACTION ============ -->
+    <section class="cta-band">
+      <div class="wrap">
+        <p class="eyebrow"><span class="dot"></span> Work with us</p>
+        <h2>A research or evaluation project to carry out?</h2>
+        <p class="motto">"Rigour in the service of those least heard."</p>
+        <a href="contact.html" class="btn btn-primary">Contact us</a>
       </div>
     </section>
 
   </main>
 
-  <!-- ===================================================================
-       PIED DE PAGE (présent sur toutes les pages)
-       ⚠️ Si vous le modifiez ici, reportez la modification sur les
-       autres pages HTML.
-       =================================================================== -->
+  <!-- ============ PIED DE PAGE (identique sur toutes les pages) ============ -->
   <footer class="site-footer">
-    <div class="container footer-grille">
+    <div class="wrap footer-grid">
 
-      <div class="footer-col footer-presentation">
-        <a href="index.html" class="logo logo-footer" aria-label="Association Lefona — retour à l'accueil">
-          <svg class="logo-embleme" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-          <!-- cornes de zébu -->
-          <path d="M53 39 C37 36 26 27 24 7 C28 22 38 29 54 32 Z"/>
-          <path d="M67 39 C83 36 94 27 96 7 C92 22 82 29 66 32 Z"/>
-          <!-- fer de lance et hampe -->
-          <path d="M60 1 L64.5 14 C65.5 21 63.5 28 60 33 C56.5 28 54.5 21 55.5 14 Z"/>
-          <rect x="58.2" y="31" width="3.6" height="77" rx="1.8"/>
-          <!-- écu -->
-          <path d="M34 42 H86 V74 C86 89 75 99.5 60 106 C45 99.5 34 89 34 74 Z" fill="none" stroke="currentColor" stroke-width="3.5"/>
-          <!-- rameau (panneau gauche) -->
-          <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".9">
-            <path d="M47 50 V78"/>
-            <path d="M47 60 Q40 57 39 50"/>
-            <path d="M47 60 Q54 57 55 50"/>
-            <path d="M47 70 Q40 67 39 60"/>
-            <path d="M47 70 Q54 67 55 60"/>
-          </g>
-          <!-- tissage (panneau droit) -->
-          <g fill="none" stroke="currentColor" stroke-width="2.2" opacity=".9">
-            <path d="M73 48 L80 55 L73 62 L66 55 Z"/>
-            <path d="M73 62 L80 69 L73 76 L66 69 Z"/>
-          </g>
-          <!-- frise de triangles (bas de l'écu) -->
-          <path d="M42 90 L46 84.5 L50 90 Z M50 90 L54 84.5 L58 90 Z M62 90 L66 84.5 L70 90 Z M70 90 L74 84.5 L78 90 Z" opacity=".9"/>
-        </svg>
-          <span class="logo-texte">LEFONA</span>
+      <div class="footer-col footer-about">
+        <a href="index.html" class="brand" aria-label="NGO LEFONA — back to home">
+          <img src="images/logo-mark.png" alt="NGO LEFONA">
+          <span class="brand-name">LEFONA</span>
         </a>
-        <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : courte description -->
-        <p>[Courte description de l'association en deux ou trois phrases,
-           à compléter.]</p>
+        <p>An independent research organisation founded and led by young Malagasy
+           professionals, analysing socio-economic and climate vulnerabilities
+           across Madagascar.</p>
       </div>
 
-      <nav class="footer-col" aria-label="Navigation du pied de page">
+      <nav class="footer-col" aria-label="Footer navigation">
         <h3>Navigation</h3>
         <ul>
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="apropos.html">À propos</a></li>
-          <li><a href="publications.html">Articles &amp; Études</a></li>
-          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="expertise.html">Expertise</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="team.html">Team</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
 
       <div class="footer-col">
         <h3>Contact</h3>
-        <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : vraies coordonnées -->
-        <ul class="footer-contact">
-          <li><span aria-hidden="true">📍</span> [Adresse à compléter — ex. Lot XX, Antananarivo, Madagascar]</li>
-          <li><span aria-hidden="true">📞</span> [+261 XX XX XXX XX]</li>
-          <li><span aria-hidden="true">✉️</span> [contact@association-lefona.org]</li>
+        <ul>
+          <li>Lot 237 Cité Mandroseza, Antananarivo, Madagascar</li>
+          <li><a href="mailto:ngolefona@gmail.com">ngolefona@gmail.com</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
-        <h3>Suivez-nous</h3>
-        <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : remplacez chaque href="#"
-             par l'adresse de votre page (ex. https://facebook.com/lefona) -->
-        <ul class="footer-reseaux">
-          <li>
-            <a href="#" aria-label="Facebook (lien à compléter)">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.5 4.5h-2.2c-1.9 0-3.3 1.4-3.3 3.3V10H7.5v3H10v7h3.2v-7h2.4l.5-3h-2.9V8.1c0-.4.3-.6.7-.6h2.1v-3z"/></svg>
-            </a>
-          </li>
-          <li>
-            <a href="#" aria-label="Instagram (lien à compléter)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg>
-            </a>
-          </li>
-          <li>
-            <a href="#" aria-label="LinkedIn (lien à compléter)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="6.2" cy="6.4" r="1.6" fill="currentColor" stroke="none"/><path d="M6.2 10v9"/><path d="M11.4 19v-5.2c0-1.7 1.2-2.9 2.9-2.9s2.9 1.2 2.9 2.9V19"/><path d="M11.4 10v9"/></svg>
-            </a>
-          </li>
-        </ul>
+        <h3>Follow us</h3>
+        <!-- ÉQUIPE CONTENU : remplacez l'adresse ci-dessous par le lien exact
+             de la page LinkedIn de l'ONG. -->
+        <p class="footer-social">
+          <a href="https://www.linkedin.com/company/ong-lefona" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6.2" cy="6.4" r="1.6" fill="currentColor" stroke="none"/><path d="M6.2 10v9"/><path d="M11.4 19v-5.2c0-1.7 1.2-2.9 2.9-2.9s2.9 1.2 2.9 2.9V19"/><path d="M11.4 10v9"/></svg> LinkedIn
+          </a>
+        </p>
       </div>
     </div>
 
-    <div class="footer-bas">
-      <div class="container">
-        <p>© Association Lefona 2026 — Tous droits réservés.</p>
+    <div class="wrap">
+      <div class="footer-bottom">
+        <span>© 2026 NGO LEFONA — All rights reserved.</span>
+        <span>NIF 4019927032 · STAT 94951 11 2026 0 08784</span>
       </div>
     </div>
   </footer>
 
-  <!-- Script principal du site -->
+  <!-- Widget de traduction (invisible) piloté par le sélecteur de langue -->
+  <div id="google_translate_element" style="display:none"></div>
   <script src="js/main.js"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

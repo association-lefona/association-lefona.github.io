@@ -1,367 +1,362 @@
 /* ==========================================================================
-   ASSOCIATION LEFONA — SCRIPT PRINCIPAL (js/main.js)
+   NGO LEFONA — SCRIPT PRINCIPAL (js/main.js)
    --------------------------------------------------------------------------
-   Ce fichier gère tous les comportements interactifs du site.
+   Gère tous les comportements interactifs du site.
    Pour l'équipe contenu : vous n'avez normalement PAS besoin de modifier
-   ce fichier. Tout le contenu (textes, images) se change dans les
-   fichiers HTML — voir GUIDE-EQUIPE.md.
+   ce fichier. Tout le contenu se change dans les fichiers HTML
+   (voir GUIDE-EQUIPE.md).
 
    SOMMAIRE
    1. Menu mobile (bouton burger)
-   2. Ombre du header au défilement
-   3. Apparition des sections au scroll (classe « reveal »)
-   4. Compteurs animés (chiffres clés de l'accueil)
-   5. Filtres de la page « Articles & Études »
-   6. Lightbox de la galerie
-   7. Validation du formulaire de contact
+   2. Apparition des sections au défilement
+   3. Compteurs animés (chiffres clés)
+   4. Filtres des publications
+   5. Galerie : agrandissement des photos (lightbox)
+   6. Formulaire de contact (validation)
+   7. Sélecteur de langue (traduction automatique Google)
    ========================================================================== */
 
 'use strict';
 
-/* Détecte si l'utilisateur préfère réduire les animations (accessibilité) */
-const ANIMATIONS_REDUITES =
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* On attend que la page soit chargée avant d'initialiser les comportements */
-document.addEventListener('DOMContentLoaded', () => {
-  initMenuMobile();
-  initHeaderScroll();
-  initApparitions();
-  initCompteurs();
-  initFiltresPublications();
-  initLightboxGalerie();
-  initFormulaireContact();
+document.addEventListener('DOMContentLoaded', function () {
+  initMobileNav();
+  initReveal();
+  initCounters();
+  initPublicationFilters();
+  initLightbox();
+  initContactForm();
+  initLanguageMenu();
 });
 
 
 /* ==========================================================================
-   1. MENU MOBILE (BOUTON BURGER)
-   Sur mobile, le bouton burger ouvre/ferme le panneau de navigation.
+   1. MENU MOBILE
    ========================================================================== */
-function initMenuMobile() {
-  const burger = document.getElementById('burger');
-  const nav = document.getElementById('main-nav');
+function initMobileNav() {
+  var burger = document.getElementById('burger');
+  var nav = document.getElementById('nav-links');
   if (!burger || !nav) return;
 
-  function basculerMenu(forcerFermeture) {
-    const doitOuvrir = forcerFermeture ? false : !nav.classList.contains('ouvert');
-    nav.classList.toggle('ouvert', doitOuvrir);
-    burger.classList.toggle('ouvert', doitOuvrir);
-    burger.setAttribute('aria-expanded', String(doitOuvrir));
-    document.body.classList.toggle('nav-ouverte', doitOuvrir);
+  function toggle(forceClose) {
+    var open = forceClose ? false : !nav.classList.contains('open');
+    nav.classList.toggle('open', open);
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('nav-open', open);
   }
 
-  burger.addEventListener('click', () => basculerMenu());
+  burger.addEventListener('click', function () { toggle(); });
 
-  // On ferme le menu quand on clique sur un lien
-  nav.querySelectorAll('a').forEach((lien) => {
-    lien.addEventListener('click', () => basculerMenu(true));
+  nav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () { toggle(true); });
   });
 
-  // On ferme le menu avec la touche Échap
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') basculerMenu(true);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') toggle(true);
   });
 
-  // Si on agrandit la fenêtre (passage en mode bureau), on réinitialise
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 880) basculerMenu(true);
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 940) toggle(true);
   });
 }
 
 
 /* ==========================================================================
-   2. OMBRE DU HEADER AU DÉFILEMENT
-   Dès que l'on fait défiler la page, le header reçoit la classe « reduit »
-   qui lui ajoute une ombre et un fond plus opaque (voir le CSS).
+   2. APPARITION DES SECTIONS AU DÉFILEMENT
    ========================================================================== */
-function initHeaderScroll() {
-  const header = document.getElementById('site-header');
-  if (!header) return;
+function initReveal() {
+  var items = document.querySelectorAll('.reveal');
+  if (!items.length) return;
 
-  function mettreAJour() {
-    header.classList.toggle('reduit', window.scrollY > 10);
-  }
-
-  mettreAJour();
-  window.addEventListener('scroll', mettreAJour, { passive: true });
-}
-
-
-/* ==========================================================================
-   3. APPARITION DES SECTIONS AU SCROLL
-   Tous les éléments portant la classe « reveal » apparaissent en fondu
-   quand ils deviennent visibles à l'écran.
-   ========================================================================== */
-function initApparitions() {
-  const elements = document.querySelectorAll('.reveal');
-  if (!elements.length) return;
-
-  // Si les animations sont réduites ou si le navigateur est trop ancien,
-  // on affiche tout immédiatement.
-  if (ANIMATIONS_REDUITES || !('IntersectionObserver' in window)) {
-    elements.forEach((el) => el.classList.add('visible'));
+  if (REDUCED_MOTION || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('visible'); });
     return;
   }
 
-  const observateur = new IntersectionObserver(
-    (entrees) => {
-      entrees.forEach((entree) => {
-        if (entree.isIntersecting) {
-          entree.target.classList.add('visible');
-          observateur.unobserve(entree.target); // on n'anime qu'une fois
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
 
-  elements.forEach((el) => observateur.observe(el));
+  items.forEach(function (el) { observer.observe(el); });
 }
 
 
 /* ==========================================================================
-   4. COMPTEURS ANIMÉS (CHIFFRES CLÉS)
-   Chaque élément « .chiffre-valeur » possède un attribut data-cible
-   (le nombre final) et, en option, data-suffixe (ex : « + »).
-   Le compteur s'anime de 0 jusqu'à la cible quand il devient visible.
-
-   ⚠️ ÉQUIPE CONTENU : pour changer un chiffre, modifiez l'attribut
-   data-cible dans index.html — pas ce fichier.
+   3. COMPTEURS ANIMÉS (chiffres clés)
+   Chaque « .stat-value » porte data-target (nombre) et data-suffix
+   (ex. « + »). ÉQUIPE CONTENU : modifiez ces attributs dans le HTML.
    ========================================================================== */
-function initCompteurs() {
-  const compteurs = document.querySelectorAll('.chiffre-valeur');
-  if (!compteurs.length) return;
+function initCounters() {
+  var counters = document.querySelectorAll('.stat-value[data-target]');
+  if (!counters.length) return;
 
-  function animerCompteur(element) {
-    const cible = parseInt(element.dataset.cible, 10) || 0;
-    const suffixe = element.dataset.suffixe || '';
-    const duree = 1600; // durée de l'animation en millisecondes
+  function animate(el) {
+    var target = parseInt(el.dataset.target, 10) || 0;
+    var suffix = el.dataset.suffix || '';
+    var duration = 1400;
 
-    if (ANIMATIONS_REDUITES) {
-      element.textContent = cible + suffixe;
-      return;
+    if (REDUCED_MOTION) { el.textContent = target + suffix; return; }
+
+    var start = null;
+    function step(now) {
+      if (start === null) start = now;
+      var p = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
     }
-
-    let depart = null;
-    function etape(instant) {
-      if (depart === null) depart = instant;
-      const progression = Math.min((instant - depart) / duree, 1);
-      // Courbe « ease-out » : rapide au début, ralentit à la fin
-      const facteur = 1 - Math.pow(1 - progression, 3);
-      element.textContent = Math.round(cible * facteur) + suffixe;
-      if (progression < 1) requestAnimationFrame(etape);
-    }
-    requestAnimationFrame(etape);
+    requestAnimationFrame(step);
   }
 
   if (!('IntersectionObserver' in window)) {
-    compteurs.forEach(animerCompteur);
+    counters.forEach(animate);
     return;
   }
 
-  const observateur = new IntersectionObserver(
-    (entrees) => {
-      entrees.forEach((entree) => {
-        if (entree.isIntersecting) {
-          animerCompteur(entree.target);
-          observateur.unobserve(entree.target);
-        }
-      });
-    },
-    { threshold: 0.4 }
-  );
-
-  compteurs.forEach((c) => observateur.observe(c));
-}
-
-
-/* ==========================================================================
-   5. FILTRES DE LA PAGE « ARTICLES & ÉTUDES »
-   Les boutons portent un attribut data-filtre (« tout », « article »
-   ou « etude ») et chaque carte un attribut data-categorie.
-   Cliquer sur un bouton masque les cartes qui ne correspondent pas.
-   ========================================================================== */
-function initFiltresPublications() {
-  const boutons = document.querySelectorAll('.filtre-btn');
-  const cartes = document.querySelectorAll('.carte-publication');
-  if (!boutons.length || !cartes.length) return;
-
-  boutons.forEach((bouton) => {
-    bouton.addEventListener('click', () => {
-      // Mise en évidence du bouton actif
-      boutons.forEach((b) => {
-        const estActif = b === bouton;
-        b.classList.toggle('actif', estActif);
-        b.setAttribute('aria-pressed', String(estActif));
-      });
-
-      const filtre = bouton.dataset.filtre;
-
-      cartes.forEach((carte) => {
-        const visible = filtre === 'tout' || carte.dataset.categorie === filtre;
-        carte.classList.toggle('cachee', !visible);
-
-        // Petite animation d'apparition pour les cartes affichées
-        if (visible) {
-          carte.classList.remove('apparition');
-          void carte.offsetWidth; // force le navigateur à relancer l'animation
-          carte.classList.add('apparition');
-        }
-      });
-    });
-  });
-}
-
-
-/* ==========================================================================
-   6. LIGHTBOX DE LA GALERIE
-   Cliquer sur une photo l'affiche en grand dans une fenêtre sombre.
-   Fonctionne aussi bien avec les blocs placeholder actuels qu'avec de
-   vraies images <img> ajoutées plus tard par l'équipe contenu.
-   ========================================================================== */
-function initLightboxGalerie() {
-  const lightbox = document.getElementById('lightbox');
-  const items = document.querySelectorAll('.galerie-item');
-  if (!lightbox || !items.length) return;
-
-  const zoneMedia = document.getElementById('lightbox-media');
-  const legende = document.getElementById('lightbox-legende');
-  const boutonFermer = document.getElementById('lightbox-fermer');
-
-  function ouvrirLightbox(item) {
-    zoneMedia.innerHTML = ''; // on vide le contenu précédent
-
-    const image = item.querySelector('img');
-    if (image) {
-      // Cas d'une vraie photo : on l'affiche en grand
-      const grandeImage = document.createElement('img');
-      grandeImage.src = image.src;
-      grandeImage.alt = image.alt || '';
-      zoneMedia.appendChild(grandeImage);
-    } else {
-      // Cas d'un placeholder : on le recopie en grand
-      const placeholder = item.querySelector('.img-placeholder');
-      if (placeholder) zoneMedia.appendChild(placeholder.cloneNode(true));
-    }
-
-    // Légende : attribut data-legende du bloc cliqué
-    legende.textContent = item.dataset.legende || '';
-
-    lightbox.classList.add('ouverte');
-    lightbox.removeAttribute('hidden');
-    document.body.classList.add('nav-ouverte'); // bloque le défilement
-    boutonFermer.focus();
-  }
-
-  function fermerLightbox() {
-    lightbox.classList.remove('ouverte');
-    document.body.classList.remove('nav-ouverte');
-    // On attend la fin du fondu avant de masquer complètement
-    setTimeout(() => lightbox.setAttribute('hidden', ''), 300);
-  }
-
-  items.forEach((item) => {
-    item.addEventListener('click', () => ouvrirLightbox(item));
-    // Accessibilité : ouverture au clavier (Entrée ou Espace)
-    item.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        ouvrirLightbox(item);
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        animate(entry.target);
+        observer.unobserve(entry.target);
       }
     });
-  });
+  }, { threshold: 0.4 });
 
-  boutonFermer.addEventListener('click', fermerLightbox);
+  counters.forEach(function (el) { observer.observe(el); });
+}
 
-  // Fermer en cliquant sur le fond sombre (mais pas sur la photo)
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) fermerLightbox();
-  });
 
-  // Fermer avec la touche Échap
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.classList.contains('ouverte')) {
-      fermerLightbox();
-    }
+/* ==========================================================================
+   4. FILTRES DES PUBLICATIONS
+   Les boutons portent data-filter, les publications data-category.
+   ========================================================================== */
+function initPublicationFilters() {
+  var buttons = document.querySelectorAll('.filter-btn');
+  var items = document.querySelectorAll('.pub-item[data-category]');
+  if (!buttons.length || !items.length) return;
+
+  buttons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      buttons.forEach(function (b) {
+        var isActive = b === button;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-pressed', String(isActive));
+      });
+
+      var filter = button.dataset.filter;
+      items.forEach(function (item) {
+        var show = filter === 'all' || item.dataset.category === filter;
+        item.classList.toggle('hidden', !show);
+      });
+    });
   });
 }
 
 
 /* ==========================================================================
-   7. VALIDATION DU FORMULAIRE DE CONTACT
-   Vérifie que les champs sont correctement remplis AVANT l'envoi.
-   ⚠️ Le formulaire n'est PAS encore connecté à un service d'envoi :
-   pour l'instant, un message « Formulaire à connecter » s'affiche.
-   Voir GUIDE-EQUIPE.md pour connecter un vrai service plus tard.
+   5. GALERIE — AGRANDISSEMENT DES PHOTOS
    ========================================================================== */
-function initFormulaireContact() {
-  const formulaire = document.getElementById('form-contact');
-  if (!formulaire) return;
+function initLightbox() {
+  var lightbox = document.getElementById('lightbox');
+  var items = document.querySelectorAll('.gallery-item');
+  if (!lightbox || !items.length) return;
 
-  const confirmation = document.getElementById('form-confirmation');
+  var media = document.getElementById('lightbox-media');
+  var caption = document.getElementById('lightbox-caption');
+  var closeBtn = document.getElementById('lightbox-close');
 
-  /* Règles de validation : pour chaque champ, une fonction qui renvoie
-     un message d'erreur (ou une chaîne vide si tout va bien). */
-  const regles = {
-    nom: (valeur) =>
-      valeur.trim().length < 2 ? 'Veuillez indiquer votre nom.' : '',
-    email: (valeur) =>
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valeur.trim())
-        ? ''
-        : 'Veuillez indiquer une adresse e-mail valide.',
-    sujet: (valeur) =>
-      valeur.trim().length < 3 ? 'Veuillez indiquer un sujet.' : '',
-    message: (valeur) =>
-      valeur.trim().length < 10
-        ? 'Votre message doit contenir au moins 10 caractères.'
-        : '',
-  };
-
-  function validerChamp(champ) {
-    const regle = regles[champ.name];
-    if (!regle) return true;
-
-    const messageErreur = regle(champ.value);
-    const zoneErreur = document.getElementById('erreur-' + champ.name);
-
-    champ.classList.toggle('erreur', messageErreur !== '');
-    champ.setAttribute('aria-invalid', String(messageErreur !== ''));
-    if (zoneErreur) zoneErreur.textContent = messageErreur;
-
-    return messageErreur === '';
+  function open(item) {
+    media.innerHTML = '';
+    var img = item.querySelector('img');
+    if (img) {
+      var big = document.createElement('img');
+      big.src = img.src;
+      big.alt = img.alt || '';
+      media.appendChild(big);
+    } else {
+      var ph = item.querySelector('.img-placeholder');
+      if (ph) media.appendChild(ph.cloneNode(true));
+    }
+    caption.textContent = item.dataset.caption || '';
+    lightbox.classList.add('open');
+    lightbox.removeAttribute('hidden');
+    document.body.classList.add('nav-open');
+    closeBtn.focus();
   }
 
-  // Validation en direct : l'erreur disparaît dès que l'on corrige
-  formulaire.querySelectorAll('input, textarea').forEach((champ) => {
-    champ.addEventListener('input', () => {
-      if (champ.classList.contains('erreur')) validerChamp(champ);
+  function close() {
+    lightbox.classList.remove('open');
+    document.body.classList.remove('nav-open');
+    setTimeout(function () { lightbox.setAttribute('hidden', ''); }, 260);
+  }
+
+  items.forEach(function (item) {
+    item.addEventListener('click', function () { open(item); });
+    item.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item); }
     });
   });
 
-  formulaire.addEventListener('submit', (e) => {
-    e.preventDefault(); // pas de backend pour l'instant : on bloque l'envoi
+  closeBtn.addEventListener('click', close);
+  lightbox.addEventListener('click', function (e) { if (e.target === lightbox) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) close();
+  });
+}
 
-    let toutEstValide = true;
-    formulaire.querySelectorAll('input, textarea').forEach((champ) => {
-      if (!validerChamp(champ)) toutEstValide = false;
+
+/* ==========================================================================
+   6. FORMULAIRE DE CONTACT
+   Validation côté navigateur. ATTENTION : le formulaire n'est pas encore
+   relié à un service d'envoi ; un message d'information s'affiche à la
+   place. Voir GUIDE-EQUIPE.md pour le connecter (Formspree, etc.).
+   ========================================================================== */
+function initContactForm() {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+
+  var note = document.getElementById('form-note');
+
+  var rules = {
+    name: function (v) { return v.trim().length < 2 ? 'Please enter your name.' : ''; },
+    email: function (v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : 'Please enter a valid email address.';
+    },
+    subject: function (v) { return v.trim().length < 3 ? 'Please enter a subject.' : ''; },
+    message: function (v) {
+      return v.trim().length < 10 ? 'Your message must be at least 10 characters long.' : '';
+    }
+  };
+
+  function validate(field) {
+    var rule = rules[field.name];
+    if (!rule) return true;
+    var msg = rule(field.value);
+    var box = document.getElementById('error-' + field.name);
+    field.classList.toggle('error', msg !== '');
+    field.setAttribute('aria-invalid', String(msg !== ''));
+    if (box) box.textContent = msg;
+    return msg === '';
+  }
+
+  form.querySelectorAll('input, textarea').forEach(function (field) {
+    field.addEventListener('input', function () {
+      if (field.classList.contains('error')) validate(field);
+    });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var valid = true;
+    form.querySelectorAll('input, textarea').forEach(function (field) {
+      if (!validate(field)) valid = false;
     });
 
-    if (!toutEstValide) {
-      // On place le curseur sur le premier champ en erreur
-      const premierErreur = formulaire.querySelector('.erreur');
-      if (premierErreur) premierErreur.focus();
+    if (!valid) {
+      var first = form.querySelector('.error');
+      if (first) first.focus();
       return;
     }
 
-    // Tout est valide : on affiche le message temporaire.
-    // ⚠️ À REMPLACER plus tard par un véritable envoi (service d'e-mail,
-    // Formspree, backend, etc.) — voir GUIDE-EQUIPE.md.
-    if (confirmation) {
-      confirmation.textContent =
-        '✅ Formulaire valide ! (Formulaire à connecter : le message ' +
-        "n'a pas encore été envoyé — aucun service d'envoi n'est configuré.)";
-      confirmation.classList.add('visible');
+    if (note) {
+      note.textContent = 'Form not connected yet — your message has not been sent. ' +
+        'In the meantime, please write to ngolefona@gmail.com.';
+      note.classList.add('visible');
     }
   });
+}
+
+
+/* ==========================================================================
+   7. SÉLECTEUR DE LANGUE (traduction automatique)
+   Le site est écrit en anglais. Le widget Google Translate traduit la page
+   à la volée dans la langue choisie ; le choix est mémorisé d'une page à
+   l'autre grâce au cookie « googtrans ».
+   ========================================================================== */
+
+/* Appelée automatiquement par le script Google chargé dans chaque page */
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement(
+    { pageLanguage: 'en', autoDisplay: false },
+    'google_translate_element'
+  );
+}
+
+function initLanguageMenu() {
+  var button = document.getElementById('lang-btn');
+  var menu = document.getElementById('lang-menu');
+  if (!button || !menu) return;
+
+  var label = button.querySelector('.lang-current');
+
+  /* Langue active, lue dans le cookie googtrans (ex. « /en/fr ») */
+  function currentLang() {
+    var m = document.cookie.match(/googtrans=([^;]+)/);
+    if (m) {
+      var parts = decodeURIComponent(m[1]).split('/');
+      if (parts.length >= 3 && parts[2]) return parts[2];
+    }
+    return 'en';
+  }
+
+  /* Applique la langue : pose le cookie puis recharge la page */
+  function setLang(code) {
+    var host = location.hostname;
+    var value = code === 'en' ? '' : '/en/' + code;
+
+    ['', '; domain=.' + host, '; domain=' + host].forEach(function (scope) {
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + scope;
+    });
+
+    if (value) {
+      document.cookie = 'googtrans=' + value + '; path=/';
+      document.cookie = 'googtrans=' + value + '; path=/; domain=.' + host;
+    }
+
+    try { localStorage.setItem('lefona-lang', code); } catch (err) { /* ignoré */ }
+    location.reload();
+  }
+
+  /* Met à jour le libellé du bouton et la langue cochée */
+  function refresh() {
+    var code = currentLang();
+    if (label) label.textContent = code.toUpperCase();
+    menu.querySelectorAll('button[data-lang]').forEach(function (b) {
+      b.setAttribute('aria-current', String(b.dataset.lang === code));
+    });
+  }
+
+  function closeMenu() {
+    menu.classList.remove('open');
+    button.setAttribute('aria-expanded', 'false');
+  }
+
+  button.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = !menu.classList.contains('open');
+    menu.classList.toggle('open', open);
+    button.setAttribute('aria-expanded', String(open));
+  });
+
+  menu.querySelectorAll('button[data-lang]').forEach(function (b) {
+    b.addEventListener('click', function () { setLang(b.dataset.lang); });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!menu.contains(e.target) && e.target !== button) closeMenu();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  refresh();
 }

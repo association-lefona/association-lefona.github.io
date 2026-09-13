@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact — NGO LEFONA</title>
-  <meta name="description" content="Contact NGO LEFONA — Lot 237 Cité Mandroseza, Antananarivo, Madagascar.">
+  <title>Projects — NGO LEFONA</title>
+  <meta name="description" content="Projects carried out by NGO LEFONA in Madagascar, funded by the Deep Challenge Fund and Oxford Policy Management.">
   <link rel="icon" href="images/logo-mark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,10 +30,10 @@
       <nav class="nav-links" id="nav-links" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="expertise.html">Expertise</a>
-        <a href="projects.html">Projects</a>
+        <a href="projects.html" class="active" aria-current="page">Projects</a>
         <a href="publications.html">Publications</a>
         <a href="team.html">Team</a>
-        <a href="contact.html" class="active" aria-current="page">Contact</a>
+        <a href="contact.html">Contact</a>
       </nav>
 
       <div class="header-actions">
@@ -110,86 +110,116 @@
 
     <section class="page-head">
       <div class="wrap">
-        <p class="eyebrow"><span class="dot"></span> Contact</p>
-        <h1>Let's work together.</h1>
-        <p>A research project, an evaluation or a partnership to discuss?
-           We would be glad to hear from you.</p>
+        <p class="eyebrow"><span class="dot"></span> Our projects</p>
+        <h1>Studies carried out in the field, with international donors.</h1>
+        <p>Each project combines household surveys, quantitative analysis and
+           restitution designed to be used by public decision-makers.</p>
       </div>
     </section>
 
+    <!-- =================================================================
+         ÉQUIPE CONTENU : POUR AJOUTER UN PROJET
+         Copiez un bloc entier de <article class="project ..."> jusqu'à
+         </article>, collez-le dans la grille ci-dessous et modifiez le
+         lieu, le titre, la description, le bailleur et l'image.
+         ================================================================= -->
     <section class="section">
-      <div class="wrap contact-grid">
-
-        <!-- ============ FORMULAIRE ============
-             ATTENTION : le formulaire vérifie les champs mais n'envoie encore
-             aucun message (voir GUIDE-EQUIPE.md pour le connecter). -->
-        <form id="contact-form" class="reveal" novalidate>
-          <div class="form-field">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" autocomplete="name"
-                   placeholder="Your name" required>
-            <small class="field-error" id="error-name" aria-live="polite"></small>
-          </div>
-
-          <div class="form-field">
-            <label for="email">Email address</label>
-            <input type="email" id="email" name="email" autocomplete="email"
-                   placeholder="you@example.com" required>
-            <small class="field-error" id="error-email" aria-live="polite"></small>
-          </div>
-
-          <div class="form-field">
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject"
-                   placeholder="What is your message about?" required>
-            <small class="field-error" id="error-subject" aria-live="polite"></small>
-          </div>
-
-          <div class="form-field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Your message…" required></textarea>
-            <small class="field-error" id="error-message" aria-live="polite"></small>
-          </div>
-
-          <button type="submit" class="btn btn-primary">Send message</button>
-          <div class="form-note" id="form-note" role="status"></div>
-        </form>
-
-        <!-- ============ COORDONNÉES ============ -->
-        <div class="reveal delay-1">
-          <div class="contact-info">
-            <div class="contact-row">
-              <span class="legal-label">Address</span>
-              <span>Lot 237 Cité Mandroseza, Antananarivo, Madagascar</span>
-            </div>
-            <div class="contact-row">
-              <span class="legal-label">Email</span>
-              <a href="mailto:ngolefona@gmail.com">ngolefona@gmail.com</a>
-            </div>
-            <div class="contact-row">
-              <span class="legal-label">LinkedIn</span>
-              <a href="https://www.linkedin.com/company/ong-lefona" target="_blank" rel="noopener">NGO LEFONA</a>
-            </div>
-            <div class="contact-row">
-              <span class="legal-label">Legal identifiers</span>
-              <span>NIF 4019927032 · STAT 94951 11 2026 0 08784</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ============ CARTE GOOGLE MAPS (temps réel) ============ -->
       <div class="wrap">
-        <div class="map-frame reveal">
-          <iframe
-            src="https://www.google.com/maps?q=Cité+Mandroseza,+Antananarivo,+Madagascar&amp;hl=en&amp;z=15&amp;output=embed"
-            title="NGO LEFONA location — Cité Mandroseza, Antananarivo"
-            loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            allowfullscreen></iframe>
+        <div class="project-grid">
+          <article class="project reveal">
+            <div class="project-media">
+              <!-- ÉQUIPE CONTENU : remplacez ce bloc par
+                   <img src="images/votre-photo.jpg" alt="..."> -->
+              <div class="img-placeholder ratio-16-9">PHOTO — Toliara II · South-West</div>
+            </div>
+            <div class="project-body">
+              <p class="project-place">Toliara II · South-West</p>
+              <h3>Pastoral vulnerability and rural poverty</h3>
+              <p>A study of cattle- and small-ruminant-herding households facing climate and economic shocks in the district of Toliara II, in south-western Madagascar.</p>
+              <p class="project-funder">Deep Challenge Fund · Oxford Policy Management</p>
+            </div>
+          </article>
+          <article class="project reveal">
+            <div class="project-media">
+              <!-- ÉQUIPE CONTENU : remplacez ce bloc par
+                   <img src="images/votre-photo.jpg" alt="..."> -->
+              <div class="img-placeholder ratio-16-9">PHOTO — Antananarivo</div>
+            </div>
+            <div class="project-body">
+              <p class="project-place">Antananarivo</p>
+              <h3>Flooding and low-lying neighbourhoods</h3>
+              <p>Analysis of the exposure and vulnerability of households living in the low-lying neighbourhoods of Antananarivo to recurrent flood risk.</p>
+              <p class="project-funder">Deep Challenge Fund · Oxford Policy Management</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
+
+    <!-- ============ GALERIE TERRAIN ============
+         Cliquer sur une image l'affiche en grand.
+         ÉQUIPE CONTENU : remplacez chaque bloc
+         <div class="img-placeholder">…</div> par
+         <img src="images/votre-photo.jpg" alt="Description">
+         et adaptez le texte de data-caption (légende affichée en grand). -->
+    <section class="section section--raised">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span class="dot"></span> In the field</p>
+          <h2>Our missions, from the inside.</h2>
+          <p>A glimpse of our field missions — to be completed with photographs
+             from the actual field visits.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="gallery-item reveal" data-caption="Toliara II — field mission"
+                   tabindex="0" role="button" aria-label="Enlarge photo">
+            <div class="img-placeholder">PHOTO — Toliara II — field mission</div>
+          </figure>
+          <figure class="gallery-item reveal" data-caption="Antananarivo — field mission"
+                   tabindex="0" role="button" aria-label="Enlarge photo">
+            <div class="img-placeholder">PHOTO — Antananarivo — field mission</div>
+          </figure>
+          <figure class="gallery-item reveal" data-caption="Household interview"
+                   tabindex="0" role="button" aria-label="Enlarge photo">
+            <div class="img-placeholder">PHOTO — Household interview</div>
+          </figure>
+          <figure class="gallery-item reveal" data-caption="Field team"
+                   tabindex="0" role="button" aria-label="Enlarge photo">
+            <div class="img-placeholder">PHOTO — Field team</div>
+          </figure>
+          <figure class="gallery-item reveal" data-caption="Presenting the results"
+                   tabindex="0" role="button" aria-label="Enlarge photo">
+            <div class="img-placeholder">PHOTO — Presenting the results</div>
+          </figure>
+          <figure class="gallery-item reveal" data-caption="Data collection"
+                   tabindex="0" role="button" aria-label="Enlarge photo">
+            <div class="img-placeholder">PHOTO — Data collection</div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ APPEL À L'ACTION ============ -->
+    <section class="cta-band">
+      <div class="wrap">
+        <p class="eyebrow"><span class="dot"></span> Work with us</p>
+        <h2>A research or evaluation project to carry out?</h2>
+        <p class="motto">"Rigour in the service of those least heard."</p>
+        <a href="contact.html" class="btn btn-primary">Contact us</a>
+      </div>
+    </section>
+
   </main>
+
+  <!-- ============ PHOTO AGRANDIE (ne pas modifier) ============ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true"
+       aria-label="Enlarged photo" hidden>
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+    <figure class="lightbox-figure">
+      <div class="lightbox-media" id="lightbox-media"></div>
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+  </div>
 
   <!-- ============ PIED DE PAGE (identique sur toutes les pages) ============ -->
   <footer class="site-footer">

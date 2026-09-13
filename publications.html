@@ -1,212 +1,164 @@
 <!DOCTYPE html>
-<html lang="fr">
-<!-- =====================================================================
-     ASSOCIATION LEFONA — PAGE « ARTICLES & ÉTUDES » (publications.html)
-     Cette page liste toutes les publications de l'association.
-     La barre de filtres (Tout / Articles / Études) fonctionne toute
-     seule grâce au JavaScript : il suffit de donner à chaque carte le
-     bon attribut data-categorie (« article » ou « etude »).
-
-     ▶ COMMENT AJOUTER UNE PUBLICATION : voir le grand commentaire
-       au-dessus de la grille de cartes, plus bas dans cette page.
-     ===================================================================== -->
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Articles &amp; Études — Association Lefona</title>
-  <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : description de la page pour Google -->
-  <meta name="description" content="[Description de la page publications à compléter]">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cg fill='%2335302a'%3E%3Cpath d='M53 39 C37 36 26 27 24 7 C28 22 38 29 54 32 Z'/%3E%3Cpath d='M67 39 C83 36 94 27 96 7 C92 22 82 29 66 32 Z'/%3E%3Cpath d='M60 1 L64.5 14 C65.5 21 63.5 28 60 33 C56.5 28 54.5 21 55.5 14 Z'/%3E%3Crect x='58' y='31' width='4' height='77' rx='2'/%3E%3C/g%3E%3Cpath d='M34 42 H86 V74 C86 89 75 99.5 60 106 C45 99.5 34 89 34 74 Z' fill='none' stroke='%2335302a' stroke-width='7'/%3E%3C/svg%3E">
+  <title>Publications — NGO LEFONA</title>
+  <meta name="description" content="Academic publications and articles by NGO LEFONA on climate, resilience and the Malagasy economy.">
+  <link rel="icon" href="images/logo-mark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Sora:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- ============ EN-TÊTE / NAVIGATION (identique sur toutes les pages) ============ -->
-  <header class="site-header" id="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="logo" aria-label="Association Lefona — retour à l'accueil">
-        <svg class="logo-embleme" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-          <!-- cornes de zébu -->
-          <path d="M53 39 C37 36 26 27 24 7 C28 22 38 29 54 32 Z"/>
-          <path d="M67 39 C83 36 94 27 96 7 C92 22 82 29 66 32 Z"/>
-          <!-- fer de lance et hampe -->
-          <path d="M60 1 L64.5 14 C65.5 21 63.5 28 60 33 C56.5 28 54.5 21 55.5 14 Z"/>
-          <rect x="58.2" y="31" width="3.6" height="77" rx="1.8"/>
-          <!-- écu -->
-          <path d="M34 42 H86 V74 C86 89 75 99.5 60 106 C45 99.5 34 89 34 74 Z" fill="none" stroke="currentColor" stroke-width="3.5"/>
-          <!-- rameau (panneau gauche) -->
-          <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".9">
-            <path d="M47 50 V78"/>
-            <path d="M47 60 Q40 57 39 50"/>
-            <path d="M47 60 Q54 57 55 50"/>
-            <path d="M47 70 Q40 67 39 60"/>
-            <path d="M47 70 Q54 67 55 60"/>
-          </g>
-          <!-- tissage (panneau droit) -->
-          <g fill="none" stroke="currentColor" stroke-width="2.2" opacity=".9">
-            <path d="M73 48 L80 55 L73 62 L66 55 Z"/>
-            <path d="M73 62 L80 69 L73 76 L66 69 Z"/>
-          </g>
-          <!-- frise de triangles (bas de l'écu) -->
-          <path d="M42 90 L46 84.5 L50 90 Z M50 90 L54 84.5 L58 90 Z M62 90 L66 84.5 L70 90 Z M70 90 L74 84.5 L78 90 Z" opacity=".9"/>
-        </svg>
-        <span class="logo-texte">LEFONA</span>
+  <!-- ===================================================================
+       EN-TÊTE / NAVIGATION (identique sur toutes les pages)
+       Si vous modifiez le menu, reportez la modification sur les
+       autres fichiers HTML.
+       =================================================================== -->
+  <header class="site-header">
+    <div class="wrap header-inner">
+
+      <!-- LOGO OFFICIEL DE L'ONG (images/logo-mark.png = emblème seul) -->
+      <a href="index.html" class="brand" aria-label="NGO LEFONA — back to home">
+        <img src="images/logo-mark.png" alt="NGO LEFONA">
+        <span class="brand-name">LEFONA</span>
       </a>
-      <button class="burger" id="burger" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir ou fermer le menu">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
-        <ul>
-          <li><a href="index.html" class="nav-link">Accueil</a></li>
-          <li><a href="apropos.html" class="nav-link">À propos</a></li>
-          <li><a href="publications.html" class="nav-link actif" aria-current="page">Articles &amp; Études</a></li>
-          <li><a href="galerie.html" class="nav-link">Galerie</a></li>
-          <li><a href="contact.html" class="nav-link">Contact</a></li>
-        </ul>
+
+      <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="expertise.html">Expertise</a>
+        <a href="projects.html">Projects</a>
+        <a href="publications.html" class="active" aria-current="page">Publications</a>
+        <a href="team.html">Team</a>
+        <a href="contact.html">Contact</a>
       </nav>
+
+      <div class="header-actions">
+
+        <!-- SÉLECTEUR DE LANGUE — traduction automatique de la page -->
+        <div class="lang">
+          <button class="lang-btn" id="lang-btn" aria-expanded="false"
+                  aria-haspopup="true" aria-label="Choose a language">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/>
+            </svg>
+            <span class="lang-current">EN</span>
+            <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M2.5 4.5 6 8l3.5-3.5"/>
+            </svg>
+          </button>
+          <ul class="lang-menu" id="lang-menu" role="menu">
+          <li><button type="button" data-lang="en">English</button></li>
+          <li><button type="button" data-lang="fr">Français</button></li>
+          <li><button type="button" data-lang="mg">Malagasy</button></li>
+          <li class="lang-sep" aria-hidden="true"></li>
+          <li><button type="button" data-lang="af">Afrikaans</button></li>
+          <li><button type="button" data-lang="am">አማርኛ</button></li>
+          <li><button type="button" data-lang="ar">العربية</button></li>
+          <li><button type="button" data-lang="bn">বাংলা</button></li>
+          <li><button type="button" data-lang="cs">Čeština</button></li>
+          <li><button type="button" data-lang="da">Dansk</button></li>
+          <li><button type="button" data-lang="de">Deutsch</button></li>
+          <li><button type="button" data-lang="el">Ελληνικά</button></li>
+          <li><button type="button" data-lang="es">Español</button></li>
+          <li><button type="button" data-lang="fa">فارسی</button></li>
+          <li><button type="button" data-lang="fi">Suomi</button></li>
+          <li><button type="button" data-lang="ha">Hausa</button></li>
+          <li><button type="button" data-lang="he">עברית</button></li>
+          <li><button type="button" data-lang="hi">हिन्दी</button></li>
+          <li><button type="button" data-lang="hu">Magyar</button></li>
+          <li><button type="button" data-lang="id">Indonesia</button></li>
+          <li><button type="button" data-lang="it">Italiano</button></li>
+          <li><button type="button" data-lang="ja">日本語</button></li>
+          <li><button type="button" data-lang="ko">한국어</button></li>
+          <li><button type="button" data-lang="nl">Nederlands</button></li>
+          <li><button type="button" data-lang="no">Norsk</button></li>
+          <li><button type="button" data-lang="pl">Polski</button></li>
+          <li><button type="button" data-lang="pt">Português</button></li>
+          <li><button type="button" data-lang="ro">Română</button></li>
+          <li><button type="button" data-lang="ru">Русский</button></li>
+          <li><button type="button" data-lang="sv">Svenska</button></li>
+          <li><button type="button" data-lang="sw">Kiswahili</button></li>
+          <li><button type="button" data-lang="ta">தமிழ்</button></li>
+          <li><button type="button" data-lang="th">ไทย</button></li>
+          <li><button type="button" data-lang="tr">Türkçe</button></li>
+          <li><button type="button" data-lang="uk">Українська</button></li>
+          <li><button type="button" data-lang="ur">اردو</button></li>
+          <li><button type="button" data-lang="vi">Tiếng Việt</button></li>
+          <li><button type="button" data-lang="yo">Yorùbá</button></li>
+          <li><button type="button" data-lang="zh-CN">中文（简体）</button></li>
+          <li><button type="button" data-lang="zh-TW">中文（繁體）</button></li>
+          <li><button type="button" data-lang="zu">isiZulu</button></li>
+          </ul>
+        </div>
+
+        <a href="contact.html" class="nav-cta">Get in touch</a>
+
+        <button class="burger" id="burger" aria-expanded="false"
+                aria-controls="nav-links" aria-label="Open or close the menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main>
 
-    <!-- ============ EN-TÊTE DE PAGE ============ -->
-    <section class="entete-page">
-      <div class="container">
-        <h1>Articles &amp; Études</h1>
-        <!-- À COMPLÉTER PAR L'ÉQUIPE CONTENU : phrase d'introduction -->
-        <p>[Phrase d'introduction à compléter — présentez ici en une ou deux
-           phrases les publications de l'association.]</p>
+    <section class="page-head">
+      <div class="wrap">
+        <p class="eyebrow"><span class="dot"></span> Publications</p>
+        <h1>Work already cited and built upon.</h1>
+        <p>Our academic publications and articles, available on open repositories.</p>
       </div>
     </section>
 
+    <!-- =================================================================
+         ÉQUIPE CONTENU : POUR AJOUTER UNE PUBLICATION
+         1) Copiez un bloc <article class="pub-item …"> … </article>
+         2) Collez-le en PREMIER dans la liste (la plus récente en haut)
+         3) Modifiez : data-category ("article" ou "study"), le numéro,
+            le titre, la source/date et l'étiquette (Article / Study)
+         ================================================================= -->
     <section class="section">
-      <div class="container">
-
-        <!-- ============ BARRE DE FILTRES ============
-             Les boutons filtrent les cartes selon leur data-categorie.
-             Ne pas modifier les attributs data-filtre. -->
-        <div class="filtres" role="group" aria-label="Filtrer les publications">
-          <button class="filtre-btn actif" data-filtre="tout" aria-pressed="true">Tout</button>
-          <button class="filtre-btn" data-filtre="article" aria-pressed="false">Articles</button>
-          <button class="filtre-btn" data-filtre="etude" aria-pressed="false">Études</button>
+      <div class="wrap">
+        <div class="filters" role="group" aria-label="Filter publications">
+          <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-btn" data-filter="article" aria-pressed="false">Articles</button>
+          <button class="filter-btn" data-filter="study" aria-pressed="false">Studies</button>
         </div>
 
-        <!-- =============================================================
-             ▶ ÉQUIPE CONTENU : COMMENT AJOUTER UNE PUBLICATION ◀
-
-             1) Copiez UN bloc entier, de « <article class="carte ... »
-                jusqu'à « </article> » (y compris ces deux lignes).
-             2) Collez-le à l'intérieur de <div class="cartes-grille">,
-                de préférence en PREMIER pour que la publication la plus
-                récente apparaisse en haut.
-             3) Dans votre copie, modifiez :
-                - data-categorie : « article » OU « etude » (sans accent !)
-                - le badge : <span class="badge badge-article">Article</span>
-                  OU <span class="badge badge-etude">Étude</span>
-                  (le badge doit correspondre à data-categorie)
-                - l'image, le titre, la date et le résumé
-                - le lien du bouton « Lire » : mettez le nom du fichier de
-                  votre article (créé à partir de article-template.html,
-                  ex. href="article-riziculture-2026.html")
-             ============================================================= -->
-        <div class="cartes-grille">
-
-          <!-- ===== Publication n°1 (exemple : ARTICLE) ===== -->
-          <article class="carte carte-publication reveal delai-1" data-categorie="article">
-            <div class="carte-media">
-              <span class="badge badge-article">Article</span>
-              <!-- À COMPLÉTER : remplacer par <img src="images/publication-1.jpg" alt="..."> -->
-              <div class="img-placeholder ratio-16-9">📷 [Image de la publication]</div>
+        <div class="pub-list">
+          <article class="pub-item reveal" data-category="study">
+            <span class="pub-num">01</span>
+            <div>
+              <h3>Heat and Economics: Climate Change's Influence on Madagascar's GDP</h3>
+              <p class="pub-meta">SSRN · 2023</p>
             </div>
-            <div class="carte-corps">
-              <p class="carte-date"><time>[Date à compléter — ex. 12 mars 2026]</time></p>
-              <h3>[Titre de l'article 1 à compléter]</h3>
-              <p>[Résumé de l'article à compléter — deux ou trois phrases qui
-                 présentent le sujet.]</p>
-              <a href="article-template.html" class="lien-fleche">Lire</a>
-            </div>
+            <span class="pub-tag">Study</span>
           </article>
-
-          <!-- ===== Publication n°2 (exemple : ÉTUDE) ===== -->
-          <article class="carte carte-publication reveal delai-2" data-categorie="etude">
-            <div class="carte-media">
-              <span class="badge badge-etude">Étude</span>
-              <div class="img-placeholder ratio-16-9">📷 [Image de la publication]</div>
+          <article class="pub-item reveal" data-category="study">
+            <span class="pub-num">02</span>
+            <div>
+              <h3>Modeling post-cyclone resilience in Mananjary: A multivariate Probit analysis</h3>
+              <p class="pub-meta">SSRN · 2024 — Raveloson, Andrianady, Andrianavony et al.</p>
             </div>
-            <div class="carte-corps">
-              <p class="carte-date"><time>[Date à compléter]</time></p>
-              <h3>[Titre de l'étude 1 à compléter]</h3>
-              <p>[Résumé de l'étude à compléter — deux ou trois phrases qui
-                 présentent le sujet et les principaux résultats.]</p>
-              <a href="article-template.html" class="lien-fleche">Lire</a>
-            </div>
+            <span class="pub-tag">Study</span>
           </article>
+        </div>
+      </div>
+    </section>
 
-          <!-- ===== Publication n°3 (exemple : ARTICLE) ===== -->
-          <article class="carte carte-publication reveal delai-3" data-categorie="article">
-            <div class="carte-media">
-              <span class="badge badge-article">Article</span>
-              <div class="img-placeholder ratio-16-9">📷 [Image de la publication]</div>
-            </div>
-            <div class="carte-corps">
-              <p class="carte-date"><time>[Date à compléter]</time></p>
-              <h3>[Titre de l'article 2 à compléter]</h3>
-              <p>[Résumé de l'article à compléter — deux ou trois phrases qui
-                 présentent le sujet.]</p>
-              <a href="article-template.html" class="lien-fleche">Lire</a>
-            </div>
-          </article>
-
-          <!-- ===== Publication n°4 (exemple : ÉTUDE) ===== -->
-          <article class="carte carte-publication reveal delai-1" data-categorie="etude">
-            <div class="carte-media">
-              <span class="badge badge-etude">Étude</span>
-              <div class="img-placeholder ratio-16-9">📷 [Image de la publication]</div>
-            </div>
-            <div class="carte-corps">
-              <p class="carte-date"><time>[Date à compléter]</time></p>
-              <h3>[Titre de l'étude 2 à compléter]</h3>
-              <p>[Résumé de l'étude à compléter — deux ou trois phrases qui
-                 présentent le sujet et les principaux résultats.]</p>
-              <a href="article-template.html" class="lien-fleche">Lire</a>
-            </div>
-          </article>
-
-          <!-- ===== Publication n°5 (exemple : ARTICLE) ===== -->
-          <article class="carte carte-publication reveal delai-2" data-categorie="article">
-            <div class="carte-media">
-              <span class="badge badge-article">Article</span>
-              <div class="img-placeholder ratio-16-9">📷 [Image de la publication]</div>
-            </div>
-            <div class="carte-corps">
-              <p class="carte-date"><time>[Date à compléter]</time></p>
-              <h3>[Titre de l'article 3 à compléter]</h3>
-              <p>[Résumé de l'article à compléter — deux ou trois phrases qui
-                 présentent le sujet.]</p>
-              <a href="article-template.html" class="lien-fleche">Lire</a>
-            </div>
-          </article>
-
-          <!-- ===== Publication n°6 (exemple : ÉTUDE) ===== -->
-          <article class="carte carte-publication reveal delai-3" data-categorie="etude">
-            <div class="carte-media">
-              <span class="badge badge-etude">Étude</span>
-              <div class="img-placeholder ratio-16-9">📷 [Image de la publication]</div>
-            </div>
-            <div class="carte-corps">
-              <p class="carte-date"><time>[Date à compléter]</time></p>
-              <h3>[Titre de l'étude 3 à compléter]</h3>
-              <p>[Résumé de l'étude à compléter — deux ou trois phrases qui
-                 présentent le sujet et les principaux résultats.]</p>
-              <a href="article-template.html" class="lien-fleche">Lire</a>
-            </div>
-          </article>
-
-        </div><!-- /fin de la grille des publications -->
-
+    <!-- ============ APPEL À L'ACTION ============ -->
+    <section class="cta-band">
+      <div class="wrap">
+        <p class="eyebrow"><span class="dot"></span> Work with us</p>
+        <h2>A research or evaluation project to carry out?</h2>
+        <p class="motto">"Rigour in the service of those least heard."</p>
+        <a href="contact.html" class="btn btn-primary">Contact us</a>
       </div>
     </section>
 
@@ -214,85 +166,61 @@
 
   <!-- ============ PIED DE PAGE (identique sur toutes les pages) ============ -->
   <footer class="site-footer">
-    <div class="container footer-grille">
-      <div class="footer-col footer-presentation">
-        <a href="index.html" class="logo logo-footer" aria-label="Association Lefona — retour à l'accueil">
-          <svg class="logo-embleme" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-          <!-- cornes de zébu -->
-          <path d="M53 39 C37 36 26 27 24 7 C28 22 38 29 54 32 Z"/>
-          <path d="M67 39 C83 36 94 27 96 7 C92 22 82 29 66 32 Z"/>
-          <!-- fer de lance et hampe -->
-          <path d="M60 1 L64.5 14 C65.5 21 63.5 28 60 33 C56.5 28 54.5 21 55.5 14 Z"/>
-          <rect x="58.2" y="31" width="3.6" height="77" rx="1.8"/>
-          <!-- écu -->
-          <path d="M34 42 H86 V74 C86 89 75 99.5 60 106 C45 99.5 34 89 34 74 Z" fill="none" stroke="currentColor" stroke-width="3.5"/>
-          <!-- rameau (panneau gauche) -->
-          <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".9">
-            <path d="M47 50 V78"/>
-            <path d="M47 60 Q40 57 39 50"/>
-            <path d="M47 60 Q54 57 55 50"/>
-            <path d="M47 70 Q40 67 39 60"/>
-            <path d="M47 70 Q54 67 55 60"/>
-          </g>
-          <!-- tissage (panneau droit) -->
-          <g fill="none" stroke="currentColor" stroke-width="2.2" opacity=".9">
-            <path d="M73 48 L80 55 L73 62 L66 55 Z"/>
-            <path d="M73 62 L80 69 L73 76 L66 69 Z"/>
-          </g>
-          <!-- frise de triangles (bas de l'écu) -->
-          <path d="M42 90 L46 84.5 L50 90 Z M50 90 L54 84.5 L58 90 Z M62 90 L66 84.5 L70 90 Z M70 90 L74 84.5 L78 90 Z" opacity=".9"/>
-        </svg>
-          <span class="logo-texte">LEFONA</span>
+    <div class="wrap footer-grid">
+
+      <div class="footer-col footer-about">
+        <a href="index.html" class="brand" aria-label="NGO LEFONA — back to home">
+          <img src="images/logo-mark.png" alt="NGO LEFONA">
+          <span class="brand-name">LEFONA</span>
         </a>
-        <p>[Courte description de l'association en deux ou trois phrases,
-           à compléter.]</p>
+        <p>An independent research organisation founded and led by young Malagasy
+           professionals, analysing socio-economic and climate vulnerabilities
+           across Madagascar.</p>
       </div>
-      <nav class="footer-col" aria-label="Navigation du pied de page">
+
+      <nav class="footer-col" aria-label="Footer navigation">
         <h3>Navigation</h3>
         <ul>
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="apropos.html">À propos</a></li>
-          <li><a href="publications.html">Articles &amp; Études</a></li>
-          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="expertise.html">Expertise</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="team.html">Team</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
+
       <div class="footer-col">
         <h3>Contact</h3>
-        <ul class="footer-contact">
-          <li><span aria-hidden="true">📍</span> [Adresse à compléter — ex. Lot XX, Antananarivo, Madagascar]</li>
-          <li><span aria-hidden="true">📞</span> [+261 XX XX XXX XX]</li>
-          <li><span aria-hidden="true">✉️</span> [contact@association-lefona.org]</li>
+        <ul>
+          <li>Lot 237 Cité Mandroseza, Antananarivo, Madagascar</li>
+          <li><a href="mailto:ngolefona@gmail.com">ngolefona@gmail.com</a></li>
         </ul>
       </div>
+
       <div class="footer-col">
-        <h3>Suivez-nous</h3>
-        <ul class="footer-reseaux">
-          <li>
-            <a href="#" aria-label="Facebook (lien à compléter)">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.5 4.5h-2.2c-1.9 0-3.3 1.4-3.3 3.3V10H7.5v3H10v7h3.2v-7h2.4l.5-3h-2.9V8.1c0-.4.3-.6.7-.6h2.1v-3z"/></svg>
-            </a>
-          </li>
-          <li>
-            <a href="#" aria-label="Instagram (lien à compléter)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg>
-            </a>
-          </li>
-          <li>
-            <a href="#" aria-label="LinkedIn (lien à compléter)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="6.2" cy="6.4" r="1.6" fill="currentColor" stroke="none"/><path d="M6.2 10v9"/><path d="M11.4 19v-5.2c0-1.7 1.2-2.9 2.9-2.9s2.9 1.2 2.9 2.9V19"/><path d="M11.4 10v9"/></svg>
-            </a>
-          </li>
-        </ul>
+        <h3>Follow us</h3>
+        <!-- ÉQUIPE CONTENU : remplacez l'adresse ci-dessous par le lien exact
+             de la page LinkedIn de l'ONG. -->
+        <p class="footer-social">
+          <a href="https://www.linkedin.com/company/ong-lefona" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6.2" cy="6.4" r="1.6" fill="currentColor" stroke="none"/><path d="M6.2 10v9"/><path d="M11.4 19v-5.2c0-1.7 1.2-2.9 2.9-2.9s2.9 1.2 2.9 2.9V19"/><path d="M11.4 10v9"/></svg> LinkedIn
+          </a>
+        </p>
       </div>
     </div>
-    <div class="footer-bas">
-      <div class="container">
-        <p>© Association Lefona 2026 — Tous droits réservés.</p>
+
+    <div class="wrap">
+      <div class="footer-bottom">
+        <span>© 2026 NGO LEFONA — All rights reserved.</span>
+        <span>NIF 4019927032 · STAT 94951 11 2026 0 08784</span>
       </div>
     </div>
   </footer>
 
+  <!-- Widget de traduction (invisible) piloté par le sélecteur de langue -->
+  <div id="google_translate_element" style="display:none"></div>
   <script src="js/main.js"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
