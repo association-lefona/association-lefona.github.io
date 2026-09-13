@@ -104,9 +104,16 @@ a { color: inherit; text-decoration: none; }
 
 .skip-link:focus { left: 0; }
 
-/* Google Translate must not shift the layout */
+/* Google Translate must not shift the layout, highlight translated runs in
+   blue, or pop its "original text" tooltip over the page. */
 body { top: 0 !important; }
 .skiptranslate iframe { display: none !important; }
+.goog-tooltip, .goog-tooltip:hover { display: none !important; }
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
 
 
 /* ==========================================================================
@@ -293,7 +300,9 @@ h4 { font-size: 1.0625rem; }
 }
 
 .brand { display: inline-flex; align-items: center; gap: 11px; }
-.brand img { width: 48px; height: 48px; object-fit: contain; }
+/* The emblem is wider than it is tall (the two branches), so we set the
+   height and let the width follow — otherwise it renders undersized. */
+.brand img { height: 54px; width: auto; object-fit: contain; }
 
 .brand__name {
   font-family: var(--f-display);
@@ -496,14 +505,6 @@ h4 { font-size: 1.0625rem; }
   padding: 34px 32px;
 }
 
-/* Full emblem, shown at size on the home page */
-.hero__seal {
-  display: block;
-  width: min(190px, 62%);
-  margin: 0 auto 30px;
-  padding-bottom: 26px;
-  border-bottom: 1px solid var(--c-line);
-}
 
 .hero__aside h2 {
   font-size: 1rem;
