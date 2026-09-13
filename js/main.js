@@ -22,6 +22,8 @@
     en: {
       'brand.sub': 'Research & public policy analysis',
       'pubs.title': 'Our published research, openly available.',
+      'team.board': 'Board of Directors',
+      'team.exec': 'Executive team',
       'lbl.glance': 'At a glance',
       'lbl.founded': 'Founded',
       'lbl.focus': 'Focus',
@@ -56,6 +58,8 @@
     fr: {
       'brand.sub': 'Recherche et analyse de politique publique',
       'pubs.title': 'Nos recherches publiées, en libre accès.',
+      'team.board': 'Conseil d\'administration',
+      'team.exec': 'Équipe de direction',
       'lbl.glance': 'En bref',
       'lbl.founded': 'Création',
       'lbl.focus': 'Domaine',
@@ -90,6 +94,8 @@
     mg: {
       'brand.sub': 'Fikarohana sy fandalinana politika ho an\'ny daholobe',
       'pubs.title': 'Ny fikarohanay navoaka, malalaka ho an\'ny rehetra.',
+      'team.board': 'Filan-kevi-pitantanana',
+      'team.exec': 'Ekipa mpitantana',
       'lbl.glance': 'Amin\'ny fohiny',
       'lbl.founded': 'Niorina',
       'lbl.focus': 'Sehatra',
