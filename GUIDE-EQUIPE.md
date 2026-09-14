@@ -134,14 +134,39 @@ noms — sans elle, « Rojo » deviendrait « Rouge » en français.
 
 ## 8. Formulaire de contact
 
-Le formulaire vérifie les champs mais **n'envoie encore aucun message** : il
-affiche un avis invitant à écrire à `ngolefona@gmail.com`.
+**Pourquoi il ne peut pas envoyer de courriel tout seul.** Le site est fait de
+pages statiques hébergées par GitHub : il n'y a aucun serveur derrière pour
+expédier un message. Il faut donc soit passer par le logiciel de messagerie
+du visiteur, soit par un service d'envoi extérieur.
 
-Pour l'activer gratuitement avec [Formspree](https://formspree.io) : créez un
-compte, récupérez votre identifiant de formulaire, puis demandez à une
-personne technique de l'ajouter dans `js/main.js`.
+### Comment il fonctionne aujourd'hui
 
----
+Le formulaire vérifie les champs, puis **ouvre le logiciel de messagerie du
+visiteur** avec le message déjà rédigé et adressé à `ngolefona@gmail.com`.
+Le visiteur n'a plus qu'à cliquer sur « Envoyer ».
+
+Limite : si la personne consulte le site depuis un ordinateur sans logiciel
+de messagerie configuré, rien ne s'ouvre. C'est pourquoi l'adresse e-mail
+est aussi affichée en clair juste à côté du formulaire.
+
+### Pour recevoir les messages directement (recommandé, gratuit)
+
+1. Allez sur **https://web3forms.com**
+2. Saisissez `ngolefona@gmail.com` et cliquez sur **Create Access Key**
+3. Vous recevez une **clé** par courriel (une suite de lettres et de chiffres)
+4. Ouvrez `js/main.js`, tout en haut de la partie « Contact form », et
+   remplissez les deux lignes :
+
+   ```js
+   var CONTACT_ENDPOINT = 'https://api.web3forms.com/submit';
+   var CONTACT_KEY = 'votre-cle-ici';
+   ```
+
+5. Enregistrez (« Commit changes »).
+
+Le formulaire enverra alors les messages directement dans votre boîte, sans
+rien ouvrir chez le visiteur. Gratuit jusqu'à 250 messages par mois, et
+aucun compte à créer.
 
 ## 9. Avant chaque mise en ligne — vérifications
 

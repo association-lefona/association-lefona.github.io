@@ -341,6 +341,21 @@
      Contact form — client-side validation only.
      No backend yet: the submit handler shows a notice instead of sending.
      ======================================================================== */
+  /* ------------------------------------------------------------------
+     Contact form
+
+     The site is hosted as static files, so it cannot send mail by itself.
+     Two modes:
+       - CONTACT_ENDPOINT empty  : the form opens the visitor's mail client
+                                   with everything already filled in.
+       - CONTACT_ENDPOINT set    : the message is posted straight to the
+                                   service (see GUIDE-EQUIPE.md, section 8)
+                                   and nothing opens on the visitor's side.
+     ------------------------------------------------------------------ */
+  var CONTACT_EMAIL = 'ngolefona@gmail.com';
+  var CONTACT_ENDPOINT = '';   // e.g. 'https://api.web3forms.com/submit'
+  var CONTACT_KEY = '';        // access key supplied by that service
+
   function initForm() {
     var form = $('#contact-form');
     if (!form) return;
@@ -362,12 +377,17 @@
     function check(field) {
       var rule = rules[field.name];
       if (!rule) return true;
-
       var error = rule(field.value);
       var slot = $('#error-' + field.name);
       field.setAttribute('aria-invalid', String(error !== ''));
       if (slot) slot.textContent = error;
       return error === '';
+    }
+
+    function say(text) {
+      if (!status) return;
+      status.textContent = text;
+      status.setAttribute('data-visible', 'true');
     }
 
     $$('input, textarea', form).forEach(function (field) {
@@ -384,18 +404,54 @@
       $$('input, textarea', form).forEach(function (field) {
         if (!check(field)) ok = false;
       });
-
       if (!ok) {
         var first = $('[aria-invalid="true"]', form);
         if (first) first.focus();
         return;
       }
 
-      if (status) {
-        status.textContent = 'This form is not connected to a mail service yet. ' +
-          'Please write to ngolefona@gmail.com in the meantime.';
-        status.setAttribute('data-visible', 'true');
+      var data = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        subject: form.subject.value.trim(),
+        message: form.message.value.trim()
+      };
+
+      /* Mode 2: a sending service is configured */
+      if (CONTACT_ENDPOINT && CONTACT_KEY) {
+        var button = $('button[type="submit"]', form);
+        if (button) { button.disabled = true; button.textContent = 'Sending…'; }
+
+        fetch(CONTACT_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: CONTACT_KEY,
+            from_name: data.name,
+            email: data.email,
+            subject: '[lefona.org] ' + data.subject,
+            message: data.message
+          })
+        }).then(function (r) {
+          if (!r.ok) throw new Error(r.status);
+          form.reset();
+          say('Thank you — your message has been sent. We will get back to you shortly.');
+        }).catch(function () {
+          say('Sorry, the message could not be sent. Please write to ' + CONTACT_EMAIL + '.');
+        }).then(function () {
+          if (button) { button.disabled = false; button.textContent = 'Send message'; }
+        });
+        return;
       }
+
+      /* Mode 1: no service yet — hand the message to the mail client */
+      var subject = encodeURIComponent('[lefona] ' + data.subject);
+      var body = encodeURIComponent(
+        data.message + '\n\n--\n' + data.name + '\n' + data.email
+      );
+      window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + subject + '&body=' + body;
+      say('Your email programme is opening with the message ready to send. '
+        + 'If nothing happens, write to ' + CONTACT_EMAIL + '.');
     });
   }
 
