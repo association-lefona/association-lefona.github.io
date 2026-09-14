@@ -671,13 +671,22 @@ h4 { font-size: 1.0625rem; }
 .card--feature .card__body {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  /* Named areas: every child is placed explicitly, so nothing can overlap
+     when the text reflows or the page is zoomed. */
+  grid-template-areas:
+    "place text"
+    "title text"
+    "foot  text";
+  grid-template-rows: auto auto 1fr;
+  align-content: start;
   gap: 12px 40px;
   padding: 32px;
 }
 
-.card--feature h3 { font-size: 1.5rem; grid-column: 1; }
-.card--feature .card__place { grid-column: 1; }
-.card--feature p { grid-column: 2; grid-row: 1 / span 3; }
+.card--feature .card__place { grid-area: place; }
+.card--feature h3 { grid-area: title; font-size: 1.5rem; }
+.card--feature p { grid-area: text; }
+.card--feature .card__foot { grid-area: foot; align-self: end; }
 
 /* Person card */
 .person {
@@ -1055,14 +1064,19 @@ h4 { font-size: 1.0625rem; }
 .footer__social {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  border: 1px solid rgba(255, 255, 255, .2);
-  padding: 9px 14px;
-  transition: border-color .2s var(--ease), color .2s var(--ease);
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, .22);
+  transition: border-color .2s var(--ease), background-color .2s var(--ease);
 }
 
-.footer__social:hover { border-color: rgba(255, 255, 255, .6); }
-.footer__social svg { width: 15px; height: 15px; }
+.footer__social:hover {
+  border-color: rgba(255, 255, 255, .6);
+  background: rgba(255, 255, 255, .08);
+}
+
+.footer__social svg { width: 19px; height: 19px; }
 
 .footer__bottom {
   border-top: 1px solid rgba(255, 255, 255, .12);
@@ -1114,8 +1128,11 @@ h4 { font-size: 1.0625rem; }
   .page-head__grid { grid-template-columns: 1fr; gap: 28px; }
   .row { grid-template-columns: 60px 1fr; }
   .row p { grid-column: 2; }
-  .card--feature .card__body { grid-template-columns: 1fr; }
-  .card--feature p { grid-column: 1; grid-row: auto; }
+  .card--feature .card__body {
+    grid-template-columns: 1fr;
+    grid-template-areas: "place" "title" "text" "foot";
+    grid-template-rows: auto;
+  }
   .footer__top { grid-template-columns: repeat(2, 1fr); gap: 32px; }
 }
 
